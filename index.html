@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>AETERNA™ Guardian Configurator</title>
+
+<style>
+
+:root{
+--gold:#d4af37;
+--black:#000000;
+--grey:#0a0a0a;
+--white:#f4f4f4;
+}
+
+body{
+margin:0;
+padding:0;
+background:#000;
+font-family:Georgia, serif;
+color:var(--gold);
+}
+
+.container{
+max-width:1200px;
+margin:auto;
+padding:40px 20px;
+}
+
+.logo{
+text-align:center;
+margin-bottom:20px;
+}
+
+.logo h1{
+font-size:42px;
+letter-spacing:4px;
+margin-bottom:10px;
+}
+
+.logo p{
+color:#999;
+font-style:italic;
+}
+
+.box{
+background:#0b0b0b;
+border:1px solid #222;
+padding:30px;
+margin-bottom:25px;
+box-shadow:0 0 25px rgba(212,175,55,0.08);
+}
+
+h2{
+color:white;
+font-size:18px;
+letter-spacing:2px;
+border-bottom:1px solid var(--gold);
+padding-bottom:10px;
+margin-bottom:25px;
+text-transform:uppercase;
+}
+
+.grid{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:20px;
+}
+
+input, select{
+width:100%;
+padding:15px;
+background:#111;
+border:1px solid #333;
+color:gold;
+font-family:Georgia, serif;
+box-sizing:border-box;
+margin-top:10px;
+}
+
+.option{
+margin-bottom:15px;
+padding:15px;
+background:#050505;
+border:1px solid #1d1d1d;
+}
+
+.option label{
+display:flex;
+align-items:center;
+cursor:pointer;
+}
+
+.option input[type="checkbox"]{
+width:auto;
+margin-right:15px;
+transform:scale(1.2);
+accent-color:gold;
+}
+
+.option b{
+display:block;
+color:white;
+margin-bottom:5px;
+}
+
+.result{
+background:black;
+border:2px solid gold;
+padding:35px;
+text-align:center;
+margin-top:30px;
+}
+
+.price{
+font-size:56px;
+color:white;
+font-weight:bold;
+margin-top:10px;
+}
+
+.sub{
+margin-top:15px;
+color:gold;
+font-size:15px;
+letter-spacing:2px;
+text-transform:uppercase;
+}
+
+.btn{
+margin-top:25px;
+padding:18px 30px;
+background:gold;
+border:none;
+color:black;
+font-weight:bold;
+cursor:pointer;
+font-size:15px;
+width:100%;
+transition:0.4s;
+}
+
+.btn:hover{
+background:white;
+}
+
+.civil{
+margin-top:20px;
+background:#111;
+border:1px solid gold;
+padding:20px;
+display:none;
+}
+
+.civil h3{
+margin-top:0;
+color:white;
+}
+
+.scan{
+background:#050505;
+padding:15px;
+margin-top:15px;
+border:1px solid #222;
+}
+
+.footer{
+text-align:center;
+margin-top:50px;
+color:#666;
+font-size:13px;
+}
+
+@media(max-width:768px){
+
+.grid{
+grid-template-columns:1fr;
+}
+
+.price{
+font-size:42px;
+}
+
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<div class="logo">
+<h1>AETERNA™</h1>
+<p>"Siamo solidi, siamo preziosi, siamo per sempre"</p>
+</div>
+
+<div class="box">
+
+<h2>Dati Cliente</h2>
+
+<div class="grid">
+
+<div>
+<input type="text" id="nome" placeholder="Nome e Cognome / Azienda">
+</div>
+
+<div>
+<input type="email" id="email" placeholder="Email">
+</div>
+
+<div>
+<input type="text" id="telefono" placeholder="Telefono">
+</div>
+
+<div>
+<select id="categoria" onchange="calcola()">
+<option value="1">PRIVATO</option>
+<option value="1.5">PROFESSIONISTA</option>
+<option value="3">GRANDI COMPAGNIE</option>
+</select>
+</div>
+
+</div>
+
+</div>
+
+<div class="box">
+
+<h2>Superficie Digitale</h2>
+
+<label>
+Quanti account/profili desideri proteggere?
+</label>
+
+<input type="number" id="accounts" value="1" min="1" onchange="calcola()">
+
+</div>
+
+<div class="box">
+
+<h2>Moduli Protocollo AETERNA™</h2>
+
+<div class="grid">
+
+<div class="option">
+<label>
+<input type="checkbox" id="f2" onchange="calcola()">
+<div>
+<b>Bonifica Identità (€150)</b>
+Rimozione dati vulnerabili e tracce digitali.
+</div>
+</label>
+</div>
+
+<div class="option">
+<label>
+<input type="checkbox" id="f3" onchange="calcola()">
+<div>
+<b>Armeria Digitale (€200)</b>
+Vault, password strategy e chiavi fisiche.
+</div>
+</label>
+</div>
+
+<div class="option">
+<label>
+<input type="checkbox" id="f4" onchange="calcola()">
+<div>
+<b>Mappatura Sovrana (€250)</b>
+Censimento patrimonio digitale.
+</div>
+</label>
+</div>
+
+<div class="option">
+<label>
+<input type="checkbox" id="f5" onchange="calcola()">
+<div>
+<b>Ponti di Accesso (€200)</b>
+Gestione eredi e continuità digitale.
+</div>
+</label>
+</div>
+
+<div class="option">
+<label>
+<input type="checkbox" id="f6" onchange="calcola()">
+<div>
+<b>Testamento Digitale (€300)</b>
+Capsula temporale e volontà digitali.
+</div>
+</label>
+</div>
+
+</div>
+
+</div>
+
+<div class="result">
+
+<div>Investimento Protocollo</div>
+
+<div class="price" id="totale">€ 0</div>
+
+<div class="sub" id="canone">
+Continuità Digitale: € 0 / anno
+</div>
+
+<button class="btn" onclick="inviaProtocollo()">
+ATTIVA IL PROTOCOLLO AETERNA™
+</button>
+
+<div class="civil" id="civil">
+
+<h3>ACCESSO CIVIL SHIELD™</h3>
+
+<p>
+Scansione intelligente anti-truffa e anti-manomissione digitale.
+</p>
+
+<div class="scan">
+
+<b>Scansione Occasionale</b>
+
+<p>
+Email, PDF, link, QR, immagini, fatture, vocali, video.
+</p>
+
+<p>
+Costo singola scansione:
+<b>€5</b>
+</p>
+
+<button class="btn">
+AVVIA SCANSIONE
+</button>
+
+</div>
+
+<div class="scan">
+
+<b>Abbonati Premium</b>
+
+<p>
+Scansioni illimitate incluse nel Protocollo AETERNA™.
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="footer">
+AETERNA Digital Legacy™ — Guardian Infrastructure
+</div>
+
+</div>
+
+<script>
+
+function calcola(){
+
+let k = parseFloat(document.getElementById("categoria").value);
+
+let totale = 0;
+
+let acc = parseInt(document.getElementById("accounts").value) || 1;
+
+totale += acc * 50;
+
+if(document.getElementById("f2").checked) totale += 150;
+if(document.getElementById("f3").checked) totale += 200;
+if(document.getElementById("f4").checked) totale += 250;
+if(document.getElementById("f5").checked) totale += 200;
+if(document.getElementById("f6").checked) totale += 300;
+
+totale = totale * k;
+
+let canone = 120 * k;
+
+if(totale > 1500){
+canone = 350 * k;
+}
+
+document.getElementById("totale").innerHTML =
+"€ " + totale.toLocaleString("it-IT");
+
+document.getElementById("canone").innerHTML =
+"Continuità Digitale: € " +
+canone.toLocaleString("it-IT") +
+" / anno";
+
+}
+
+function inviaProtocollo(){
+
+let nome = document.getElementById("nome").value;
+let email = document.getElementById("email").value;
+let telefono = document.getElementById("telefono").value;
+let accounts = document.getElementById("accounts").value;
+
+let totale = document.getElementById("totale").innerText;
+let canone = document.getElementById("canone").innerText;
+
+let servizi = [];
+
+if(document.getElementById("f2").checked) servizi.push("Bonifica Identità");
+if(document.getElementById("f3").checked) servizi.push("Armeria Digitale");
+if(document.getElementById("f4").checked) servizi.push("Mappatura Sovrana");
+if(document.getElementById("f5").checked) servizi.push("Ponti di Accesso");
+if(document.getElementById("f6").checked) servizi.push("Testamento Digitale");
+
+let corpo =
+`NUOVA CONFIGURAZIONE AETERNA™
+
+Cliente: ${nome}
+
+Email: ${email}
+
+Telefono: ${telefono}
+
+Account da proteggere: ${accounts}
+
+Servizi scelti:
+${servizi.join(", ")}
+
+Totale:
+${totale}
+
+${canone}
+
+Richiesta generata dal Guardian Configurator™`;
+
+window.location.href =
+`mailto:info@aeternadigitallegacy.com?subject=Nuovo Cliente AETERNA™&body=${encodeURIComponent(corpo)}`;
+
+document.getElementById("civil").style.display = "block";
+
+}
+
+calcola();
+
+</script>
+
+</body>
+</html>
