@@ -623,7 +623,7 @@ Guardian Progress™
 <div class="progress-item">
 <div class="progress-label">STEP 1</div>
 <div class="progress-bar">
-<div class="progress-fill" id="bar1"></div>
+<div class="progress-fill" id="bar1" style="width: 70%;"></div>
 </div>
 </div>
 
@@ -668,8 +668,6 @@ Guardian Progress™
 </div>
 
 <div class="wizard">
-
-<!-- STEP 1 -->
 
 <div class="step active" id="step1">
 
@@ -727,8 +725,6 @@ CONTINUA
 </div>
 
 </div>
-
-<!-- STEP 2 -->
 
 <div class="step" id="step2">
 
@@ -861,8 +857,6 @@ CONTINUA
 
 </div>
 
-<!-- STEP 3 -->
-
 <div class="step" id="step3">
 
 <div class="step-title">
@@ -894,7 +888,7 @@ L'intelligenza AETERNA™ analizzerà il tuo ecosistema e suggerirà il protocol
 <div class="protection-grid">
 
 <div class="protection"
-onclick="setProtection(120,'Base Shield™',
+onclick="setProtection(this, 120,'Base Shield™',
 '✔ Audit cyber iniziale<br><br>✔ Analisi esposizione digitale<br><br>✔ Verifica account principali<br><br>✔ Report preliminare Guardian™<br><br>✔ Supporto onboarding standard')">
 
 <h3>Base Shield™</h3>
@@ -906,7 +900,7 @@ Protezione iniziale per ecosistemi digitali personali.
 </div>
 
 <div class="protection"
-onclick="setProtection(320,'Silver Shield™',
+onclick="setProtection(this, 320,'Silver Shield™',
 '✔ Audit avanzato multilivello<br><br>✔ Analisi reputazionale online<br><br>✔ Simulazione attacchi phishing<br><br>✔ Priorità onboarding Guardian™<br><br>✔ Supporto operativo avanzato')">
 
 <h3>Silver Shield™</h3>
@@ -918,7 +912,7 @@ Protezione avanzata per professionisti e PMI.
 </div>
 
 <div class="protection"
-onclick="setProtection(690,'Gold Shield™',
+onclick="setProtection(this, 690,'Gold Shield™',
 '✔ Intelligence cyber premium<br><br>✔ Protezione ecosistema digitale<br><br>✔ Monitoraggio vulnerabilità<br><br>✔ Continuità digitale avanzata<br><br>✔ Supporto Guardian™ prioritario')">
 
 <h3>Gold Shield™</h3>
@@ -930,7 +924,7 @@ Protezione premium per ecosistemi complessi.
 </div>
 
 <div class="protection"
-onclick="setProtection(1290,'Guardian Shield™',
+onclick="setProtection(this, 1290,'Guardian Shield™',
 '✔ Accesso ecosistema AETERNA™<br><br>✔ Scanner cyber premium illimitato<br><br>✔ Continuità digitale enterprise<br><br>✔ Protezione reputazionale avanzata<br><br>✔ Supporto Guardian™ dedicato<br><br>✔ Membership Club AETERNA™')">
 
 <h3>Guardian Shield™</h3>
@@ -964,8 +958,6 @@ CONTINUA
 </div>
 
 </div>
-
-<!-- STEP 4 -->
 
 <div class="step" id="step4">
 
@@ -1067,8 +1059,6 @@ CONTINUA
 
 </div>
 
-<!-- STEP 5 -->
-
 <div class="step" id="step5">
 
 <div class="step-title">
@@ -1151,17 +1141,13 @@ INVIA RICHIESTA
 
 </div>
 
-</div>
-
-<div class="footer">
+</div> </div> <div class="footer">
 
 AETERNA Guardian™ fornisce valutazioni preliminari basate su modelli euristici e simulazioni operative AI.
 
 </div>
 
-</div>
-
-<script>
+</div> <script>
 
 let currentStep = 1;
 
@@ -1225,10 +1211,18 @@ function backStep(step){
 document.getElementById("step"+step)
 .classList.remove("active");
 
+// Ripristina la barra di progresso attuale a 0
+document.getElementById("bar"+step)
+.style.width = "0%";
+
 currentStep--;
 
 document.getElementById("step"+currentStep)
 .classList.add("active");
+
+// Imposta la barra precedente a 70%
+document.getElementById("bar"+currentStep)
+.style.width = "70%";
 
 setTimeout(()=>{
 
@@ -1245,7 +1239,8 @@ block:"start"
 
 }
 
-function setProtection(price,name,description){
+// Passando "element" correggiamo il bug di event.currentTarget
+function setProtection(element, price, name, description){
 
 protectionPrice = price;
 
@@ -1264,10 +1259,10 @@ el.style.boxShadow =
 
 });
 
-event.currentTarget.style.border =
+element.style.border =
 "1px solid #d4af37";
 
-event.currentTarget.style.boxShadow =
+element.style.boxShadow =
 "0 0 45px rgba(212,175,55,0.18)";
 
 }
@@ -1341,53 +1336,54 @@ document.getElementById(
 
 function calculateRisk(){
 
+// Utilizzo parseInt in modo sicuro per evitare errori NaN se i campi sono vuoti
 let social =
-parseInt(document.getElementById("social").value || 0);
+parseInt(document.getElementById("social").value) || 0;
 
 let emails =
-parseInt(document.getElementById("emailnum").value || 0);
+parseInt(document.getElementById("emailnum").value) || 0;
 
 let siti =
-parseInt(document.getElementById("siti").value || 0);
+parseInt(document.getElementById("siti").value) || 0;
 
 let wallet =
-parseInt(document.getElementById("wallet").value || 0);
+parseInt(document.getElementById("wallet").value) || 0;
 
 let dipendenti =
-parseInt(document.getElementById("dipendenti").value || 0);
+parseInt(document.getElementById("dipendenti").value) || 0;
 
 let dispositivi =
-parseInt(document.getElementById("dispositivi").value || 0);
+parseInt(document.getElementById("dispositivi").value) || 0;
 
 let phishing =
-parseInt(document.getElementById("phishing").value || 0);
+parseInt(document.getElementById("phishing").value) || 0;
 
 let scam =
-parseInt(document.getElementById("scam").value || 0);
+parseInt(document.getElementById("scam").value) || 0;
 
 let leak =
-parseInt(document.getElementById("leak").value || 0);
+parseInt(document.getElementById("leak").value) || 0;
 
 let reputation =
-parseInt(document.getElementById("reputation").value || 0);
+parseInt(document.getElementById("reputation").value) || 0;
 
 let continuity =
-parseInt(document.getElementById("continuity").value || 0);
+parseInt(document.getElementById("continuity").value) || 0;
 
 let legacy =
-parseInt(document.getElementById("legacy").value || 0);
+parseInt(document.getElementById("legacy").value) || 0;
 
 let accountBreach =
-parseInt(document.getElementById("accountBreach").value || 0);
+parseInt(document.getElementById("accountBreach").value) || 0;
 
 let twofa =
-parseInt(document.getElementById("twofa").value || 0);
+parseInt(document.getElementById("twofa").value) || 0;
 
 let backup =
-parseInt(document.getElementById("backup").value || 0);
+parseInt(document.getElementById("backup").value) || 0;
 
 let payments =
-parseInt(document.getElementById("payments").value || 0);
+parseInt(document.getElementById("payments").value) || 0;
 
 let complexity =
 
@@ -1584,10 +1580,12 @@ document.getElementById("email").value;
 let telefono =
 document.getElementById("telefono").value;
 
+// Aggiunto mode: "no-cors" per prevenire un possibile blocco dal browser
 fetch(
 "https://script.google.com/macros/s/AKfycbwXgJmz2HDhukJTixDSC0YkW6EPWI-SdAYEnGK8lXgNfXfFkxeCXH3eCBtEGd1Xnc3RYQ/exec",
 {
 method:"POST",
+mode: "no-cors",
 body:JSON.stringify({
 
 nome:nome,
@@ -1648,3 +1646,7 @@ alert(
 );
 
 }
+
+</script>
+</body>
+</html>
