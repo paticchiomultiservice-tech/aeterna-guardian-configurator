@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>AETERNA Guardian™ | Protezione Digitale</title>
-
+  
 <link rel="icon" type="image/png" href="./nuovologo.png">
 
 <style>
@@ -691,7 +691,9 @@ Configura il tuo ecosistema digitale da proteggere.
 
 <input type="text" id="telefono" placeholder="Telefono">
 
-<select id="cliente">
+<select
+id="cliente"
+onchange="updateAdvisor()">
 
 <option>Privato</option>
 <option>Professionista</option>
@@ -701,17 +703,17 @@ Configura il tuo ecosistema digitale da proteggere.
 
 </select>
 
-<input type="number" id="social" placeholder="Account digitali da proteggere">
+<input type="number" id="social" min="0" value="0">
 
-<input type="number" id="emailnum" placeholder="Email operative">
+<input type="number" id="emailnum" min="0" value="0">
 
-<input type="number" id="siti" placeholder="Siti web">
+<input type="number" id="siti" min="0" value="0">
 
-<input type="number" id="wallet" placeholder="Wallet crypto">
+<input type="number" id="wallet" min="0" value="0">
 
-<input type="number" id="dipendenti" placeholder="Collaboratori">
+<input type="number" id="dipendenti" min="0" value="0">
 
-<input type="number" id="dispositivi" placeholder="Dispositivi utilizzati">
+<input type="number" id="dispositivi" min="0" value="0">
 
 </div>
 
@@ -778,6 +780,65 @@ Valutazione AI preliminare delle vulnerabilità operative, reputazionali e infra
 <option value="220">Asset digitali non protetti</option>
 </select>
 
+<select id="accountBreach">
+
+<option value="0">
+Nessun account compromesso
+</option>
+
+<option value="120">
+Possibile compromissione account
+</option>
+
+<option value="250">
+Account già violato
+</option>
+
+</select>
+
+<select id="twofa">
+
+<option value="0">
+Autenticazione 2FA attiva
+</option>
+
+<option value="80">
+2FA assente
+</option>
+
+</select>
+
+<select id="backup">
+
+<option value="0">
+Backup regolari presenti
+</option>
+
+<option value="120">
+Backup incompleti
+</option>
+
+<option value="250">
+Nessun backup disponibile
+</option>
+
+</select>
+
+<select id="payments">
+
+<option value="0">
+Nessun pagamento online
+</option>
+
+<option value="80">
+Pagamenti online occasionali
+</option>
+
+<option value="180">
+Pagamenti online frequenti
+</option>
+
+</select>
 </div>
 
 <textarea
@@ -811,6 +872,22 @@ Protection Level™
 <div class="step-description">
 
 Seleziona il protocollo AETERNA™ più adatto.
+
+</div>
+
+<div id="protocolAdvisor"
+
+style="
+margin-top:20px;
+padding:25px;
+background:#111;
+border-radius:20px;
+border:1px solid rgba(212,175,55,0.15);
+line-height:2;
+color:#ccc;
+">
+
+L'intelligenza AETERNA™ analizzerà il tuo ecosistema e suggerirà il protocollo più adatto.
 
 </div>
 
@@ -1195,6 +1272,54 @@ event.currentTarget.style.boxShadow =
 
 }
 
+function updateAdvisor(){
+
+let cliente =
+document.getElementById("cliente").value;
+
+let text = "";
+
+if(cliente==="Privato"){
+
+text =
+"Consigliato Base Shield™ per protezione personale.";
+
+}
+
+if(cliente==="Professionista"){
+
+text =
+"Consigliato Silver Shield™ per attività professionali.";
+
+}
+
+if(cliente==="PMI"){
+
+text =
+"Consigliato Gold Shield™ per ecosistemi aziendali.";
+
+}
+
+if(cliente==="Azienda"){
+
+text =
+"Consigliato Guardian Shield™ per protezione avanzata.";
+
+}
+
+if(cliente==="Creator / Influencer"){
+
+text =
+"Consigliato Gold Shield™ per tutela reputazionale.";
+
+}
+
+document.getElementById(
+"protocolAdvisor"
+).innerHTML = text;
+
+}
+
 function simulateAI(){
 
 document.getElementById(
@@ -1252,6 +1377,18 @@ parseInt(document.getElementById("continuity").value || 0);
 let legacy =
 parseInt(document.getElementById("legacy").value || 0);
 
+let accountBreach =
+parseInt(document.getElementById("accountBreach").value || 0);
+
+let twofa =
+parseInt(document.getElementById("twofa").value || 0);
+
+let backup =
+parseInt(document.getElementById("backup").value || 0);
+
+let payments =
+parseInt(document.getElementById("payments").value || 0);
+
 let complexity =
 
 (social * 15) +
@@ -1263,12 +1400,18 @@ let complexity =
 
 let cyberRisk =
 
+let cyberRisk =
+
 phishing +
 scam +
 leak +
 reputation +
 continuity +
-legacy;
+legacy +
+accountBreach +
+twofa +
+backup +
+payments;
 
 let membership = 49.99;
 
@@ -1440,45 +1583,70 @@ document.getElementById("nome").value;
 let email =
 document.getElementById("email").value;
 
+let telefono =
+document.getElementById("telefono").value;
+
+fetch(
+"https://script.google.com/macros/s/AKfycbwXgJmz2HDhukJTixDSC0YkW6EPWI-SdAYEnGK8lXgNfXfFkxeCXH3eCBtEGd1Xnc3RYQ/exec",
+{
+method:"POST",
+body:JSON.stringify({
+
+nome:nome,
+email:email,
+telefono:telefono,
+cliente:
+document.getElementById("cliente").value,
+
+pacchetto:
+protectionName,
+
+totale:
+totalPrice.toFixed(2),
+
+rischio:
+document.getElementById("riskLevel").innerText,
+
+note:
+document.getElementById("note").value
+
+})
+
+}
+)
+.catch(error=>console.log(error));
+
 let subject =
 encodeURIComponent(
-"AETERNA Guardian™ Request"
+"AETERNA Guardian Request™"
 );
 
 let body =
 encodeURIComponent(
 
 `
-Nuova richiesta AETERNA Guardian™
-
 Cliente: ${nome}
 
 Email: ${email}
+
+Telefono: ${telefono}
 
 Pacchetto:
 ${protectionName}
 
 Totale:
 ${totalPrice.toFixed(2)}€
-
-Il cliente ha completato il preventivo operativo.
 `
 
 );
 
 window.location.href =
-
 `mailto:info@aeternadigitallegacy.com?subject=${subject}&body=${body}`;
 
 alert(
 
-"Richiesta inviata correttamente. Dopo la verifica del pagamento riceverai onboarding, accesso scanner, PDF operativo e dashboard Guardian™."
+"Richiesta registrata correttamente. Dopo la verifica del pagamento riceverai onboarding, PDF, accesso scanner e dashboard Guardian™."
 
 );
 
 }
-
-</script>
-
-</body>
-</html>
