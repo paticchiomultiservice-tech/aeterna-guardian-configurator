@@ -9,7 +9,48 @@
 <title>AETERNA Guardian™ | Protezione Digitale</title>
   
 <link rel="icon" type="image/png" href="./nuovologo.png">
+.section-header {
+  color: #d4af37;
+  font-size: 18px;
+  font-weight: bold;
+  margin: 30px 0 15px 0;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border-bottom: 1px solid rgba(212,175,55,0.2);
+  padding-bottom: 10px;
+}
 
+.input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 18px;
+}
+
+.input-group label {
+  font-size: 14px;
+  color: #fff;
+  font-weight: bold;
+}
+
+.input-group span {
+  font-size: 12px;
+  color: #888;
+}
+
+.grid input, .grid select {
+  margin-bottom: 0; 
+}
+
+.info-text {
+  font-size: 12px;
+  color: #888;
+  margin-top: 15px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
 <style>
 
 *{
@@ -676,50 +717,65 @@ Identity & Infrastructure™
 </div>
 
 <div class="step-description">
-
 Configura il tuo ecosistema digitale da proteggere.
-
 </div>
+
+<h3 style="color:#d4af37;margin-bottom:20px;">
+Informazioni di base
+</h3>
 
 <div class="grid">
 
-<input type="text" id="nome" placeholder="Nome o Azienda">
+<input type="text" id="nome" placeholder="Nome o Azienda *">
 
-<input type="email" id="email" placeholder="Email operativa">
+<input type="email" id="email" placeholder="Email operativa *">
 
-<input type="text" id="telefono" placeholder="Telefono">
+<input type="text" id="telefono" placeholder="Telefono *">
 
-<select
-id="cliente"
-onchange="updateAdvisor()">
-
+<select id="cliente">
+<option value="">Seleziona tipologia</option>
 <option>Privato</option>
 <option>Professionista</option>
 <option>PMI</option>
 <option>Azienda</option>
 <option>Creator / Influencer</option>
-
 </select>
 
-<input type="number" id="social" min="0" value="0">
+</div>
 
-<input type="number" id="emailnum" min="0" value="0">
+<h3 style="color:#d4af37;margin-top:30px;margin-bottom:20px;">
+Infrastruttura digitale (quantità)
+</h3>
 
-<input type="number" id="siti" min="0" value="0">
+<div class="grid">
 
-<input type="number" id="wallet" min="0" value="0">
+<input type="number" id="social" min="0" value="0" placeholder="Account Social">
 
-<input type="number" id="dipendenti" min="0" value="0">
+<input type="number" id="emailnum" min="0" value="0" placeholder="Indirizzi Email">
 
-<input type="number" id="dispositivi" min="0" value="0">
+<input type="number" id="siti" min="0" value="0" placeholder="Siti Web / Blog">
 
+<input type="number" id="wallet" min="0" value="0" placeholder="Wallet / Cripto">
+
+<input type="number" id="dipendenti" min="0" value="0" placeholder="Dipendenti / Collaboratori">
+
+<input type="number" id="dispositivi" min="0" value="0" placeholder="Dispositivi Utilizzati">
+
+</div>
+
+<div style="
+margin-top:15px;
+font-size:13px;
+color:#888;
+">
+Inserisci 0 se non possiedi o non utilizzi l'elemento.
 </div>
 
 <div class="navigation">
 
 <button class="btn-next"
 onclick="nextStep(1)">
-CONTINUA
+CONTINUA →
 </button>
 
 </div>
