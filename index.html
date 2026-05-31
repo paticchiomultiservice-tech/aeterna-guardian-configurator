@@ -1255,7 +1255,7 @@ function backStep(step){
 document.getElementById("step"+step)
 .classList.remove("active");
 
-// Ripristina la barra di progresso attuale a 0
+
 document.getElementById("bar"+step)
 .style.width = "0%";
 
@@ -1264,7 +1264,7 @@ currentStep--;
 document.getElementById("step"+currentStep)
 .classList.add("active");
 
-// Imposta la barra precedente a 70%
+
 document.getElementById("bar"+currentStep)
 .style.width = "70%";
 
@@ -1283,7 +1283,7 @@ block:"start"
 
 }
 
-// Passando "element" correggiamo il bug di event.currentTarget
+
 function setProtection(element, price, name, description){
 
 protectionPrice = price;
@@ -1380,7 +1380,7 @@ document.getElementById(
 
 function calculateRisk(){
 
-// Utilizzo parseInt in modo sicuro per evitare errori NaN se i campi sono vuoti
+
 let social =
 parseInt(document.getElementById("social").value) || 0;
 
@@ -1624,7 +1624,7 @@ document.getElementById("email").value;
 let telefono =
 document.getElementById("telefono").value;
 
-// Aggiunto mode: "no-cors" per prevenire un possibile blocco dal browser
+
 fetch(
 "https://script.google.com/macros/s/AKfycbwXgJmz2HDhukJTixDSC0YkW6EPWI-SdAYEnGK8lXgNfXfFkxeCXH3eCBtEGd1Xnc3RYQ/exec",
 {
