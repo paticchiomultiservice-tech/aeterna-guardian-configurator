@@ -4,8 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>AETERNA Guardian™ | Configuratore Rinascita</title>
-<link rel="icon" type="image/png" href="https://paticchiomultiservice-tech.github.io/aeterna-civil-shield/nuovologo.png?v=guardian-configurator-rinascita-v5">
-<link rel="apple-touch-icon" href="https://paticchiomultiservice-tech.github.io/aeterna-civil-shield/nuovologo.png?v=guardian-configurator-rinascita-v5">
+<link rel="icon" type="image/png" href="https://paticchiomultiservice-tech.github.io/aeterna-civil-shield/nuovologo.png?v=guardian-configurator-rinascita-v6-preventivo-ordinato">
+<link rel="apple-touch-icon" href="https://paticchiomultiservice-tech.github.io/aeterna-civil-shield/nuovologo.png?v=guardian-configurator-rinascita-v6-preventivo-ordinato">
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
@@ -47,7 +47,7 @@ body:before{
   width:94px;height:94px;min-width:94px;
   border-radius:26px;
   border:2px solid var(--gold);
-  background:#070707 url("https://paticchiomultiservice-tech.github.io/aeterna-civil-shield/nuovologo.png?v=guardian-configurator-rinascita-v5") center/contain no-repeat;
+  background:#070707 url("https://paticchiomultiservice-tech.github.io/aeterna-civil-shield/nuovologo.png?v=guardian-configurator-rinascita-v6-preventivo-ordinato") center/contain no-repeat;
   display:flex;align-items:center;justify-content:center;
   overflow:hidden;
   box-shadow:0 0 46px rgba(212,175,55,.24);
@@ -187,7 +187,7 @@ th{color:var(--gold);background:#090909}
 <header class="topbar">
   <div class="logo-area">
     <div class="logo-shell" aria-label="AETERNA Guardian logo">
-      <img id="aeternaLogo" src="https://paticchiomultiservice-tech.github.io/aeterna-civil-shield/nuovologo.png?v=guardian-configurator-rinascita-v5" alt="AETERNA Guardian" loading="eager" decoding="async" fetchpriority="high" onerror="showLogoFallback()">
+      <img id="aeternaLogo" src="https://paticchiomultiservice-tech.github.io/aeterna-civil-shield/nuovologo.png?v=guardian-configurator-rinascita-v6-preventivo-ordinato" alt="AETERNA Guardian" loading="eager" decoding="async" fetchpriority="high" onerror="showLogoFallback()">
       <div id="logoFallback" class="logo-fallback" aria-hidden="true">
         <svg viewBox="0 0 100 100"><defs><linearGradient id="g" x1="0" x2="1" y1="0" y2="1"><stop offset="0" stop-color="#fff2a6"/><stop offset=".45" stop-color="#d4af37"/><stop offset="1" stop-color="#8a6d1f"/></linearGradient></defs><path d="M50 6 L83 20 V46 C83 69 69 86 50 94 C31 86 17 69 17 46 V20 Z" fill="none" stroke="url(#g)" stroke-width="7"/><path d="M50 22 L73 75 H62 L57 62 H42 L37 75 H27 Z M45 53 H54 L50 39 Z" fill="url(#g)"/></svg>
       </div>
@@ -391,7 +391,7 @@ th{color:var(--gold);background:#090909}
 <script>
 const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwXgJmz2HDhukJTixDSC0YkW6EPWI-SdAYEnGK8lXgNfXfFkxeCXH3eCBtEGd1Xnc3RYQ/exec";
 const SUPPORT_EMAIL = "info@aeternadigitallegacy.com";
-const LOGO_SOURCES = ["https://paticchiomultiservice-tech.github.io/aeterna-civil-shield/nuovologo.png?v=guardian-configurator-rinascita-v5","nuovologo.png?v=guardian-configurator-rinascita-v5","https://paticchiomultiservice-tech.github.io/aeterna-guardian-configurator/nuovologo.png?v=guardian-configurator-rinascita-v5"];
+const LOGO_SOURCES = ["https://paticchiomultiservice-tech.github.io/aeterna-civil-shield/nuovologo.png?v=guardian-configurator-rinascita-v6-preventivo-ordinato","nuovologo.png?v=guardian-configurator-rinascita-v6-preventivo-ordinato","https://paticchiomultiservice-tech.github.io/aeterna-guardian-configurator/nuovologo.png?v=guardian-configurator-rinascita-v6-preventivo-ordinato"];
 
 let currentStep = 1;
 let selectedPackage = "";
@@ -781,45 +781,137 @@ function showStep(step){
 function nextStep(){if(validateCurrent())showStep(currentStep+1)}
 function prevStep(){showStep(currentStep-1)}
 
+
+function getSelectedServiceNames(){
+  const pr = pricing();
+  const pack = selectedPackage ? t().packages[selectedPackage] : null;
+  const services = [];
+
+  if(pack){
+    services.push("PACCHETTO: " + pack.name);
+    pack.services.forEach(s => services.push("INCLUSO: " + s));
+  }
+
+  pr.extras.forEach(k => {
+    if(t().extras[k]){
+      services.push("EXTRA: " + t().extras[k][0] + " — " + t().extras[k][1]);
+    }
+  });
+
+  return services;
+}
+
+function getSelectedServiceListForSheet(){
+  const list = getSelectedServiceNames();
+  return list.length ? list.join(" | ") : "Nessun pacchetto selezionato";
+}
+
+function getSelectedServiceListForEmail(){
+  const list = getSelectedServiceNames();
+  return list.length ? list.map(s => "• " + s).join("\n") : "Nessun pacchetto selezionato";
+}
+
+function getQuoteSummaryText(){
+  const pr = pricing();
+  const min = minimumRiskPackage();
+  const packName = selectedPackage ? t().packages[selectedPackage].name : "Nessun pacchetto selezionato";
+  const recommendedName = recommendedPackage ? t().packages[recommendedPackage].name : "—";
+  const extraNames = pr.extras.map(k => t().extras[k] ? t().extras[k][0] : k).join(", ") || "Nessun extra";
+
+  return `PREVENTIVO AETERNA GUARDIAN™
+
+Cliente: ${value("nome") || "—"}
+Email: ${value("email") || "—"}
+Telefono: ${value("telefono") || "—"}
+Paese: ${value("paese") || "—"}
+Tipologia cliente: ${CLIENT_COMPLEXITY_LABEL[value("cliente")] || value("cliente") || "—"}
+
+Pacchetto selezionato: ${packName}
+Protocollo consigliato: ${recommendedName}
+Risk Snapshot: ${value("cliente") ? (min.label + " " + min.score + "%") : "—"}
+
+Servizi acquistati / inclusi:
+${getSelectedServiceListForEmail()}
+
+Extra selezionati:
+${extraNames}
+
+Totale ufficiale EUR: ${pr.total.toFixed(2)}€
+Totale visualizzato: ${currencyFormat(pr.total)}
+
+Pagamento:
+Bonifico bancario in EUR
+Beneficiario: Andrea Paticchio
+IBAN: IT72Q0306979272100000007248
+Causale: AETERNA Guardian - ${value("nome") || "Cliente"} - ${packName}
+
+Nota:
+Civil Shield™ illimitato incluso nei pacchetti Guardian™.
+Guardian Report™ incluso.
+La stima è preliminare e sarà confermata dal team AETERNA.`;
+}
+
+function getInternalNotesForSheet(){
+  const pr = pricing();
+  return [
+    "Origine: configuratore AETERNA Guardian",
+    "Lingua: " + currentLang,
+    "Valuta visualizzata: " + currentCurrency,
+    "PackageCostEUR: " + pr.packageCost.toFixed(2),
+    "ProfileCostEUR: " + pr.profileCost.toFixed(2),
+    "ComplexityCostEUR: " + pr.complexity.toFixed(2),
+    "ExtraCostEUR: " + pr.extraCost.toFixed(2),
+    "RiskScore: " + (value("cliente") ? minimumRiskPackage().score : 0)
+  ].join(" | ");
+}
+
+
 function buildPayload(){
   const pr=pricing(), min=minimumRiskPackage();
+  const packName = selectedPackage ? t().packages[selectedPackage].name : "";
+  const recommendedName = recommendedPackage ? t().packages[recommendedPackage].name : "";
+  const extraNames = pr.extras.map(k=>t().extras[k] ? t().extras[k][0] : k).join(", ");
+
   return {
+    // Campi ordinati per Google Sheet / colpo d'occhio
+    StatoRichiesta:"DA VERIFICARE",
+    DataRichiesta:new Date().toLocaleString("it-IT"),
+    Cliente:value("nome"),
+    Email:value("email"),
+    Telefono:value("telefono"),
+    Paese:value("paese"),
+    TipologiaCliente:CLIENT_COMPLEXITY_LABEL[value("cliente")] || value("cliente"),
+    PacchettoAcquistato:packName,
+    ProtocolloConsigliato:recommendedName,
+    ExtraAcquistati:extraNames || "Nessun extra",
+    ServiziAcquistati:getSelectedServiceListForSheet(),
+    TotaleEUR:pr.total.toFixed(2),
+    TotaleVisualizzato:currencyFormat(pr.total),
+    ValutaVisualizzata:currentCurrency,
+    RiskSnapshot:value("cliente") ? (min.label + " " + min.score + "%") : "—",
+    CausaleBonifico:"AETERNA Guardian - " + (value("nome") || "Cliente") + " - " + (packName || "Pacchetto"),
+    IBAN:"IT72Q0306979272100000007248",
+    Beneficiario:"Andrea Paticchio",
+    PreventivoOrdinato:getQuoteSummaryText(),
+    NoteInterne:getInternalNotesForSheet(),
+
+    // Campi tecnici/dettaglio per analisi futura
     createdAt:new Date().toISOString(),
-    source:"AETERNA Guardian Super Configurator Final",
+    source:"AETERNA Guardian Configuratore Rinascita V6 - Preventivo Ordinato",
     language:currentLang,
     displayCurrency:currentCurrency,
     nome:value("nome"), email:value("email"), telefono:value("telefono"), paese:value("paese"), cliente:value("cliente"), goal:value("goal"),
     profiliProtetti:num("profiliProtetti"), collaboratori:num("collaboratori"), publicExposure:value("publicExposure"),
     accountCritici:num("accountCritici"), social:num("social"), emailOperative:num("emailnum"), siti:num("siti"), domini:num("domini"), wallet:num("wallet"), cloud:num("cloud"), dispositivi:num("dispositivi"), archiviDocumenti:num("archiviDocumenti"),
     phishing:value("phishing"), scam:value("scam"), dataExposure:value("dataExposure"), reputationRisk:value("reputationRisk"), twofa:value("twofa"), backup:value("backup"), payments:value("payments"), lostAccess:value("lostAccess"), legacyNeed:value("legacyNeed"), sharedAccess:value("sharedAccess"),
-    pacchetto:selectedPackage ? t().packages[selectedPackage].name : "", pacchettoKey:selectedPackage, protocolloConsigliato:recommendedPackage ? t().packages[recommendedPackage].name : "", minimumShield:min.key ? t().packages[min.key].name : "", riskScore:min.score, riskLevel:min.label,
-    extraSelezionati:pr.extras.map(k=>t().extras[k][0]).join(", "),
-    packageCost:pr.packageCost.toFixed(2), profileCost:pr.profileCost.toFixed(2), complexityCost:pr.complexity.toFixed(2), extraCost:pr.extraCost.toFixed(2), enterpriseLayer:"0.00", totaleEUR:pr.total.toFixed(2)
+    pacchetto:packName, pacchettoKey:selectedPackage, protocolloConsigliato:recommendedName, minimumShield:min.key ? t().packages[min.key].name : "", riskScore:min.score, riskLevel:min.label,
+    extraSelezionati:extraNames,
+    packageCost:pr.packageCost.toFixed(2), profileCost:pr.profileCost.toFixed(2), complexityCost:pr.complexity.toFixed(2), extraCost:pr.extraCost.toFixed(2), totaleEUR:pr.total.toFixed(2)
   };
 }
 
 function quoteText(){
-  const p=buildPayload();
-  return `AETERNA Guardian™ - Preventivo
-
-Cliente: ${p.nome}
-Email: ${p.email}
-Telefono: ${p.telefono}
-Paese: ${p.paese}
-Tipologia: ${p.cliente}
-
-Pacchetto selezionato: ${p.pacchetto}
-Protocollo consigliato: ${p.protocolloConsigliato}
-Risk Snapshot: ${p.riskLevel} ${p.riskScore}%
-
-Extra: ${p.extraSelezionati || "Nessun extra"}
-
-Totale EUR: ${p.totaleEUR}€
-Valuta visualizzata: ${p.displayCurrency}
-
-Civil Shield™ illimitato incluso.
-Guardian Report™ incluso.
-`;
+  return getQuoteSummaryText();
 }
 
 function bankText(){
@@ -862,7 +954,7 @@ function completeOnboarding(){
   submitToSheet(payload);
   copyBankTransfer();
   const subject=encodeURIComponent("AETERNA Guardian Request™ - "+(payload.nome||"Cliente"));
-  const body=encodeURIComponent(quoteText()+"\n"+bankText());
+  const body=encodeURIComponent(quoteText());
   setTimeout(()=>{window.location.href=`mailto:${SUPPORT_EMAIL}?subject=${subject}&body=${body}`},600);
 }
 
