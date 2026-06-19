@@ -1,208 +1,822 @@
 <!DOCTYPE html>
 <html lang="it">
-
 <head>
-
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Accesso Civil Shield™</title>
-
-<link rel="icon" type="image/png" href="./nuovologo.png">
-
-<style>
-
-body{
-
-background:#050505;
-font-family:Arial,sans-serif;
-color:white;
-padding:25px;
-
-}
-
-.container{
-
-max-width:700px;
-margin:auto;
-margin-top:60px;
-
-background:#111;
-
-padding:40px;
-
-border-radius:30px;
-
-border:1px solid rgba(212,175,55,0.15);
-
-}
-
-.logo{
-
-width:120px;
-height:120px;
-
-margin:auto;
-
-border-radius:30px;
-
-overflow:hidden;
-
-margin-bottom:25px;
-
-border:2px solid #d4af37;
-
-}
-
-.logo img{
-
-width:100%;
-height:100%;
-object-fit:cover;
-
-}
-
-h1{
-
-text-align:center;
-color:#d4af37;
-margin-bottom:20px;
-
-}
-
-p{
-
-text-align:center;
-color:#aaa;
-line-height:1.8;
-margin-bottom:35px;
-
-}
-
-input,textarea{
-
-width:100%;
-
-padding:18px;
-
-margin-bottom:20px;
-
-background:#0b0b0b;
-
-border:none;
-
-border-radius:18px;
-
-color:white;
-
-font-size:15px;
-
-}
-
-textarea{
-
-height:160px;
-resize:none;
-
-}
-
-button{
-
-width:100%;
-
-padding:18px;
-
-background:#d4af37;
-
-color:black;
-
-font-weight:bold;
-
-font-size:16px;
-
-border:none;
-
-border-radius:18px;
-
-cursor:pointer;
-
-}
-
-.footer{
-
-margin-top:35px;
-
-font-size:12px;
-
-color:#666;
-
-text-align:center;
-
-line-height:1.8;
-
-}
-
-</style>
-
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Accesso Civil Shield™ | 10 scansioni</title>
+  <link rel="icon" type="image/webp" href="../nuovologo.webp">
+  <style>
+    :root{
+      --bg:#050505;
+      --panel:#101010;
+      --panel2:#151515;
+      --gold:#d4af37;
+      --gold2:#f3d77c;
+      --text:#ffffff;
+      --muted:#b7b7b7;
+      --soft:rgba(255,255,255,.08);
+      --line:rgba(212,175,55,.28);
+      --green:#23d18b;
+      --danger:#ff6b6b;
+    }
+
+    *{box-sizing:border-box}
+
+    body{
+      margin:0;
+      background:
+        radial-gradient(circle at top, rgba(212,175,55,.16), transparent 34rem),
+        linear-gradient(180deg, #050505 0%, #090909 55%, #030303 100%);
+      font-family:Arial, sans-serif;
+      color:var(--text);
+      min-height:100vh;
+      padding:24px;
+    }
+
+    .shell{
+      max-width:860px;
+      margin:0 auto;
+      padding:34px 0 54px;
+    }
+
+    .topbar{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:16px;
+      margin-bottom:18px;
+    }
+
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:14px;
+      min-width:0;
+    }
+
+    .logo{
+      width:74px;
+      height:74px;
+      border-radius:22px;
+      overflow:hidden;
+      border:2px solid var(--gold);
+      background:#0b0b0b;
+      box-shadow:0 0 30px rgba(212,175,55,.24);
+      flex:0 0 auto;
+      position:relative;
+      display:grid;
+      place-items:center;
+    }
+
+    .logo img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      display:block;
+      position:absolute;
+      inset:0;
+      z-index:2;
+      background:#0b0b0b;
+    }
+
+    .logo img.logo-missing{
+      display:none;
+    }
+
+    .logo-fallback{
+      width:100%;
+      height:100%;
+      display:grid;
+      place-items:center;
+      background:
+        radial-gradient(circle at 50% 18%, rgba(243,215,124,.22), transparent 34px),
+        linear-gradient(145deg, #101010, #050505);
+    }
+
+    .logo-fallback svg{
+      width:78%;
+      height:78%;
+      filter:drop-shadow(0 0 10px rgba(212,175,55,.45));
+    }
+
+    .brand-title{
+      font-weight:800;
+      letter-spacing:.04em;
+      text-transform:uppercase;
+      line-height:1.2;
+      overflow-wrap:anywhere;
+    }
+
+    .brand-title span{
+      color:var(--gold2);
+      display:block;
+      font-size:13px;
+      margin-top:3px;
+      text-transform:none;
+      letter-spacing:0;
+    }
+
+    .language{
+      background:#0d0d0d;
+      color:var(--text);
+      border:1px solid var(--line);
+      border-radius:14px;
+      padding:12px 14px;
+      min-width:150px;
+      font-weight:700;
+      outline:none;
+    }
+
+    .card{
+      background:linear-gradient(180deg, rgba(255,255,255,.055), rgba(255,255,255,.025)), var(--panel);
+      border:1px solid var(--line);
+      border-radius:28px;
+      padding:34px;
+      box-shadow:0 24px 70px rgba(0,0,0,.5);
+    }
+
+    .badge{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      border:1px solid rgba(35,209,139,.35);
+      color:#dfffee;
+      background:rgba(35,209,139,.08);
+      border-radius:999px;
+      padding:10px 14px;
+      font-size:13px;
+      font-weight:800;
+      margin-bottom:18px;
+    }
+
+    .badge::before{
+      content:"";
+      width:9px;
+      height:9px;
+      border-radius:50%;
+      background:var(--green);
+      box-shadow:0 0 16px rgba(35,209,139,.9);
+    }
+
+    h1{
+      margin:0;
+      font-size:clamp(34px, 5vw, 58px);
+      line-height:1.02;
+      color:var(--gold2);
+      letter-spacing:0;
+    }
+
+    .subtitle{
+      color:var(--muted);
+      line-height:1.75;
+      font-size:17px;
+      margin:20px 0 24px;
+      max-width:720px;
+    }
+
+    .price-box{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:14px;
+      margin:22px 0 30px;
+    }
+
+    .price-item{
+      background:var(--panel2);
+      border:1px solid var(--soft);
+      border-radius:18px;
+      padding:18px;
+      min-height:102px;
+    }
+
+    .price-label{
+      color:var(--muted);
+      font-size:13px;
+      margin-bottom:8px;
+      line-height:1.4;
+    }
+
+    .price-value{
+      font-size:30px;
+      font-weight:900;
+      color:var(--gold2);
+      line-height:1.1;
+    }
+
+    .price-value.small{
+      font-size:18px;
+      color:#fff;
+      line-height:1.45;
+    }
+
+    .notice{
+      border:1px solid rgba(212,175,55,.32);
+      background:rgba(212,175,55,.08);
+      color:#fff7d7;
+      border-radius:18px;
+      padding:16px 18px;
+      line-height:1.65;
+      margin-bottom:26px;
+    }
+
+    form{
+      display:grid;
+      gap:16px;
+    }
+
+    .grid{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:16px;
+    }
+
+    label{
+      display:block;
+      color:#eee;
+      font-weight:800;
+      font-size:13px;
+      margin-bottom:8px;
+    }
+
+    input, textarea, select{
+      width:100%;
+      padding:16px;
+      background:#090909;
+      border:1px solid rgba(255,255,255,.12);
+      border-radius:16px;
+      color:white;
+      font-size:15px;
+      outline:none;
+    }
+
+    input:focus, textarea:focus, select:focus{
+      border-color:rgba(212,175,55,.72);
+      box-shadow:0 0 0 4px rgba(212,175,55,.12);
+    }
+
+    textarea{
+      min-height:148px;
+      resize:vertical;
+      line-height:1.55;
+    }
+
+    .check{
+      display:flex;
+      gap:12px;
+      align-items:flex-start;
+      background:#0b0b0b;
+      border:1px solid rgba(255,255,255,.1);
+      border-radius:16px;
+      padding:14px;
+      color:#d9d9d9;
+      line-height:1.55;
+      font-size:14px;
+    }
+
+    .check input{
+      width:20px;
+      height:20px;
+      margin-top:2px;
+      accent-color:var(--gold);
+      flex:0 0 auto;
+    }
+
+    button{
+      width:100%;
+      padding:18px;
+      background:linear-gradient(135deg, var(--gold2), var(--gold));
+      color:black;
+      font-weight:900;
+      font-size:16px;
+      border:none;
+      border-radius:18px;
+      cursor:pointer;
+      letter-spacing:.02em;
+    }
+
+    button:hover{
+      filter:brightness(1.05);
+    }
+
+    .secondary{
+      background:#111;
+      color:#fff;
+      border:1px solid rgba(212,175,55,.34);
+      display:none;
+      margin-top:10px;
+    }
+
+    .status{
+      display:none;
+      margin-top:18px;
+      padding:16px;
+      border-radius:16px;
+      background:rgba(35,209,139,.08);
+      border:1px solid rgba(35,209,139,.26);
+      color:#e8fff5;
+      line-height:1.65;
+    }
+
+    .status.error{
+      background:rgba(255,107,107,.08);
+      border-color:rgba(255,107,107,.32);
+      color:#ffecec;
+    }
+
+    .copy-box{
+      display:none;
+      margin-top:14px;
+      background:#090909;
+      border:1px solid rgba(255,255,255,.11);
+      border-radius:16px;
+      padding:14px;
+      color:#d7d7d7;
+      white-space:pre-wrap;
+      line-height:1.5;
+      max-height:260px;
+      overflow:auto;
+      font-size:13px;
+    }
+
+    .footer{
+      margin-top:28px;
+      font-size:12px;
+      color:#858585;
+      text-align:center;
+      line-height:1.8;
+    }
+
+    @media(max-width:720px){
+      body{padding:14px}
+      .shell{padding-top:16px}
+      .topbar{align-items:flex-start; flex-direction:column}
+      .language{width:100%}
+      .card{padding:24px; border-radius:22px}
+      .price-box,.grid{grid-template-columns:1fr}
+      .logo{width:62px; height:62px; border-radius:18px}
+    }
+  </style>
 </head>
-
 <body>
+  <main class="shell">
+    <div class="topbar">
+      <div class="brand">
+        <div class="logo">
+          <img
+            id="brandLogo"
+            data-logo-sources="../nuovologo.webp|./nuovologo.webp|../nuovologo.png|./nuovologo.png"
+            alt="AETERNA Digital Legacy"
+          >
+          <div class="logo-fallback" aria-hidden="true">
+            <svg viewBox="0 0 100 100" role="img" aria-label="AETERNA">
+              <defs>
+                <linearGradient id="shieldGold" x1="0" x2="1" y1="0" y2="1">
+                  <stop offset="0" stop-color="#fff2a6"></stop>
+                  <stop offset=".48" stop-color="#d4af37"></stop>
+                  <stop offset="1" stop-color="#8a6d1f"></stop>
+                </linearGradient>
+              </defs>
+              <path d="M50 6 L83 20 V46 C83 69 69 86 50 94 C31 86 17 69 17 46 V20 Z" fill="none" stroke="url(#shieldGold)" stroke-width="7" stroke-linejoin="round"></path>
+              <path d="M50 22 L73 75 H62 L57 62 H42 L37 75 H27 Z M45 53 H54 L50 39 Z" fill="url(#shieldGold)"></path>
+              <path d="M29 30 L50 47 L71 30" fill="none" stroke="url(#shieldGold)" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" opacity=".82"></path>
+            </svg>
+          </div>
+        </div>
+        <div class="brand-title">
+          AETERNA Civil Shield™
+          <span data-i18n="brandSub">Accesso 10 scansioni</span>
+        </div>
+      </div>
 
-<div class="container">
+      <select id="languageSelect" class="language" aria-label="Lingua">
+        <option value="it">Italiano</option>
+        <option value="en">English</option>
+        <option value="fr">Français</option>
+        <option value="es">Español</option>
+        <option value="pt">Português</option>
+      </select>
+    </div>
 
-<div class="logo">
-<img src="./nuovologo.png">
-</div>
+    <section class="card">
+      <div class="badge" data-i18n="badge">Richiesta accesso ufficiale</div>
 
-<h1>
-Richiedi Accesso
-AETERNA Civil Shield™
-</h1>
+      <h1 data-i18n="title">Richiedi AETERNA Civil Shield™</h1>
 
-<p>
+      <p class="subtitle" data-i18n="subtitle">
+        Compila il modulo per richiedere il pacchetto da 10 scansioni anti-truffa AETERNA Civil Shield™.
+        Dopo la richiesta riceverai le istruzioni operative per attivare il tuo accesso personale.
+      </p>
 
-Compila il modulo per richiedere
-una sessione di analisi digitale
-o l’accesso ai servizi premium AETERNA™.
+      <div class="price-box">
+        <div class="price-item">
+          <div class="price-label" data-i18n="priceLabel">Prezzo pacchetto</div>
+          <div class="price-value">2,99 €</div>
+        </div>
+        <div class="price-item">
+          <div class="price-label" data-i18n="validityLabel">Validità scansioni</div>
+          <div class="price-value small" data-i18n="validityValue">10 scansioni senza scadenza temporale</div>
+        </div>
+      </div>
 
-</p>
+      <div class="notice" data-i18n="notice">
+        Le 10 scansioni acquistate non scadono nel tempo: restano disponibili fino al loro utilizzo completo.
+        Non inserire password, OTP, PIN, chiavi private o dati sensibili non necessari.
+      </div>
 
-<form action="mailto:info@aeternadigitallegacy.com"
-method="POST"
-enctype="text/plain">
+      <form id="accessForm" novalidate>
+        <div class="grid">
+          <div>
+            <label for="name" data-i18n="nameLabel">Nome e cognome *</label>
+            <input id="name" name="name" type="text" autocomplete="name" required>
+          </div>
+          <div>
+            <label for="email" data-i18n="emailLabel">Email per ricevere l'accesso *</label>
+            <input id="email" name="email" type="email" autocomplete="email" required>
+          </div>
+        </div>
 
-<input
-type="text"
-name="nome"
-placeholder="Nome">
+        <div class="grid">
+          <div>
+            <label for="phone" data-i18n="phoneLabel">Telefono</label>
+            <input id="phone" name="phone" type="tel" autocomplete="tel">
+          </div>
+          <div>
+            <label for="country" data-i18n="countryLabel">Paese</label>
+            <input id="country" name="country" type="text" autocomplete="country-name">
+          </div>
+        </div>
 
-<input
-type="email"
-name="email"
-placeholder="Email">
+        <div class="grid">
+          <div>
+            <label for="requestType" data-i18n="requestTypeLabel">Tipo richiesta</label>
+            <select id="requestType" name="requestType">
+              <option value="Attivazione 10 scansioni" data-i18n="requestActivation">Attivazione 10 scansioni</option>
+              <option value="Supporto acquisto" data-i18n="requestPayment">Supporto acquisto</option>
+              <option value="Problema tecnico" data-i18n="requestSupport">Problema tecnico</option>
+            </select>
+          </div>
+          <div>
+            <label for="preferredLanguage" data-i18n="preferredLanguageLabel">Lingua preferita</label>
+            <select id="preferredLanguage" name="preferredLanguage">
+              <option value="Italiano">Italiano</option>
+              <option value="English">English</option>
+              <option value="Français">Français</option>
+              <option value="Español">Español</option>
+              <option value="Português">Português</option>
+            </select>
+          </div>
+        </div>
 
-<textarea
-name="messaggio"
-placeholder="Descrivi richiesta o problema..."></textarea>
+        <div>
+          <label for="message" data-i18n="messageLabel">Descrivi richiesta o problema</label>
+          <textarea id="message" name="message"></textarea>
+        </div>
 
-<button type="submit">
+        <label class="check" for="confirm">
+          <input id="confirm" type="checkbox" required>
+          <span data-i18n="confirmText">
+            Confermo di voler richiedere il pacchetto AETERNA Civil Shield™ da 10 scansioni al prezzo di 2,99 € e ho compreso che le scansioni non scadono nel tempo.
+          </span>
+        </label>
 
-INVIA RICHIESTA
+        <button type="submit" data-i18n="submitButton">INVIA RICHIESTA 10 SCANSIONI - 2,99 €</button>
+        <button id="copyButton" class="secondary" type="button" data-i18n="copyButton">COPIA TESTO RICHIESTA</button>
+      </form>
 
-</button>
+      <div id="status" class="status"></div>
+      <div id="copyBox" class="copy-box"></div>
 
-</form>
+      <div class="footer" data-i18n="footer">
+        AETERNA Civil Shield™ fornisce valutazioni indicative basate su analisi comportamentali e pattern euristici.
+        Il servizio non sostituisce verifiche ufficiali, consulenza legale o interventi delle autorità competenti.
+      </div>
+    </section>
+  </main>
 
-<div class="footer">
+  <script>
+    const AETERNA_EMAIL = "info@aeternadigitallegacy.com";
+    const PLAN_NAME = "AETERNA Civil Shield™ - 10 scansioni";
+    const PLAN_PRICE = "2,99 €";
+    const PLAN_VALIDITY = "Le 10 scansioni non scadono nel tempo e restano disponibili fino al loro utilizzo completo.";
 
-AETERNA Civil Shield™
-fornisce valutazioni indicative
-basate su analisi comportamentali
-e pattern euristici.
+    const I18N = {
+      it:{
+        brandSub:"Accesso 10 scansioni",
+        badge:"Richiesta accesso ufficiale",
+        title:"Richiedi AETERNA Civil Shield™",
+        subtitle:"Compila il modulo per richiedere il pacchetto da 10 scansioni anti-truffa AETERNA Civil Shield™. Dopo la richiesta riceverai le istruzioni operative per attivare il tuo accesso personale.",
+        priceLabel:"Prezzo pacchetto",
+        validityLabel:"Validità scansioni",
+        validityValue:"10 scansioni senza scadenza temporale",
+        notice:"Le 10 scansioni acquistate non scadono nel tempo: restano disponibili fino al loro utilizzo completo. Non inserire password, OTP, PIN, chiavi private o dati sensibili non necessari.",
+        nameLabel:"Nome e cognome *",
+        emailLabel:"Email per ricevere l'accesso *",
+        phoneLabel:"Telefono",
+        countryLabel:"Paese",
+        requestTypeLabel:"Tipo richiesta",
+        requestActivation:"Attivazione 10 scansioni",
+        requestPayment:"Supporto acquisto",
+        requestSupport:"Problema tecnico",
+        preferredLanguageLabel:"Lingua preferita",
+        messageLabel:"Descrivi richiesta o problema",
+        confirmText:"Confermo di voler richiedere il pacchetto AETERNA Civil Shield™ da 10 scansioni al prezzo di 2,99 € e ho compreso che le scansioni non scadono nel tempo.",
+        submitButton:"INVIA RICHIESTA 10 SCANSIONI - 2,99 €",
+        copyButton:"COPIA TESTO RICHIESTA",
+        footer:"AETERNA Civil Shield™ fornisce valutazioni indicative basate su analisi comportamentali e pattern euristici. Il servizio non sostituisce verifiche ufficiali, consulenza legale o interventi delle autorità competenti.",
+        statusOk:"Richiesta preparata. Si sta aprendo il tuo programma email con tutti i dati già compilati. Se non si apre, copia il testo qui sotto e invialo a info@aeternadigitallegacy.com.",
+        statusError:"Compila i campi obbligatori e conferma la richiesta prima di inviare.",
+        copied:"Testo richiesta copiato.",
+        placeholders:{
+          name:"Mario Rossi",
+          email:"nome@email.com",
+          phone:"+39 ...",
+          country:"Italia",
+          message:"Scrivi qui eventuali dettagli utili. Non inserire password, OTP, PIN o dati sensibili."
+        }
+      },
+      en:{
+        brandSub:"10-scan access",
+        badge:"Official access request",
+        title:"Request AETERNA Civil Shield™",
+        subtitle:"Fill in the form to request the 10-scan AETERNA Civil Shield™ anti-scam package. After the request, you will receive the operating instructions to activate your personal access.",
+        priceLabel:"Package price",
+        validityLabel:"Scan validity",
+        validityValue:"10 scans with no time expiry",
+        notice:"The 10 purchased scans do not expire over time: they remain available until fully used. Do not enter passwords, OTPs, PINs, private keys or unnecessary sensitive data.",
+        nameLabel:"Full name *",
+        emailLabel:"Email to receive access *",
+        phoneLabel:"Phone",
+        countryLabel:"Country",
+        requestTypeLabel:"Request type",
+        requestActivation:"Activate 10 scans",
+        requestPayment:"Purchase support",
+        requestSupport:"Technical issue",
+        preferredLanguageLabel:"Preferred language",
+        messageLabel:"Describe request or issue",
+        confirmText:"I confirm that I want to request the AETERNA Civil Shield™ 10-scan package for 2.99 € and I understand that the scans do not expire over time.",
+        submitButton:"SEND 10-SCAN REQUEST - 2.99 €",
+        copyButton:"COPY REQUEST TEXT",
+        footer:"AETERNA Civil Shield™ provides indicative assessments based on behavioral analysis and heuristic patterns. The service does not replace official checks, legal advice or intervention by competent authorities.",
+        statusOk:"Request prepared. Your email app is opening with all details already filled in. If it does not open, copy the text below and send it to info@aeternadigitallegacy.com.",
+        statusError:"Fill in the required fields and confirm the request before sending.",
+        copied:"Request text copied.",
+        placeholders:{
+          name:"John Smith",
+          email:"name@email.com",
+          phone:"+1 ...",
+          country:"United States",
+          message:"Write any useful details here. Do not enter passwords, OTPs, PINs or sensitive data."
+        }
+      },
+      fr:{
+        brandSub:"Accès 10 scans",
+        badge:"Demande d'accès officielle",
+        title:"Demander AETERNA Civil Shield™",
+        subtitle:"Remplissez le formulaire pour demander le pack anti-arnaque AETERNA Civil Shield™ de 10 scans. Après la demande, vous recevrez les instructions opérationnelles pour activer votre accès personnel.",
+        priceLabel:"Prix du pack",
+        validityLabel:"Validité des scans",
+        validityValue:"10 scans sans expiration temporelle",
+        notice:"Les 10 scans achetés n'expirent pas dans le temps : ils restent disponibles jusqu'à leur utilisation complète. Ne saisissez pas de mots de passe, OTP, PIN, clés privées ou données sensibles non nécessaires.",
+        nameLabel:"Nom et prénom *",
+        emailLabel:"Email pour recevoir l'accès *",
+        phoneLabel:"Téléphone",
+        countryLabel:"Pays",
+        requestTypeLabel:"Type de demande",
+        requestActivation:"Activation 10 scans",
+        requestPayment:"Support achat",
+        requestSupport:"Problème technique",
+        preferredLanguageLabel:"Langue préférée",
+        messageLabel:"Décrivez la demande ou le problème",
+        confirmText:"Je confirme vouloir demander le pack AETERNA Civil Shield™ de 10 scans au prix de 2,99 € et avoir compris que les scans n'expirent pas dans le temps.",
+        submitButton:"ENVOYER DEMANDE 10 SCANS - 2,99 €",
+        copyButton:"COPIER LE TEXTE DE LA DEMANDE",
+        footer:"AETERNA Civil Shield™ fournit des évaluations indicatives basées sur l'analyse comportementale et des modèles heuristiques. Le service ne remplace pas les vérifications officielles, les conseils juridiques ou l'intervention des autorités compétentes.",
+        statusOk:"Demande préparée. Votre application email s'ouvre avec toutes les données déjà remplies. Si elle ne s'ouvre pas, copiez le texte ci-dessous et envoyez-le à info@aeternadigitallegacy.com.",
+        statusError:"Remplissez les champs obligatoires et confirmez la demande avant l'envoi.",
+        copied:"Texte de la demande copié.",
+        placeholders:{
+          name:"Jean Dupont",
+          email:"nom@email.com",
+          phone:"+33 ...",
+          country:"France",
+          message:"Ajoutez ici les détails utiles. Ne saisissez pas de mots de passe, OTP, PIN ou données sensibles."
+        }
+      },
+      es:{
+        brandSub:"Acceso 10 escaneos",
+        badge:"Solicitud oficial de acceso",
+        title:"Solicita AETERNA Civil Shield™",
+        subtitle:"Completa el formulario para solicitar el paquete anti-estafa AETERNA Civil Shield™ de 10 escaneos. Después de la solicitud recibirás las instrucciones operativas para activar tu acceso personal.",
+        priceLabel:"Precio del paquete",
+        validityLabel:"Validez de escaneos",
+        validityValue:"10 escaneos sin caducidad temporal",
+        notice:"Los 10 escaneos comprados no caducan con el tiempo: permanecen disponibles hasta su uso completo. No introduzcas contraseñas, OTP, PIN, claves privadas ni datos sensibles innecesarios.",
+        nameLabel:"Nombre y apellido *",
+        emailLabel:"Email para recibir el acceso *",
+        phoneLabel:"Teléfono",
+        countryLabel:"País",
+        requestTypeLabel:"Tipo de solicitud",
+        requestActivation:"Activación 10 escaneos",
+        requestPayment:"Soporte de compra",
+        requestSupport:"Problema técnico",
+        preferredLanguageLabel:"Idioma preferido",
+        messageLabel:"Describe solicitud o problema",
+        confirmText:"Confirmo que quiero solicitar el paquete AETERNA Civil Shield™ de 10 escaneos al precio de 2,99 € y entiendo que los escaneos no caducan con el tiempo.",
+        submitButton:"ENVIAR SOLICITUD 10 ESCANEOS - 2,99 €",
+        copyButton:"COPIAR TEXTO DE SOLICITUD",
+        footer:"AETERNA Civil Shield™ proporciona evaluaciones indicativas basadas en análisis conductual y patrones heurísticos. El servicio no sustituye verificaciones oficiales, asesoramiento legal ni intervención de las autoridades competentes.",
+        statusOk:"Solicitud preparada. Se está abriendo tu aplicación de email con todos los datos ya completados. Si no se abre, copia el texto inferior y envíalo a info@aeternadigitallegacy.com.",
+        statusError:"Completa los campos obligatorios y confirma la solicitud antes de enviar.",
+        copied:"Texto de solicitud copiado.",
+        placeholders:{
+          name:"Juan García",
+          email:"nombre@email.com",
+          phone:"+34 ...",
+          country:"España",
+          message:"Escribe aquí cualquier detalle útil. No introduzcas contraseñas, OTP, PIN ni datos sensibles."
+        }
+      },
+      pt:{
+        brandSub:"Acesso 10 escaneamentos",
+        badge:"Solicitação oficial de acesso",
+        title:"Solicite AETERNA Civil Shield™",
+        subtitle:"Preencha o formulário para solicitar o pacote anti-golpe AETERNA Civil Shield™ de 10 escaneamentos. Após a solicitação, você receberá as instruções operacionais para ativar seu acesso pessoal.",
+        priceLabel:"Preço do pacote",
+        validityLabel:"Validade dos escaneamentos",
+        validityValue:"10 escaneamentos sem expiração temporal",
+        notice:"Os 10 escaneamentos comprados não expiram com o tempo: permanecem disponíveis até o uso completo. Não insira senhas, OTPs, PINs, chaves privadas ou dados sensíveis desnecessários.",
+        nameLabel:"Nome e sobrenome *",
+        emailLabel:"Email para receber o acesso *",
+        phoneLabel:"Telefone",
+        countryLabel:"País",
+        requestTypeLabel:"Tipo de solicitação",
+        requestActivation:"Ativação 10 escaneamentos",
+        requestPayment:"Suporte de compra",
+        requestSupport:"Problema técnico",
+        preferredLanguageLabel:"Idioma preferido",
+        messageLabel:"Descreva solicitação ou problema",
+        confirmText:"Confirmo que quero solicitar o pacote AETERNA Civil Shield™ de 10 escaneamentos pelo preço de 2,99 € e entendo que os escaneamentos não expiram com o tempo.",
+        submitButton:"ENVIAR SOLICITAÇÃO 10 ESCANEAMENTOS - 2,99 €",
+        copyButton:"COPIAR TEXTO DA SOLICITAÇÃO",
+        footer:"AETERNA Civil Shield™ fornece avaliações indicativas baseadas em análise comportamental e padrões heurísticos. O serviço não substitui verificações oficiais, aconselhamento jurídico ou intervenção das autoridades competentes.",
+        statusOk:"Solicitação preparada. Seu aplicativo de email está abrindo com todos os dados já preenchidos. Se não abrir, copie o texto abaixo e envie para info@aeternadigitallegacy.com.",
+        statusError:"Preencha os campos obrigatórios e confirme a solicitação antes de enviar.",
+        copied:"Texto da solicitação copiado.",
+        placeholders:{
+          name:"João Silva",
+          email:"nome@email.com",
+          phone:"+55 ...",
+          country:"Brasil / Portugal",
+          message:"Escreva aqui qualquer detalhe útil. Não insira senhas, OTPs, PINs ou dados sensíveis."
+        }
+      }
+    };
 
-</div>
+    let currentLang = localStorage.getItem("aeternaAccessLang") || "it";
+    let lastEmailBody = "";
 
-</div>
+    const $ = (id) => document.getElementById(id);
 
+    function setupLogo(){
+      const logo = $("brandLogo");
+      if(!logo) return;
+
+      const sources = String(logo.dataset.logoSources || "../nuovologo.webp").split("|").filter(Boolean);
+      let sourceIndex = 0;
+
+      logo.addEventListener("load", () => {
+        logo.classList.remove("logo-missing");
+      });
+
+      logo.addEventListener("error", () => {
+        sourceIndex += 1;
+        if(sourceIndex < sources.length){
+          logo.src = sources[sourceIndex];
+          return;
+        }
+        logo.classList.add("logo-missing");
+        logo.removeAttribute("src");
+      });
+
+      logo.src = sources[sourceIndex];
+    }
+
+    function dict(){
+      return I18N[currentLang] || I18N.it;
+    }
+
+    function applyLanguage(lang){
+      currentLang = lang || "it";
+      localStorage.setItem("aeternaAccessLang", currentLang);
+      document.documentElement.lang = currentLang;
+      $("languageSelect").value = currentLang;
+
+      document.querySelectorAll("[data-i18n]").forEach((node) => {
+        const key = node.getAttribute("data-i18n");
+        if(dict()[key]) node.textContent = dict()[key];
+      });
+
+      document.querySelectorAll("option[data-i18n]").forEach((node) => {
+        const key = node.getAttribute("data-i18n");
+        if(dict()[key]) node.textContent = dict()[key];
+      });
+
+      const p = dict().placeholders;
+      $("name").placeholder = p.name;
+      $("email").placeholder = p.email;
+      $("phone").placeholder = p.phone;
+      $("country").placeholder = p.country;
+      $("message").placeholder = p.message;
+      $("preferredLanguage").value = languageName(currentLang);
+    }
+
+    function languageName(lang){
+      return {it:"Italiano", en:"English", fr:"Français", es:"Español", pt:"Português"}[lang] || "Italiano";
+    }
+
+    function clean(value){
+      return String(value || "").trim();
+    }
+
+    function showStatus(message, error){
+      const box = $("status");
+      box.textContent = message;
+      box.className = error ? "status error" : "status";
+      box.style.display = "block";
+    }
+
+    function buildEmailBody(){
+      const requestTypeSelect = $("requestType");
+      const requestTypeText = requestTypeSelect.options[requestTypeSelect.selectedIndex].textContent;
+
+      return [
+        "RICHIESTA ACCESSO AETERNA CIVIL SHIELD™",
+        "",
+        "Piano richiesto: " + PLAN_NAME,
+        "Prezzo pacchetto: " + PLAN_PRICE,
+        "Validità: " + PLAN_VALIDITY,
+        "",
+        "Nome: " + clean($("name").value),
+        "Email accesso: " + clean($("email").value),
+        "Telefono: " + (clean($("phone").value) || "Non indicato"),
+        "Paese: " + (clean($("country").value) || "Non indicato"),
+        "Tipo richiesta: " + requestTypeText,
+        "Lingua preferita: " + clean($("preferredLanguage").value),
+        "",
+        "Messaggio:",
+        clean($("message").value) || "Nessun messaggio aggiuntivo.",
+        "",
+        "Conferma cliente:",
+        "Il cliente richiede il pacchetto AETERNA Civil Shield™ da 10 scansioni al prezzo di 2,99 €.",
+        "Il cliente dichiara di aver compreso che le 10 scansioni non scadono nel tempo.",
+        "",
+        "Nota sicurezza:",
+        "Il cliente è stato avvisato di non inserire password, OTP, PIN, chiavi private o dati sensibili non necessari."
+      ].join("\n");
+    }
+
+    function validateForm(){
+      const emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(clean($("email").value));
+      return clean($("name").value) && emailOk && $("confirm").checked;
+    }
+
+    function submitRequest(event){
+      event.preventDefault();
+
+      if(!validateForm()){
+        showStatus(dict().statusError, true);
+        return;
+      }
+
+      lastEmailBody = buildEmailBody();
+      const subject = "Richiesta accesso Civil Shield 10 scansioni - 2,99 EUR";
+      const mailto = "mailto:" + encodeURIComponent(AETERNA_EMAIL) +
+        "?subject=" + encodeURIComponent(subject) +
+        "&body=" + encodeURIComponent(lastEmailBody);
+
+      $("copyBox").textContent = lastEmailBody;
+      $("copyBox").style.display = "block";
+      $("copyButton").style.display = "block";
+      showStatus(dict().statusOk, false);
+      window.location.href = mailto;
+    }
+
+    async function copyRequest(){
+      if(!lastEmailBody) lastEmailBody = buildEmailBody();
+      try{
+        await navigator.clipboard.writeText(lastEmailBody);
+        showStatus(dict().copied, false);
+      }catch(error){
+        $("copyBox").textContent = lastEmailBody;
+        $("copyBox").style.display = "block";
+      }
+    }
+
+    $("languageSelect").addEventListener("change", (event) => applyLanguage(event.target.value));
+    $("accessForm").addEventListener("submit", submitRequest);
+    $("copyButton").addEventListener("click", copyRequest);
+    setupLogo();
+    applyLanguage(currentLang);
+  </script>
 </body>
 </html>
