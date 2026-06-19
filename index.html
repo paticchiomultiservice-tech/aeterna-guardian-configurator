@@ -523,38 +523,1918 @@ en: {}, fr: {}, es: {}, pt: {}
 };
 
 function makeLangCopy(base, overrides){return Object.assign(JSON.parse(JSON.stringify(base)), overrides)}
-I18N.en = makeLangCopy(I18N.it, {
-status:"Super Quote Configurator", heroKicker:"Global quote configurator", heroTitle:"Solid. <span>Precious. Forever.</span>", heroText:"Build your AETERNA Protocol™: account protection, anti-scam, digital continuity, digital legacy and Guardian™ support in one clear journey.", noteTitle:"Operational note:", noteText:"this configurator creates a preliminary estimate. AETERNA confirms the final quote after data review.",
-continueBtn:"CONTINUE →", backBtn:"BACK", paySendBtn:"SEND REQUEST AND PAY", paymentTitle:"Bank transfer pre-window", copyBankBtn:"COPY BANK TRANSFER DATA", copyQuoteBtn:"COPY QUOTE SUMMARY",
-clients:[["","Choose client type"],["Privato","Private / family"],["Professionista","Professional"],["Creator / Influencer","Creator / Influencer"],["PMI","SME / company"],["Azienda Enterprise","Enterprise / large companies"]],
-goals:[["complete","Complete AETERNA Protocol™ — recommended"],["protection","Account protection and anti-scam"],["legacy","Digital legacy"],["continuity","Operational continuity"],["reputation","Reputation / impersonation"]],
-payment:"Contract currency: EUR. SEPA bank transfer is euro-based. Non-euro clients may request AETERNA confirmation for international/SWIFT payment or bank conversion. USD/GBP/CHF/BRL amounts are indicative."
-});
-I18N.fr = makeLangCopy(I18N.it, {
-status:"Configurateur avancé de devis", heroKicker:"Configurateur de devis global", heroTitle:"Solides. <span>Précieux. Pour toujours.</span>", heroText:"Construisez votre Protocole AETERNA™: protection des comptes, anti-arnaque, continuité numérique, héritage numérique et support Guardian™.", continueBtn:"CONTINUER →", backBtn:"RETOUR", paySendBtn:"ENVOYER LA DEMANDE ET PAYER", paymentTitle:"Pré-fenêtre de virement", copyBankBtn:"COPIER LES DONNÉES DE VIREMENT", copyQuoteBtn:"COPIER LE RÉSUMÉ",
-clients:[["","Choisir type client"],["Privato","Particulier / famille"],["Professionista","Professionnel"],["Creator / Influencer","Créateur / Influencer"],["PMI","PME / entreprise"],["Azienda Enterprise","Enterprise / grandes compagnies"]],
-goals:[["complete","Protocole AETERNA™ complet — conseillé"],["protection","Protection comptes et anti-arnaque"],["legacy","Héritage numérique"],["continuity","Continuité opérationnelle"],["reputation","Réputation / usurpation"]],
-payment:"Devise contractuelle: EUR. Le virement SEPA fonctionne en euros. Les clients hors zone euro peuvent demander confirmation AETERNA pour paiement international/SWIFT ou conversion bancaire. USD/GBP/CHF/BRL sont indicatifs."
-});
-I18N.es = makeLangCopy(I18N.it, {
-status:"Configurador avanzado de presupuesto", heroKicker:"Configurador global de presupuesto", heroTitle:"Sólidos. <span>Preciosos. Para siempre.</span>", heroText:"Construye tu Protocolo AETERNA™: protección de cuentas, anti-estafa, continuidad digital, legado digital y soporte Guardian™.", continueBtn:"CONTINUAR →", backBtn:"ATRÁS", paySendBtn:"ENVIAR SOLICITUD Y PAGAR", paymentTitle:"Preventana de transferencia", copyBankBtn:"COPIAR DATOS DE TRANSFERENCIA", copyQuoteBtn:"COPIAR RESUMEN",
-clients:[["","Elegir tipo de cliente"],["Privato","Particular / familia"],["Professionista","Profesional"],["Creator / Influencer","Creator / Influencer"],["PMI","PYME / empresa"],["Azienda Enterprise","Enterprise / grandes compañías"]],
-goals:[["complete","Protocolo AETERNA™ completo — recomendado"],["protection","Protección de cuentas y anti-estafa"],["legacy","Legado digital"],["continuity","Continuidad operativa"],["reputation","Reputación / suplantación"]],
-payment:"Divisa contractual: EUR. La transferencia SEPA opera en euros. Clientes fuera del euro pueden pedir confirmación AETERNA para pago internacional/SWIFT o conversión bancaria. USD/GBP/CHF/BRL son indicativos."
-});
-I18N.pt = makeLangCopy(I18N.it, {
-status:"Configurador avançado de orçamento", heroKicker:"Configurador global de orçamento", heroTitle:"Sólidos. <span>Preciosos. Para sempre.</span>", heroText:"Construa o seu Protocolo AETERNA™: proteção de contas, anti-golpe, continuidade digital, legado digital e suporte Guardian™.", continueBtn:"CONTINUAR →", backBtn:"VOLTAR", paySendBtn:"ENVIAR SOLICITAÇÃO E PAGAR", paymentTitle:"Pré-janela de transferência", copyBankBtn:"COPIAR DADOS DA TRANSFERÊNCIA", copyQuoteBtn:"COPIAR RESUMO",
-clients:[["","Escolher tipo de cliente"],["Privato","Privado / família"],["Professionista","Profissional"],["Creator / Influencer","Creator / Influencer"],["PMI","PME / empresa"],["Azienda Enterprise","Enterprise / grandes companhias"]],
-goals:[["complete","Protocolo AETERNA™ completo — recomendado"],["protection","Proteção de contas e anti-golpe"],["legacy","Legado digital"],["continuity","Continuidade operacional"],["reputation","Reputação / impersonação"]],
-payment:"Moeda contratual: EUR. A transferência SEPA opera em euros. Clientes fora da zona euro podem solicitar confirmação AETERNA para pagamento internacional/SWIFT ou conversão bancária. USD/GBP/CHF/BRL são indicativos."
-});
 
+const AETERNA_CONFIG_LANGS = {
+  "en": {
+    "status": "Advanced Quote Configurator",
+    "heroKicker": "Global quote configurator",
+    "heroTitle": "Solid. <span>Precious. Forever.</span>",
+    "heroText": "Build your AETERNA Protocol™: account protection, anti-scam defense, digital continuity, digital legacy and Guardian™ support in one clear journey.",
+    "noteTitle": "Operational note:",
+    "noteText": "the configurator starts from zero. The total appears only after the client type and package are selected.",
+    "value1": "Clean start: no initial price until the client chooses.",
+    "value2": "Guardian™ Report included even in Base as a concise version.",
+    "value3": "Risk Snapshot™ suggests the most coherent package.",
+    "value4": "Enterprise journeys built for complex operations and large companies.",
+    "progressTitle": "Guardian Progress™",
+    "liveTitle": "Live Quote™",
+    "estimateTotal": "Estimated total",
+    "bestFitTitle": "Recommended path",
+    "applyRecommended": "Apply recommended package",
+    "supportTitle": "Guardian™ Support",
+    "privacyNote": "AETERNA does not ask for passwords, does not store credentials and works with a Zero Retention logic.",
+    "step1Title": "Client profile",
+    "step1Desc": "Enter the essential details. The configurator adapts the quote to the client type and required protection level.",
+    "nameLabel": "Name or company *",
+    "emailLabel": "Operational email *",
+    "phoneLabel": "Phone *",
+    "countryLabel": "Country",
+    "clientTypeLabel": "Client type *",
+    "goalLabel": "Main objective",
+    "step1Info": "The configurator does not show an aggressive opening price: it starts from zero and builds value step by step.",
+    "step2Title": "Guided digital perimeter",
+    "step2Desc": "No technical knowledge required. What matters is what the client really uses: accounts, email, websites, devices, archives and people involved.",
+    "perimA": "1. People",
+    "perimAText": "How many profiles or people must be protected.",
+    "perimB": "2. Digital assets",
+    "perimBText": "Accounts, email, websites, wallets, cloud and archives.",
+    "perimC": "3. Complexity",
+    "perimCText": "The more shared access and devices exist, the more structured the protocol must be.",
+    "peopleSection": "People and profiles",
+    "peopleSectionText": "Here we measure how many digital identities must be protected. The first profile is included in the package; each additional profile increases operational work.",
+    "profilesLabel": "Protected profiles",
+    "profilesHelp": "Example: yourself, family member, partner, company profile.",
+    "collabLabel": "Collaborators/family members",
+    "collabHelp": "People who access or must be authorized.",
+    "publicExposureLabel": "Public exposure",
+    "publicExposureHelp": "Low for private use, high for creators/companies.",
+    "assetSection": "Accounts and channels",
+    "assetSectionText": "These are the areas where stolen access, scams or lost passwords can create real damage.",
+    "criticalAccountsLabel": "Critical accounts",
+    "criticalHelp": "Banking, certified email, digital ID, work accounts, admin panels.",
+    "socialLabel": "Social accounts",
+    "socialHelp": "Instagram, Facebook, TikTok, LinkedIn, YouTube.",
+    "emailNumLabel": "Operational emails",
+    "emailHelp": "Personal, work, administration or support emails.",
+    "sitesLabel": "Websites",
+    "domainsLabel": "Domains",
+    "walletLabel": "Crypto wallets",
+    "continuitySection": "Continuity and archives",
+    "continuitySectionText": "This helps understand what happens if the client loses access, devices, documents or operational continuity.",
+    "cloudLabel": "Cloud / archives",
+    "devicesLabel": "Devices",
+    "documentsLabel": "Important archives",
+    "step2Info": "Clear formula: selected package + additional profiles + digital complexity + extra modules. The client sees what they pay for and why.",
+    "step3Title": "Risk Snapshot™",
+    "step3Desc": "A quick pre-analysis to understand the minimum recommended level and the value of the full Protocol.",
+    "phishingLabel": "Phishing attempts",
+    "scamLabel": "Scams",
+    "dataExposureLabel": "Data exposure",
+    "reputationRiskLabel": "Reputational risk",
+    "twofaLabel": "Two-factor authentication",
+    "backupLabel": "Backup",
+    "paymentsLabel": "Online payments",
+    "lostAccessLabel": "Lost access",
+    "legacyNeedLabel": "Digital legacy",
+    "sharedAccessLabel": "Shared access",
+    "step4Title": "What the client buys",
+    "step4Desc": "Each package is not a simple scan: it is a level of protection, continuity, reporting and AETERNA support.",
+    "step5Title": "Additional modules",
+    "step5Desc": "Add only what is needed. Each extra must have a clear operational reason.",
+    "currencyDisclaimer": "Non-EUR currencies are indicative estimates. Official payment remains in EUR unless AETERNA confirms otherwise.",
+    "step6Title": "Summary, request and payment",
+    "step6Desc": "The client is ready: check the summary, copy the bank transfer data and send the request to AETERNA.",
+    "summaryTitle": "Operational summary",
+    "paymentTitle": "Bank transfer pre-window",
+    "copyBankBtn": "COPY BANK DETAILS",
+    "copyQuoteBtn": "COPY SUMMARY",
+    "sendInfo": "The button records the request in Google Sheet and prepares the operational email. Payment remains by bank transfer with generated reason.",
+    "continueBtn": "CONTINUE →",
+    "backBtn": "BACK",
+    "paySendBtn": "SEND REQUEST AND PAYMENT INSTRUCTIONS",
+    "footer": "AETERNA Guardian™ provides a preliminary estimate based on declared data. The full audit is activated after request and payment confirmation.",
+    "clients": [
+      [
+        "",
+        "Choose client type"
+      ],
+      [
+        "Privato",
+        "Private / family"
+      ],
+      [
+        "Professionista",
+        "Professional"
+      ],
+      [
+        "Creator / Influencer",
+        "Creator / Influencer"
+      ],
+      [
+        "PMI",
+        "SME / company"
+      ],
+      [
+        "Azienda Enterprise",
+        "Enterprise / large companies"
+      ]
+    ],
+    "goals": [
+      [
+        "complete",
+        "Complete AETERNA Protocol™ — recommended"
+      ],
+      [
+        "protection",
+        "Account protection and anti-scam"
+      ],
+      [
+        "legacy",
+        "Digital legacy"
+      ],
+      [
+        "continuity",
+        "Operational continuity"
+      ],
+      [
+        "reputation",
+        "Reputation / impersonation"
+      ]
+    ],
+    "goalCards": {
+      "complete": [
+        "Complete AETERNA Protocol™",
+        "Recommended choice: combines protection, anti-scam defense, digital continuity, digital legacy and Guardian™ reporting in one journey.",
+        "RECOMMENDED"
+      ],
+      "protection": [
+        "Account protection and anti-scam",
+        "Reduces phishing, lost access, scams, suspicious links and fraudulent messages.",
+        ""
+      ],
+      "legacy": [
+        "Digital legacy",
+        "Organizes access, digital wishes, archives and authorized contacts for the future.",
+        ""
+      ],
+      "continuity": [
+        "Operational continuity",
+        "Prepares procedures so family, work or company do not stop during a digital emergency.",
+        ""
+      ],
+      "reputation": [
+        "Reputation / impersonation",
+        "Helps manage public exposure, fake profiles, creators, companies and reputational risk.",
+        ""
+      ]
+    },
+    "publicExposure": [
+      [
+        "0",
+        "Low"
+      ],
+      [
+        "2",
+        "Medium"
+      ],
+      [
+        "4",
+        "High / public"
+      ]
+    ],
+    "riskOptions": {
+      "phishing": [
+        [
+          "0",
+          "No known attempt"
+        ],
+        [
+          "2",
+          "Suspicious attempts received"
+        ],
+        [
+          "4",
+          "Phishing compromise suffered"
+        ]
+      ],
+      "scam": [
+        [
+          "0",
+          "No scam reported"
+        ],
+        [
+          "2",
+          "Scam attempts received"
+        ],
+        [
+          "4",
+          "Losses or suspicious damage"
+        ]
+      ],
+      "dataExposure": [
+        [
+          "0",
+          "No known exposure"
+        ],
+        [
+          "2",
+          "Possible data exposure"
+        ],
+        [
+          "4",
+          "Confirmed data exposure"
+        ]
+      ],
+      "reputationRisk": [
+        [
+          "0",
+          "Stable reputation"
+        ],
+        [
+          "2",
+          "Suspicious reports or content"
+        ],
+        [
+          "4",
+          "Impersonation or reputational attack"
+        ]
+      ],
+      "twofa": [
+        [
+          "0",
+          "2FA active on main accounts"
+        ],
+        [
+          "2",
+          "Partial 2FA"
+        ],
+        [
+          "4",
+          "No 2FA"
+        ]
+      ],
+      "backup": [
+        [
+          "0",
+          "Regular backups available"
+        ],
+        [
+          "2",
+          "Incomplete backups"
+        ],
+        [
+          "4",
+          "No backup available"
+        ]
+      ],
+      "payments": [
+        [
+          "0",
+          "No relevant online payments"
+        ],
+        [
+          "1",
+          "Occasional online payments"
+        ],
+        [
+          "2",
+          "Frequent online payments"
+        ]
+      ],
+      "lostAccess": [
+        [
+          "0",
+          "No lost access"
+        ],
+        [
+          "2",
+          "Lost access resolved"
+        ],
+        [
+          "4",
+          "Accounts still blocked or lost"
+        ]
+      ],
+      "legacyNeed": [
+        [
+          "0",
+          "Not a priority"
+        ],
+        [
+          "2",
+          "Present but not urgent"
+        ],
+        [
+          "4",
+          "Very important"
+        ]
+      ],
+      "sharedAccess": [
+        [
+          "0",
+          "No shared access"
+        ],
+        [
+          "2",
+          "Few shared accesses"
+        ],
+        [
+          "4",
+          "Multiple people access the same assets"
+        ]
+      ]
+    },
+    "packages": {
+      "base": {
+        "name": "Base Shield™",
+        "priceLabel": "€120",
+        "ideal": "Accessible entry for private clients and small digital ecosystems.",
+        "buy": "You buy an initial organized mapping, unlimited Civil Shield™ and a concise report.",
+        "value": "It lets you start immediately without leaving the client alone against messages, links and scams.",
+        "services": [
+          "Unlimited Civil Shield™",
+          "Essential initial audit",
+          "Main account mapping",
+          "Concise Guardian Report™",
+          "Email support"
+        ]
+      },
+      "silver": {
+        "name": "Silver Shield™",
+        "priceLabel": "€320",
+        "ideal": "Professionals, advanced private clients and small businesses.",
+        "buy": "You buy a deeper audit, data exposure analysis and an account recovery plan.",
+        "value": "It transforms protection from reactive to organized.",
+        "services": [
+          "Everything in Base Shield™",
+          "Advanced cyber audit",
+          "Extended data exposure analysis",
+          "Main account recovery plan",
+          "Extended Guardian Report™"
+        ]
+      },
+      "gold": {
+        "name": "Gold Shield™",
+        "priceLabel": "€690",
+        "ideal": "Creators, exposed professionals, light SMEs and multiple assets.",
+        "buy": "You buy advanced protection, preliminary continuity, reputation and a six-month reminder.",
+        "value": "Ideal when an account block or scam can create economic or reputational damage.",
+        "services": [
+          "Everything in Silver Shield™",
+          "Advanced reputational analysis",
+          "Preliminary Digital Continuity™",
+          "Preliminary Digital Legacy™",
+          "Six-month password reminder"
+        ]
+      },
+      "guardian": {
+        "name": "Guardian Shield™",
+        "priceLabel": "€1290",
+        "ideal": "SMEs, high-exposure creators, complex families and large companies.",
+        "buy": "You buy the complete AETERNA Protocol™: protection, continuity, digital legacy, premium report and review.",
+        "value": "This package shows AETERNA's full value: not only defense, but an organized digital future.",
+        "services": [
+          "Everything in Gold Shield™",
+          "Complete AETERNA Protocol™",
+          "Advanced Digital Legacy™",
+          "Advanced Digital Continuity™",
+          "Premium Guardian Report™",
+          "Periodic review"
+        ]
+      }
+    },
+    "extras": {
+      "digitalLegacy": [
+        "Digital Legacy™",
+        "Dedicated plan for digital legacy, authorized contacts and family continuity."
+      ],
+      "continuity": [
+        "Digital Continuity™",
+        "Reduces operational blockage risk in case of lost access or emergency."
+      ],
+      "reputation": [
+        "Reputation Shield™",
+        "Checks reputational exposure, fake profiles and impersonation."
+      ],
+      "accountRecovery": [
+        "Account Recovery Plan™",
+        "Organized plan for critical account recovery and ownership proof."
+      ],
+      "familyAccess": [
+        "Family Access Protocol™",
+        "Authorized family access management without disorganized password sharing."
+      ],
+      "businessContinuity": [
+        "Business Continuity™",
+        "SME module: operational roles, shared access, minimum procedures and company continuity."
+      ],
+      "creatorProtection": [
+        "Creator Protection™",
+        "Dedicated protection for creators, public profiles and monetized channels."
+      ],
+      "staffTraining": [
+        "Staff Anti-Scam Training™",
+        "Micro-training against scams for staff, family members or collaborators."
+      ],
+      "brandMonitoring": [
+        "Brand & Domain Monitoring™",
+        "Checks similar domains, impersonation and suspicious brand use."
+      ],
+      "executiveShield": [
+        "Executive Shield™",
+        "Dedicated protection for owners, administrators, executives and key figures."
+      ],
+      "vendorAccessReview": [
+        "Vendor & Supplier Access Review™",
+        "Review of supplier, external collaborator and third-party access."
+      ],
+      "crisisWarRoom": [
+        "AETERNA Crisis War Room™",
+        "Priority path for incidents, account blocks, complex scams or high reputational risk."
+      ],
+      "boardReport": [
+        "Board & Governance Report™",
+        "Strategic report for management, board, partners or ownership."
+      ],
+      "secureKit": [
+        "AETERNA Digital Custody Kit™",
+        "Optional one-time physical support for backups and operating instructions."
+      ]
+    },
+    "payment": "Contract currency: EUR. SEPA bank transfer is euro-based. Non-euro clients may request AETERNA confirmation for international/SWIFT payment or bank conversion. USD/GBP/CHF/BRL amounts are indicative."
+  },
+  "fr": {
+    "status": "Configurateur avancé de devis",
+    "heroKicker": "Configurateur global de devis",
+    "heroTitle": "Solides. <span>Précieux. Pour toujours.</span>",
+    "heroText": "Construisez votre Protocole AETERNA™ : protection des comptes, anti-arnaque, continuité numérique, héritage numérique et support Guardian™ dans un parcours clair.",
+    "noteTitle": "Note opérationnelle :",
+    "noteText": "le configurateur part de zéro. Le total apparaît seulement après le choix du type de client et du forfait.",
+    "value1": "Départ propre : aucun prix initial tant que le client ne choisit pas.",
+    "value2": "Rapport Guardian™ inclus même dans Base en version synthétique.",
+    "value3": "Risk Snapshot™ suggère le forfait le plus cohérent.",
+    "value4": "Parcours Enterprise conçus pour opérations complexes et grandes entreprises.",
+    "progressTitle": "Guardian Progress™",
+    "liveTitle": "Devis Live™",
+    "estimateTotal": "Total estimé",
+    "bestFitTitle": "Parcours conseillé",
+    "applyRecommended": "Appliquer le forfait conseillé",
+    "supportTitle": "Support Guardian™",
+    "privacyNote": "AETERNA ne demande pas de mots de passe, ne conserve pas d'identifiants et travaille avec une logique Zero Retention.",
+    "step1Title": "Profil client",
+    "step1Desc": "Saisissez les données essentielles. Le configurateur adapte le devis au type de client et au niveau de protection requis.",
+    "nameLabel": "Nom ou entreprise *",
+    "emailLabel": "Email opérationnel *",
+    "phoneLabel": "Téléphone *",
+    "countryLabel": "Pays",
+    "clientTypeLabel": "Type de client *",
+    "goalLabel": "Main objective",
+    "step1Info": "Le configurateur ne montre pas un prix agressif au départ : il part de zéro et construit la valeur étape par étape.",
+    "step2Title": "Périmètre numérique guidé",
+    "step2Desc": "Pas besoin d'être technique. Ce qui compte est ce que le client utilise vraiment : comptes, emails, sites, appareils, archives et personnes impliquées.",
+    "perimA": "1. Personnes",
+    "perimAText": "Combien de profils ou personnes doivent être protégés.",
+    "perimB": "2. Actifs numériques",
+    "perimBText": "Comptes, emails, sites, wallets, cloud et archives.",
+    "perimC": "3. Complexité",
+    "perimCText": "Plus il y a d'accès partagés et d'appareils, plus le protocole doit être structuré.",
+    "peopleSection": "Personnes et profils",
+    "peopleSectionText": "Nous mesurons ici combien d'identités numériques doivent être protégées. Le premier profil est inclus; chaque profil supplémentaire augmente le travail opérationnel.",
+    "profilesLabel": "Profils protégés",
+    "profilesHelp": "Exemple : vous-même, membre de famille, associé, profil d'entreprise.",
+    "collabLabel": "Collaborateurs/famille",
+    "collabHelp": "Personnes qui accèdent ou doivent être autorisées.",
+    "publicExposureLabel": "Exposition publique",
+    "publicExposureHelp": "Faible pour usage privé, élevée pour créateurs/entreprises.",
+    "assetSection": "Comptes et canaux",
+    "assetSectionText": "Ce sont les points où un vol d'accès, une arnaque ou une perte de mot de passe peut créer un vrai dommage.",
+    "criticalAccountsLabel": "Comptes critiques",
+    "criticalHelp": "Banque, email certifié, identité numérique, comptes de travail, panneaux d'administration.",
+    "socialLabel": "Comptes sociaux",
+    "socialHelp": "Instagram, Facebook, TikTok, LinkedIn, YouTube.",
+    "emailNumLabel": "Emails opérationnels",
+    "emailHelp": "Emails personnels, professionnels, administratifs ou support.",
+    "sitesLabel": "Sites web",
+    "domainsLabel": "Domaines",
+    "walletLabel": "Wallets crypto",
+    "continuitySection": "Continuité et archives",
+    "continuitySectionText": "Sert à comprendre ce qui se passe si le client perd accès, appareils, documents ou continuité opérationnelle.",
+    "cloudLabel": "Cloud / archives",
+    "devicesLabel": "Appareils",
+    "documentsLabel": "Archives importantes",
+    "step2Info": "Formule claire : forfait choisi + profils supplémentaires + complexité numérique + modules extra. Le client voit ce qu'il paie et pourquoi.",
+    "step3Title": "Risk Snapshot™",
+    "step3Desc": "Une pré-analyse rapide pour comprendre le niveau minimum conseillé et la valeur du Protocole complet.",
+    "phishingLabel": "Tentatives de phishing",
+    "scamLabel": "Arnaques",
+    "dataExposureLabel": "Exposition des données",
+    "reputationRiskLabel": "Risque réputationnel",
+    "twofaLabel": "Authentification 2FA",
+    "backupLabel": "Sauvegarde",
+    "paymentsLabel": "Paiements en ligne",
+    "lostAccessLabel": "Perte d'accès",
+    "legacyNeedLabel": "Héritage numérique",
+    "sharedAccessLabel": "Accès partagés",
+    "step4Title": "Ce que le client achète",
+    "step4Desc": "Chaque forfait n'est pas une simple analyse : c'est un niveau de protection, continuité, reporting et support AETERNA.",
+    "step5Title": "Modules additionnels",
+    "step5Desc": "Ajoutez uniquement ce qui sert. Chaque extra doit avoir une raison opérationnelle claire.",
+    "currencyDisclaimer": "Les devises non EUR sont indicatives. Le paiement officiel reste en EUR sauf confirmation AETERNA.",
+    "step6Title": "Résumé, demande et paiement",
+    "step6Desc": "Le client est prêt : vérifiez le résumé, copiez les données de virement et envoyez la demande à AETERNA.",
+    "summaryTitle": "Résumé opérationnel",
+    "paymentTitle": "Pré-fenêtre de virement",
+    "copyBankBtn": "COPIER LES DONNÉES BANCAIRES",
+    "copyQuoteBtn": "COPIER LE RÉSUMÉ",
+    "sendInfo": "Le bouton enregistre la demande dans Google Sheet et prépare l'email opérationnel. Le paiement reste par virement avec motif généré.",
+    "continueBtn": "CONTINUER →",
+    "backBtn": "RETOUR",
+    "paySendBtn": "ENVOYER DEMANDE ET INSTRUCTIONS DE PAIEMENT",
+    "footer": "AETERNA Guardian™ fournit une estimation préliminaire basée sur les données déclarées. L'audit complet est activé après confirmation de la demande et du paiement.",
+    "clients": [
+      [
+        "",
+        "Choisir le type de client"
+      ],
+      [
+        "Privato",
+        "Particulier / famille"
+      ],
+      [
+        "Professionista",
+        "Professionnel"
+      ],
+      [
+        "Creator / Influencer",
+        "Créateur / Influenceur"
+      ],
+      [
+        "PMI",
+        "PME / entreprise"
+      ],
+      [
+        "Azienda Enterprise",
+        "Enterprise / grandes entreprises"
+      ]
+    ],
+    "goals": [
+      [
+        "complete",
+        "Protocole AETERNA™ complet — conseillé"
+      ],
+      [
+        "protection",
+        "Protection des comptes et anti-arnaque"
+      ],
+      [
+        "legacy",
+        "Héritage numérique"
+      ],
+      [
+        "continuity",
+        "Continuité opérationnelle"
+      ],
+      [
+        "reputation",
+        "Réputation / usurpation"
+      ]
+    ],
+    "goalCards": {
+      "complete": [
+        "Protocole AETERNA™ complet",
+        "Choix conseillé : combine protection, anti-arnaque, continuité numérique, héritage numérique et rapport Guardian™ dans un seul parcours.",
+        "CONSEILLÉ"
+      ],
+      "protection": [
+        "Protection des comptes et anti-arnaque",
+        "Réduit phishing, perte d'accès, arnaques, liens suspects et messages frauduleux.",
+        ""
+      ],
+      "legacy": [
+        "Héritage numérique",
+        "Organise accès, volontés numériques, archives et contacts autorisés pour l'avenir.",
+        ""
+      ],
+      "continuity": [
+        "Continuité opérationnelle",
+        "Prépare des procédures pour que famille, travail ou entreprise ne s'arrêtent pas en cas d'urgence numérique.",
+        ""
+      ],
+      "reputation": [
+        "Réputation / usurpation",
+        "Aide à gérer exposition publique, faux profils, créateurs, entreprises et risque réputationnel.",
+        ""
+      ]
+    },
+    "publicExposure": [
+      [
+        "0",
+        "Faible"
+      ],
+      [
+        "2",
+        "Moyenne"
+      ],
+      [
+        "4",
+        "Élevée / publique"
+      ]
+    ],
+    "riskOptions": {
+      "phishing": [
+        [
+          "0",
+          "Aucune tentative connue"
+        ],
+        [
+          "2",
+          "Tentatives suspectes reçues"
+        ],
+        [
+          "4",
+          "Compromission par phishing subie"
+        ]
+      ],
+      "scam": [
+        [
+          "0",
+          "Aucune arnaque signalée"
+        ],
+        [
+          "2",
+          "Tentatives d'arnaque reçues"
+        ],
+        [
+          "4",
+          "Pertes ou dommages suspects"
+        ]
+      ],
+      "dataExposure": [
+        [
+          "0",
+          "Aucune exposition connue"
+        ],
+        [
+          "2",
+          "Exposition possible des données"
+        ],
+        [
+          "4",
+          "Exposition des données confirmée"
+        ]
+      ],
+      "reputationRisk": [
+        [
+          "0",
+          "Réputation stable"
+        ],
+        [
+          "2",
+          "Signalements ou contenus suspects"
+        ],
+        [
+          "4",
+          "Usurpation ou attaque réputationnelle"
+        ]
+      ],
+      "twofa": [
+        [
+          "0",
+          "2FA active sur les comptes principaux"
+        ],
+        [
+          "2",
+          "2FA partielle"
+        ],
+        [
+          "4",
+          "Aucune 2FA"
+        ]
+      ],
+      "backup": [
+        [
+          "0",
+          "Sauvegardes régulières disponibles"
+        ],
+        [
+          "2",
+          "Sauvegardes incomplètes"
+        ],
+        [
+          "4",
+          "Aucune sauvegarde disponible"
+        ]
+      ],
+      "payments": [
+        [
+          "0",
+          "Aucun paiement en ligne pertinent"
+        ],
+        [
+          "1",
+          "Paiements en ligne occasionnels"
+        ],
+        [
+          "2",
+          "Paiements en ligne fréquents"
+        ]
+      ],
+      "lostAccess": [
+        [
+          "0",
+          "Aucune perte d'accès"
+        ],
+        [
+          "2",
+          "Perte d'accès résolue"
+        ],
+        [
+          "4",
+          "Comptes encore bloqués ou perdus"
+        ]
+      ],
+      "legacyNeed": [
+        [
+          "0",
+          "Pas une priorité"
+        ],
+        [
+          "2",
+          "Présent mais non urgent"
+        ],
+        [
+          "4",
+          "Très important"
+        ]
+      ],
+      "sharedAccess": [
+        [
+          "0",
+          "Aucun accès partagé"
+        ],
+        [
+          "2",
+          "Quelques accès partagés"
+        ],
+        [
+          "4",
+          "Plusieurs personnes accèdent aux mêmes actifs"
+        ]
+      ]
+    },
+    "packages": {
+      "base": {
+        "name": "Base Shield™",
+        "priceLabel": "€120",
+        "ideal": "Entrée accessible pour particuliers et petits écosystèmes numériques.",
+        "buy": "Vous achetez une cartographie initiale organisée, Civil Shield™ illimité et un rapport synthétique.",
+        "value": "Permet de commencer immédiatement sans laisser le client seul face aux messages, liens et arnaques.",
+        "services": [
+          "Civil Shield™ illimité",
+          "Audit initial essentiel",
+          "Cartographie des comptes principaux",
+          "Guardian Report™ synthétique",
+          "Support email"
+        ]
+      },
+      "silver": {
+        "name": "Silver Shield™",
+        "priceLabel": "€320",
+        "ideal": "Professionnels, particuliers avancés et petites entreprises.",
+        "buy": "Vous achetez un audit plus approfondi, une analyse d'exposition des données et un plan de récupération des comptes.",
+        "value": "Transforme la protection de réactive à organisée.",
+        "services": [
+          "Tout Base Shield™",
+          "Audit cyber avancé",
+          "Analyse étendue de l'exposition des données",
+          "Plan de récupération des comptes principaux",
+          "Guardian Report™ étendu"
+        ]
+      },
+      "gold": {
+        "name": "Gold Shield™",
+        "priceLabel": "€690",
+        "ideal": "Créateurs, professionnels exposés, PME légères et actifs multiples.",
+        "buy": "Vous achetez une protection avancée, une continuité préliminaire, la réputation et un rappel à six mois.",
+        "value": "Idéal lorsqu'un blocage de compte ou une arnaque peut créer un dommage économique ou réputationnel.",
+        "services": [
+          "Tout Silver Shield™",
+          "Analyse réputationnelle avancée",
+          "Digital Continuity™ préliminaire",
+          "Digital Legacy™ préliminaire",
+          "Rappel mots de passe à six mois"
+        ]
+      },
+      "guardian": {
+        "name": "Guardian Shield™",
+        "priceLabel": "€1290",
+        "ideal": "PME, créateurs très exposés, familles complexes et grandes entreprises.",
+        "buy": "Vous achetez le Protocole AETERNA™ complet : protection, continuité, héritage numérique, rapport premium et révision.",
+        "value": "Ce forfait montre toute la valeur AETERNA : pas seulement la défense, mais un futur numérique organisé.",
+        "services": [
+          "Tout Gold Shield™",
+          "Protocole AETERNA™ complet",
+          "Digital Legacy™ avancé",
+          "Digital Continuity™ avancée",
+          "Guardian Report™ premium",
+          "Révision périodique"
+        ]
+      }
+    },
+    "extras": {
+      "digitalLegacy": [
+        "Digital Legacy™",
+        "Plan dédié à l'héritage numérique, aux contacts autorisés et à la continuité familiale."
+      ],
+      "continuity": [
+        "Digital Continuity™",
+        "Réduit le risque de blocage opérationnel en cas de perte d'accès ou d'urgence."
+      ],
+      "reputation": [
+        "Reputation Shield™",
+        "Vérifie exposition réputationnelle, faux profils et usurpation."
+      ],
+      "accountRecovery": [
+        "Account Recovery Plan™",
+        "Plan organisé de récupération des comptes critiques et de preuve de propriété."
+      ],
+      "familyAccess": [
+        "Family Access Protocol™",
+        "Gestion des accès familiaux autorisés sans partage désorganisé de mots de passe."
+      ],
+      "businessContinuity": [
+        "Business Continuity™",
+        "Module PME : rôles opérationnels, accès partagés, procédures minimales et continuité d'entreprise."
+      ],
+      "creatorProtection": [
+        "Creator Protection™",
+        "Protection dédiée aux créateurs, profils publics et canaux monétisés."
+      ],
+      "staffTraining": [
+        "Staff Anti-Scam Training™",
+        "Micro-formation anti-arnaque pour équipe, famille ou collaborateurs."
+      ],
+      "brandMonitoring": [
+        "Brand & Domain Monitoring™",
+        "Contrôle domaines similaires, usurpation et usage suspect de la marque."
+      ],
+      "executiveShield": [
+        "Executive Shield™",
+        "Protection dédiée aux propriétaires, administrateurs, dirigeants et figures clés."
+      ],
+      "vendorAccessReview": [
+        "Vendor & Supplier Access Review™",
+        "Révision des accès fournisseurs, collaborateurs externes et tiers."
+      ],
+      "crisisWarRoom": [
+        "AETERNA Crisis War Room™",
+        "Parcours prioritaire pour incidents, comptes bloqués, arnaques complexes ou risque réputationnel élevé."
+      ],
+      "boardReport": [
+        "Board & Governance Report™",
+        "Rapport stratégique pour direction, conseil, partenaires ou propriété."
+      ],
+      "secureKit": [
+        "AETERNA Digital Custody Kit™",
+        "Support physique optionnel ponctuel pour sauvegardes et instructions opérationnelles."
+      ]
+    },
+    "payment": "Devise contractuelle : EUR. Le virement SEPA fonctionne en euros. Les clients hors zone euro peuvent demander confirmation AETERNA pour paiement international/SWIFT ou conversion bancaire. Les montants USD/GBP/CHF/BRL sont indicatifs."
+  },
+  "es": {
+    "status": "Configurador avanzado de presupuesto",
+    "heroKicker": "Configurador global de presupuesto",
+    "heroTitle": "Sólidos. <span>Preciosos. Para siempre.</span>",
+    "heroText": "Construye tu Protocolo AETERNA™: protección de cuentas, anti-estafa, continuidad digital, legado digital y soporte Guardian™ en un recorrido claro.",
+    "noteTitle": "Nota operativa:",
+    "noteText": "el configurador empieza desde cero. El total aparece solo después de elegir tipo de cliente y paquete.",
+    "value1": "Inicio limpio: ningún precio inicial hasta que el cliente elige.",
+    "value2": "Guardian Report™ incluido también en Base en versión sintética.",
+    "value3": "Risk Snapshot™ sugiere el paquete más coherente.",
+    "value4": "Recorridos Enterprise creados para operaciones complejas y grandes empresas.",
+    "progressTitle": "Guardian Progress™",
+    "liveTitle": "Presupuesto Live™",
+    "estimateTotal": "Total estimado",
+    "bestFitTitle": "Ruta recomendada",
+    "applyRecommended": "Aplicar paquete recomendado",
+    "supportTitle": "Soporte Guardian™",
+    "privacyNote": "AETERNA no pide contraseñas, no conserva credenciales y trabaja con lógica Zero Retention.",
+    "step1Title": "Perfil del cliente",
+    "step1Desc": "Introduce los datos esenciales. El configurador adapta el presupuesto al tipo de cliente y al nivel de protección requerido.",
+    "nameLabel": "Nombre o empresa *",
+    "emailLabel": "Email operativo *",
+    "phoneLabel": "Teléfono *",
+    "countryLabel": "País",
+    "clientTypeLabel": "Tipo de cliente *",
+    "goalLabel": "Main objective",
+    "step1Info": "El configurador no muestra un precio agresivo al inicio: empieza desde cero y construye valor paso a paso.",
+    "step2Title": "Perímetro digital guiado",
+    "step2Desc": "No hace falta ser técnico. Cuenta lo que el cliente usa realmente: cuentas, emails, sitios, dispositivos, archivos y personas involucradas.",
+    "perimA": "1. Personas",
+    "perimAText": "Cuántos perfiles o personas deben protegerse.",
+    "perimB": "2. Activos digitales",
+    "perimBText": "Cuentas, emails, sitios, wallets, nube y archivos.",
+    "perimC": "3. Complejidad",
+    "perimCText": "Cuantos más accesos compartidos y dispositivos existan, más estructurado debe ser el protocolo.",
+    "peopleSection": "Personas y perfiles",
+    "peopleSectionText": "Aquí medimos cuántas identidades digitales deben protegerse. El primer perfil está incluido; cada perfil adicional aumenta el trabajo operativo.",
+    "profilesLabel": "Perfiles protegidos",
+    "profilesHelp": "Ejemplo: tú, familiar, socio, perfil empresarial.",
+    "collabLabel": "Colaboradores/familiares",
+    "collabHelp": "Personas que acceden o deben ser autorizadas.",
+    "publicExposureLabel": "Exposición pública",
+    "publicExposureHelp": "Baja para uso privado, alta para creadores/empresas.",
+    "assetSection": "Cuentas y canales",
+    "assetSectionText": "Estos son los puntos donde un robo de acceso, una estafa o una pérdida de contraseña puede crear daños reales.",
+    "criticalAccountsLabel": "Cuentas críticas",
+    "criticalHelp": "Banco, email certificado, identidad digital, cuentas de trabajo, paneles administrativos.",
+    "socialLabel": "Social accounts",
+    "socialHelp": "Instagram, Facebook, TikTok, LinkedIn, YouTube.",
+    "emailNumLabel": "Emails operativos",
+    "emailHelp": "Personal, work, administration or support emails.",
+    "sitesLabel": "Sitios web",
+    "domainsLabel": "Dominios",
+    "walletLabel": "Wallets cripto",
+    "continuitySection": "Continuidad y archivos",
+    "continuitySectionText": "Sirve para entender qué ocurre si el cliente pierde accesos, dispositivos, documentos o continuidad operativa.",
+    "cloudLabel": "Nube / archivos",
+    "devicesLabel": "Dispositivos",
+    "documentsLabel": "Archivos importantes",
+    "step2Info": "Fórmula clara: paquete elegido + perfiles adicionales + complejidad digital + módulos extra. El cliente ve qué paga y por qué.",
+    "step3Title": "Risk Snapshot™",
+    "step3Desc": "Un preanálisis rápido para entender el nivel mínimo recomendado y el valor del Protocolo completo.",
+    "phishingLabel": "Intentos de phishing",
+    "scamLabel": "Estafas",
+    "dataExposureLabel": "Exposición de datos",
+    "reputationRiskLabel": "Riesgo reputacional",
+    "twofaLabel": "Autenticación 2FA",
+    "backupLabel": "Copias de seguridad",
+    "paymentsLabel": "Pagos online",
+    "lostAccessLabel": "Pérdida de accesos",
+    "legacyNeedLabel": "Legado digital",
+    "sharedAccessLabel": "Accesos compartidos",
+    "step4Title": "Qué compra el cliente",
+    "step4Desc": "Cada paquete no es un simple escaneo: es un nivel de protección, continuidad, reporting y soporte AETERNA.",
+    "step5Title": "Módulos adicionales",
+    "step5Desc": "Añade solo lo necesario. Cada extra debe tener una razón operativa clara.",
+    "currencyDisclaimer": "Las monedas no EUR son estimaciones indicativas. El pago oficial queda en EUR salvo confirmación de AETERNA.",
+    "step6Title": "Resumen, solicitud y pago",
+    "step6Desc": "El cliente está listo: verifica el resumen, copia los datos de transferencia y envía la solicitud a AETERNA.",
+    "summaryTitle": "Resumen operativo",
+    "paymentTitle": "Preventana de transferencia",
+    "copyBankBtn": "COPIAR DATOS BANCARIOS",
+    "copyQuoteBtn": "COPIAR RESUMEN",
+    "sendInfo": "El botón registra la solicitud en Google Sheet y prepara el email operativo. El pago queda por transferencia con concepto generado.",
+    "continueBtn": "CONTINUAR →",
+    "backBtn": "ATRÁS",
+    "paySendBtn": "ENVIAR SOLICITUD E INSTRUCCIONES DE PAGO",
+    "footer": "AETERNA Guardian™ ofrece una estimación preliminar basada en los datos declarados. La auditoría completa se activa tras confirmar solicitud y pago.",
+    "clients": [
+      [
+        "",
+        "Elegir tipo de cliente"
+      ],
+      [
+        "Privato",
+        "Particular / familia"
+      ],
+      [
+        "Professionista",
+        "Profesional"
+      ],
+      [
+        "Creator / Influencer",
+        "Creator / Influencer"
+      ],
+      [
+        "PMI",
+        "PYME / empresa"
+      ],
+      [
+        "Azienda Enterprise",
+        "Enterprise / grandes empresas"
+      ]
+    ],
+    "goals": [
+      [
+        "complete",
+        "Protocolo AETERNA™ completo — recomendado"
+      ],
+      [
+        "protection",
+        "Protección de cuentas y anti-estafa"
+      ],
+      [
+        "legacy",
+        "Legado digital"
+      ],
+      [
+        "continuity",
+        "Continuidad operativa"
+      ],
+      [
+        "reputation",
+        "Reputación / suplantación"
+      ]
+    ],
+    "goalCards": {
+      "complete": [
+        "Protocolo AETERNA™ completo",
+        "Elección recomendada: combina protección, anti-estafa, continuidad digital, legado digital y reporting Guardian™ en un único recorrido.",
+        "RECOMENDADO"
+      ],
+      "protection": [
+        "Protección de cuentas y anti-estafa",
+        "Reduce phishing, pérdida de acceso, estafas, enlaces sospechosos y mensajes fraudulentos.",
+        ""
+      ],
+      "legacy": [
+        "Legado digital",
+        "Organiza accesos, voluntades digitales, archivos y contactos autorizados para el futuro.",
+        ""
+      ],
+      "continuity": [
+        "Continuidad operativa",
+        "Prepara procedimientos para que familia, trabajo o empresa no se detengan durante una emergencia digital.",
+        ""
+      ],
+      "reputation": [
+        "Reputación / suplantación",
+        "Ayuda a gestionar exposición pública, perfiles falsos, creadores, empresas y riesgo reputacional.",
+        ""
+      ]
+    },
+    "publicExposure": [
+      [
+        "0",
+        "Baja"
+      ],
+      [
+        "2",
+        "Media"
+      ],
+      [
+        "4",
+        "Alta / pública"
+      ]
+    ],
+    "riskOptions": {
+      "phishing": [
+        [
+          "0",
+          "Ningún intento conocido"
+        ],
+        [
+          "2",
+          "Intentos sospechosos recibidos"
+        ],
+        [
+          "4",
+          "Compromiso por phishing sufrido"
+        ]
+      ],
+      "scam": [
+        [
+          "0",
+          "Ninguna estafa reportada"
+        ],
+        [
+          "2",
+          "Intentos de estafa recibidos"
+        ],
+        [
+          "4",
+          "Pérdidas o daños sospechosos"
+        ]
+      ],
+      "dataExposure": [
+        [
+          "0",
+          "Ninguna exposición conocida"
+        ],
+        [
+          "2",
+          "Posible exposición de datos"
+        ],
+        [
+          "4",
+          "Exposición de datos confirmada"
+        ]
+      ],
+      "reputationRisk": [
+        [
+          "0",
+          "Reputación estable"
+        ],
+        [
+          "2",
+          "Reportes o contenidos sospechosos"
+        ],
+        [
+          "4",
+          "Suplantación o ataque reputacional"
+        ]
+      ],
+      "twofa": [
+        [
+          "0",
+          "2FA activa en cuentas principales"
+        ],
+        [
+          "2",
+          "2FA parcial"
+        ],
+        [
+          "4",
+          "Sin 2FA"
+        ]
+      ],
+      "backup": [
+        [
+          "0",
+          "Copias de seguridad regulares disponibles"
+        ],
+        [
+          "2",
+          "Copias incompletas"
+        ],
+        [
+          "4",
+          "Sin copia de seguridad disponible"
+        ]
+      ],
+      "payments": [
+        [
+          "0",
+          "Sin pagos online relevantes"
+        ],
+        [
+          "1",
+          "Pagos online ocasionales"
+        ],
+        [
+          "2",
+          "Pagos online frecuentes"
+        ]
+      ],
+      "lostAccess": [
+        [
+          "0",
+          "Sin pérdida de acceso"
+        ],
+        [
+          "2",
+          "Pérdida de acceso resuelta"
+        ],
+        [
+          "4",
+          "Cuentas aún bloqueadas o perdidas"
+        ]
+      ],
+      "legacyNeed": [
+        [
+          "0",
+          "No es prioridad"
+        ],
+        [
+          "2",
+          "Presente pero no urgente"
+        ],
+        [
+          "4",
+          "Muy importante"
+        ]
+      ],
+      "sharedAccess": [
+        [
+          "0",
+          "Sin accesos compartidos"
+        ],
+        [
+          "2",
+          "Pocos accesos compartidos"
+        ],
+        [
+          "4",
+          "Varias personas acceden a los mismos activos"
+        ]
+      ]
+    },
+    "packages": {
+      "base": {
+        "name": "Base Shield™",
+        "priceLabel": "€120",
+        "ideal": "Entrada accesible para clientes privados y pequeños ecosistemas digitales.",
+        "buy": "Compras una cartografía inicial organizada, Civil Shield™ ilimitado y un informe sintético.",
+        "value": "Permite empezar de inmediato sin dejar al cliente solo frente a mensajes, enlaces y estafas.",
+        "services": [
+          "Civil Shield™ ilimitado",
+          "Auditoría inicial esencial",
+          "Cartografía de cuentas principales",
+          "Guardian Report™ sintético",
+          "Soporte email"
+        ]
+      },
+      "silver": {
+        "name": "Silver Shield™",
+        "priceLabel": "€320",
+        "ideal": "Profesionales, clientes privados avanzados y pequeñas empresas.",
+        "buy": "Compras una auditoría más profunda, análisis de exposición de datos y un plan de recuperación de cuentas.",
+        "value": "Transforma la protección de reactiva a organizada.",
+        "services": [
+          "Todo Base Shield™",
+          "Auditoría cyber avanzada",
+          "Análisis extendido de exposición de datos",
+          "Plan de recuperación de cuentas principales",
+          "Guardian Report™ extendido"
+        ]
+      },
+      "gold": {
+        "name": "Gold Shield™",
+        "priceLabel": "€690",
+        "ideal": "Creadores, profesionales expuestos, pymes ligeras y múltiples activos.",
+        "buy": "Compras protección avanzada, continuidad preliminar, reputación y recordatorio semestral.",
+        "value": "Ideal cuando un bloqueo de cuenta o una estafa puede generar daño económico o reputacional.",
+        "services": [
+          "Todo Silver Shield™",
+          "Análisis reputacional avanzado",
+          "Digital Continuity™ preliminar",
+          "Digital Legacy™ preliminar",
+          "Recordatorio de contraseñas a seis meses"
+        ]
+      },
+      "guardian": {
+        "name": "Guardian Shield™",
+        "priceLabel": "€1290",
+        "ideal": "Pymes, creadores de alta exposición, familias complejas y grandes empresas.",
+        "buy": "Compras el Protocolo AETERNA™ completo: protección, continuidad, legado digital, informe premium y revisión.",
+        "value": "Este paquete muestra todo el valor AETERNA: no solo defensa, sino futuro digital organizado.",
+        "services": [
+          "Todo Gold Shield™",
+          "Protocolo AETERNA™ completo",
+          "Digital Legacy™ avanzado",
+          "Digital Continuity™ avanzada",
+          "Guardian Report™ premium",
+          "Revisión periódica"
+        ]
+      }
+    },
+    "extras": {
+      "digitalLegacy": [
+        "Digital Legacy™",
+        "Plan dedicado a legado digital, contactos autorizados y continuidad familiar."
+      ],
+      "continuity": [
+        "Digital Continuity™",
+        "Reduce el riesgo de bloqueo operativo ante pérdida de acceso o emergencia."
+      ],
+      "reputation": [
+        "Reputation Shield™",
+        "Verifica exposición reputacional, perfiles falsos y suplantación."
+      ],
+      "accountRecovery": [
+        "Account Recovery Plan™",
+        "Plan organizado para recuperación de cuentas críticas y prueba de titularidad."
+      ],
+      "familyAccess": [
+        "Family Access Protocol™",
+        "Gestión de accesos familiares autorizados sin compartir contraseñas de forma desordenada."
+      ],
+      "businessContinuity": [
+        "Business Continuity™",
+        "Módulo pyme: roles operativos, accesos compartidos, procedimientos mínimos y continuidad empresarial."
+      ],
+      "creatorProtection": [
+        "Creator Protection™",
+        "Protección dedicada a creadores, perfiles públicos y canales monetizados."
+      ],
+      "staffTraining": [
+        "Staff Anti-Scam Training™",
+        "Microformación anti-estafa para equipo, familiares o colaboradores."
+      ],
+      "brandMonitoring": [
+        "Brand & Domain Monitoring™",
+        "Control de dominios similares, suplantación y uso sospechoso de marca."
+      ],
+      "executiveShield": [
+        "Executive Shield™",
+        "Protección dedicada para propietarios, administradores, directivos y figuras clave."
+      ],
+      "vendorAccessReview": [
+        "Vendor & Supplier Access Review™",
+        "Revisión de accesos de proveedores, colaboradores externos y terceros."
+      ],
+      "crisisWarRoom": [
+        "AETERNA Crisis War Room™",
+        "Ruta prioritaria para incidentes, bloqueos de cuenta, estafas complejas o alto riesgo reputacional."
+      ],
+      "boardReport": [
+        "Board & Governance Report™",
+        "Informe estratégico para dirección, consejo, socios o propiedad."
+      ],
+      "secureKit": [
+        "AETERNA Digital Custody Kit™",
+        "Soporte físico opcional de una sola vez para copias e instrucciones operativas."
+      ]
+    },
+    "payment": "Divisa contractual: EUR. La transferencia SEPA opera en euros. Clientes fuera del euro pueden pedir confirmación AETERNA para pago internacional/SWIFT o conversión bancaria. Los importes USD/GBP/CHF/BRL son indicativos."
+  },
+  "pt": {
+    "status": "Configurador avançado de orçamento",
+    "heroKicker": "Configurador global de orçamento",
+    "heroTitle": "Sólidos. <span>Preciosos. Para sempre.</span>",
+    "heroText": "Construa o seu Protocolo AETERNA™: proteção de contas, anti-golpe, continuidade digital, legado digital e suporte Guardian™ em uma jornada clara.",
+    "noteTitle": "Nota operacional:",
+    "noteText": "o configurador começa do zero. O total aparece somente depois de escolher tipo de cliente e pacote.",
+    "value1": "Início limpo: nenhum preço inicial até o cliente escolher.",
+    "value2": "Guardian Report™ incluído também no Base em versão sintética.",
+    "value3": "Risk Snapshot™ sugere o pacote mais coerente.",
+    "value4": "Percursos Enterprise criados para operações complexas e grandes empresas.",
+    "progressTitle": "Guardian Progress™",
+    "liveTitle": "Orçamento Live™",
+    "estimateTotal": "Total estimado",
+    "bestFitTitle": "Percurso recomendado",
+    "applyRecommended": "Aplicar pacote recomendado",
+    "supportTitle": "Suporte Guardian™",
+    "privacyNote": "AETERNA não pede senhas, não conserva credenciais e trabalha com lógica Zero Retention.",
+    "step1Title": "Perfil do cliente",
+    "step1Desc": "Insira os dados essenciais. O configurador adapta o orçamento ao tipo de cliente e ao nível de proteção solicitado.",
+    "nameLabel": "Nome ou empresa *",
+    "emailLabel": "Email operacional *",
+    "phoneLabel": "Telefone *",
+    "countryLabel": "País",
+    "clientTypeLabel": "Tipo de cliente *",
+    "goalLabel": "Main objective",
+    "step1Info": "O configurador não mostra um preço agressivo no início: começa do zero e constrói valor passo a passo.",
+    "step2Title": "Perímetro digital guiado",
+    "step2Desc": "Não é preciso ser técnico. Conta o que o cliente realmente usa: contas, emails, sites, dispositivos, arquivos e pessoas envolvidas.",
+    "perimA": "1. Pessoas",
+    "perimAText": "Quantos perfis ou pessoas devem ser protegidos.",
+    "perimB": "2. Ativos digitais",
+    "perimBText": "Contas, emails, sites, wallets, cloud e arquivos.",
+    "perimC": "3. Complexidade",
+    "perimCText": "Quanto mais acessos compartilhados e dispositivos existem, mais estruturado deve ser o protocolo.",
+    "peopleSection": "Pessoas e perfis",
+    "peopleSectionText": "Aqui medimos quantas identidades digitais devem ser protegidas. O primeiro perfil está incluído; cada perfil adicional aumenta o trabalho operacional.",
+    "profilesLabel": "Perfis protegidos",
+    "profilesHelp": "Exemplo: você, familiar, sócio, perfil empresarial.",
+    "collabLabel": "Colaboradores/familiares",
+    "collabHelp": "Pessoas que acessam ou devem ser autorizadas.",
+    "publicExposureLabel": "Exposição pública",
+    "publicExposureHelp": "Baixa para uso privado, alta para criadores/empresas.",
+    "assetSection": "Contas e canais",
+    "assetSectionText": "Estes são os pontos onde roubo de acesso, golpe ou perda de senha pode criar danos reais.",
+    "criticalAccountsLabel": "Contas críticas",
+    "criticalHelp": "Banco, email certificado, identidade digital, contas de trabalho, painéis administrativos.",
+    "socialLabel": "Social accounts",
+    "socialHelp": "Instagram, Facebook, TikTok, LinkedIn, YouTube.",
+    "emailNumLabel": "Emails operacionais",
+    "emailHelp": "Personal, work, administration or support emails.",
+    "sitesLabel": "Sites web",
+    "domainsLabel": "Domínios",
+    "walletLabel": "Wallets cripto",
+    "continuitySection": "Continuidade e arquivos",
+    "continuitySectionText": "Serve para entender o que acontece se o cliente perde acessos, dispositivos, documentos ou continuidade operacional.",
+    "cloudLabel": "Cloud / arquivos",
+    "devicesLabel": "Dispositivos",
+    "documentsLabel": "Arquivos importantes",
+    "step2Info": "Fórmula clara: pacote escolhido + perfis adicionais + complexidade digital + módulos extra. O cliente vê o que paga e por quê.",
+    "step3Title": "Risk Snapshot™",
+    "step3Desc": "Uma pré-análise rápida para entender o nível mínimo recomendado e o valor do Protocolo completo.",
+    "phishingLabel": "Tentativas de phishing",
+    "scamLabel": "Golpes",
+    "dataExposureLabel": "Exposição de dados",
+    "reputationRiskLabel": "Risco reputacional",
+    "twofaLabel": "Autenticação 2FA",
+    "backupLabel": "Backup",
+    "paymentsLabel": "Pagamentos online",
+    "lostAccessLabel": "Perda de acessos",
+    "legacyNeedLabel": "Legado digital",
+    "sharedAccessLabel": "Acessos compartilhados",
+    "step4Title": "O que o cliente compra",
+    "step4Desc": "Cada pacote não é uma simples análise: é um nível de proteção, continuidade, relatório e suporte AETERNA.",
+    "step5Title": "Módulos adicionais",
+    "step5Desc": "Adicione apenas o necessário. Cada extra deve ter uma razão operacional clara.",
+    "currencyDisclaimer": "Moedas não EUR são estimativas indicativas. O pagamento oficial permanece em EUR salvo confirmação AETERNA.",
+    "step6Title": "Resumo, solicitação e pagamento",
+    "step6Desc": "O cliente está pronto: verifique o resumo, copie os dados de transferência e envie a solicitação à AETERNA.",
+    "summaryTitle": "Resumo operacional",
+    "paymentTitle": "Pré-janela de transferência",
+    "copyBankBtn": "COPIAR DADOS BANCÁRIOS",
+    "copyQuoteBtn": "COPIAR RESUMO",
+    "sendInfo": "O botão registra a solicitação no Google Sheet e prepara o email operacional. O pagamento permanece por transferência com motivo gerado.",
+    "continueBtn": "CONTINUAR →",
+    "backBtn": "VOLTAR",
+    "paySendBtn": "ENVIAR SOLICITAÇÃO E INSTRUÇÕES DE PAGAMENTO",
+    "footer": "AETERNA Guardian™ fornece uma estimativa preliminar baseada nos dados declarados. A auditoria completa é ativada após confirmação da solicitação e do pagamento.",
+    "clients": [
+      [
+        "",
+        "Escolher tipo de cliente"
+      ],
+      [
+        "Privato",
+        "Privado / família"
+      ],
+      [
+        "Professionista",
+        "Profissional"
+      ],
+      [
+        "Creator / Influencer",
+        "Criador / Influencer"
+      ],
+      [
+        "PMI",
+        "PME / empresa"
+      ],
+      [
+        "Azienda Enterprise",
+        "Enterprise / grandes empresas"
+      ]
+    ],
+    "goals": [
+      [
+        "complete",
+        "Protocolo AETERNA™ completo — recomendado"
+      ],
+      [
+        "protection",
+        "Proteção de contas e anti-golpe"
+      ],
+      [
+        "legacy",
+        "Legado digital"
+      ],
+      [
+        "continuity",
+        "Continuidade operacional"
+      ],
+      [
+        "reputation",
+        "Reputação / impersonificação"
+      ]
+    ],
+    "goalCards": {
+      "complete": [
+        "Protocolo AETERNA™ completo",
+        "Escolha recomendada: combina proteção, anti-golpe, continuidade digital, legado digital e relatório Guardian™ em uma única jornada.",
+        "RECOMENDADO"
+      ],
+      "protection": [
+        "Proteção de contas e anti-golpe",
+        "Reduz phishing, perda de acesso, golpes, links suspeitos e mensagens fraudulentas.",
+        ""
+      ],
+      "legacy": [
+        "Legado digital",
+        "Organiza acessos, vontades digitais, arquivos e contatos autorizados para o futuro.",
+        ""
+      ],
+      "continuity": [
+        "Continuidade operacional",
+        "Prepara procedimentos para que família, trabalho ou empresa não parem durante uma emergência digital.",
+        ""
+      ],
+      "reputation": [
+        "Reputação / impersonificação",
+        "Ajuda a gerir exposição pública, perfis falsos, criadores, empresas e risco reputacional.",
+        ""
+      ]
+    },
+    "publicExposure": [
+      [
+        "0",
+        "Baixa"
+      ],
+      [
+        "2",
+        "Média"
+      ],
+      [
+        "4",
+        "Alta / pública"
+      ]
+    ],
+    "riskOptions": {
+      "phishing": [
+        [
+          "0",
+          "Nenhuma tentativa conhecida"
+        ],
+        [
+          "2",
+          "Tentativas suspeitas recebidas"
+        ],
+        [
+          "4",
+          "Comprometimento por phishing sofrido"
+        ]
+      ],
+      "scam": [
+        [
+          "0",
+          "Nenhum golpe reportado"
+        ],
+        [
+          "2",
+          "Tentativas de golpe recebidas"
+        ],
+        [
+          "4",
+          "Perdas ou danos suspeitos"
+        ]
+      ],
+      "dataExposure": [
+        [
+          "0",
+          "Nenhuma exposição conhecida"
+        ],
+        [
+          "2",
+          "Possível exposição de dados"
+        ],
+        [
+          "4",
+          "Exposição de dados confirmada"
+        ]
+      ],
+      "reputationRisk": [
+        [
+          "0",
+          "Reputação estável"
+        ],
+        [
+          "2",
+          "Relatos ou conteúdos suspeitos"
+        ],
+        [
+          "4",
+          "Impersonificação ou ataque reputacional"
+        ]
+      ],
+      "twofa": [
+        [
+          "0",
+          "2FA ativo nas contas principais"
+        ],
+        [
+          "2",
+          "2FA parcial"
+        ],
+        [
+          "4",
+          "Sem 2FA"
+        ]
+      ],
+      "backup": [
+        [
+          "0",
+          "Backups regulares disponíveis"
+        ],
+        [
+          "2",
+          "Backups incompletos"
+        ],
+        [
+          "4",
+          "Nenhum backup disponível"
+        ]
+      ],
+      "payments": [
+        [
+          "0",
+          "Nenhum pagamento online relevante"
+        ],
+        [
+          "1",
+          "Pagamentos online ocasionais"
+        ],
+        [
+          "2",
+          "Pagamentos online frequentes"
+        ]
+      ],
+      "lostAccess": [
+        [
+          "0",
+          "Nenhuma perda de acesso"
+        ],
+        [
+          "2",
+          "Perda de acesso resolvida"
+        ],
+        [
+          "4",
+          "Contas ainda bloqueadas ou perdidas"
+        ]
+      ],
+      "legacyNeed": [
+        [
+          "0",
+          "Não é prioridade"
+        ],
+        [
+          "2",
+          "Presente, mas não urgente"
+        ],
+        [
+          "4",
+          "Muito importante"
+        ]
+      ],
+      "sharedAccess": [
+        [
+          "0",
+          "Nenhum acesso compartilhado"
+        ],
+        [
+          "2",
+          "Poucos acessos compartilhados"
+        ],
+        [
+          "4",
+          "Várias pessoas acessam os mesmos ativos"
+        ]
+      ]
+    },
+    "packages": {
+      "base": {
+        "name": "Base Shield™",
+        "priceLabel": "€120",
+        "ideal": "Entrada acessível para clientes privados e pequenos ecossistemas digitais.",
+        "buy": "Você compra um mapeamento inicial organizado, Civil Shield™ ilimitado e um relatório sintético.",
+        "value": "Permite começar imediatamente sem deixar o cliente sozinho diante de mensagens, links e golpes.",
+        "services": [
+          "Civil Shield™ ilimitado",
+          "Auditoria inicial essencial",
+          "Mapeamento das contas principais",
+          "Guardian Report™ sintético",
+          "Suporte por email"
+        ]
+      },
+      "silver": {
+        "name": "Silver Shield™",
+        "priceLabel": "€320",
+        "ideal": "Profissionais, clientes privados avançados e pequenas empresas.",
+        "buy": "Você compra uma auditoria mais profunda, análise de exposição de dados e plano de recuperação de contas.",
+        "value": "Transforma a proteção de reativa em organizada.",
+        "services": [
+          "Tudo do Base Shield™",
+          "Auditoria cyber avançada",
+          "Análise estendida de exposição de dados",
+          "Plano de recuperação das contas principais",
+          "Guardian Report™ estendido"
+        ]
+      },
+      "gold": {
+        "name": "Gold Shield™",
+        "priceLabel": "€690",
+        "ideal": "Criadores, profissionais expostos, PMEs leves e múltiplos ativos.",
+        "buy": "Você compra proteção avançada, continuidade preliminar, reputação e lembrete semestral.",
+        "value": "Ideal quando um bloqueio de conta ou golpe pode gerar dano econômico ou reputacional.",
+        "services": [
+          "Tudo do Silver Shield™",
+          "Análise reputacional avançada",
+          "Digital Continuity™ preliminar",
+          "Digital Legacy™ preliminar",
+          "Lembrete de senhas em seis meses"
+        ]
+      },
+      "guardian": {
+        "name": "Guardian Shield™",
+        "priceLabel": "€1290",
+        "ideal": "PMEs, criadores de alta exposição, famílias complexas e grandes empresas.",
+        "buy": "Você compra o Protocolo AETERNA™ completo: proteção, continuidade, legado digital, relatório premium e revisão.",
+        "value": "Este pacote mostra todo o valor AETERNA: não apenas defesa, mas futuro digital organizado.",
+        "services": [
+          "Tudo do Gold Shield™",
+          "Protocolo AETERNA™ completo",
+          "Digital Legacy™ avançado",
+          "Digital Continuity™ avançada",
+          "Guardian Report™ premium",
+          "Revisão periódica"
+        ]
+      }
+    },
+    "extras": {
+      "digitalLegacy": [
+        "Digital Legacy™",
+        "Plano dedicado a legado digital, contatos autorizados e continuidade familiar."
+      ],
+      "continuity": [
+        "Digital Continuity™",
+        "Reduz o risco de bloqueio operacional em caso de perda de acesso ou emergência."
+      ],
+      "reputation": [
+        "Reputation Shield™",
+        "Verifica exposição reputacional, perfis falsos e impersonificação."
+      ],
+      "accountRecovery": [
+        "Account Recovery Plan™",
+        "Plano organizado para recuperação de contas críticas e prova de propriedade."
+      ],
+      "familyAccess": [
+        "Family Access Protocol™",
+        "Gestão de acessos familiares autorizados sem compartilhamento desorganizado de senhas."
+      ],
+      "businessContinuity": [
+        "Business Continuity™",
+        "Módulo PME: funções operacionais, acessos compartilhados, procedimentos mínimos e continuidade empresarial."
+      ],
+      "creatorProtection": [
+        "Creator Protection™",
+        "Proteção dedicada para criadores, perfis públicos e canais monetizados."
+      ],
+      "staffTraining": [
+        "Staff Anti-Scam Training™",
+        "Microtreinamento anti-golpe para equipe, familiares ou colaboradores."
+      ],
+      "brandMonitoring": [
+        "Brand & Domain Monitoring™",
+        "Verifica domínios similares, impersonificação e uso suspeito da marca."
+      ],
+      "executiveShield": [
+        "Executive Shield™",
+        "Proteção dedicada para proprietários, administradores, executivos e figuras-chave."
+      ],
+      "vendorAccessReview": [
+        "Vendor & Supplier Access Review™",
+        "Revisão de acessos de fornecedores, colaboradores externos e terceiros."
+      ],
+      "crisisWarRoom": [
+        "AETERNA Crisis War Room™",
+        "Caminho prioritário para incidentes, bloqueios de conta, golpes complexos ou alto risco reputacional."
+      ],
+      "boardReport": [
+        "Board & Governance Report™",
+        "Relatório estratégico para direção, conselho, parceiros ou propriedade."
+      ],
+      "secureKit": [
+        "AETERNA Digital Custody Kit™",
+        "Suporte físico opcional único para backups e instruções operacionais."
+      ]
+    },
+    "payment": "Moeda contratual: EUR. A transferência SEPA opera em euros. Clientes fora da zona euro podem solicitar confirmação AETERNA para pagamento internacional/SWIFT ou conversão bancária. Valores USD/GBP/CHF/BRL são indicativos."
+  }
+};
+Object.keys(AETERNA_CONFIG_LANGS).forEach(function(lang){
+  I18N[lang] = makeLangCopy(I18N.it, AETERNA_CONFIG_LANGS[lang]);
+});
+const AETERNA_CONFIG_TEXT = {
+  "en": {
+    "Cosa acquisti:": "What you buy:",
+    "Perché vale:": "Why it matters:",
+    "Riservato a profili business/enterprise.": "Reserved for business/enterprise profiles.",
+    "Ideale per": "Ideal for",
+    "Cosa compra il cliente": "What the client buys",
+    "Valore chiave": "Key value",
+    "Prezzo": "Price",
+    "Scegli la tipologia cliente per attivare il consiglio AETERNA.": "Choose the client type to activate AETERNA's recommendation.",
+    "Scegli tipologia cliente e pacchetto.": "Choose client type and package.",
+    "Il totale si aggiorna progressivamente. Nessuna cifra viene mostrata prima della scelta.": "The total updates progressively. No amount is shown before the choice.",
+    "Tipologia:": "Client type:",
+    "Pacchetto:": "Package:",
+    "Profili aggiuntivi:": "Additional profiles:",
+    "Complessità digitale:": "Digital complexity:",
+    "Extra:": "Extras:",
+    "Importo contrattuale in EUR:": "Contract amount in EUR:",
+    "Totale stimato": "Estimated total",
+    "Cliente:": "Client:",
+    "Telefono:": "Phone:",
+    "Paese:": "Country:",
+    "Pacchetto selezionato:": "Selected package:",
+    "Protocollo consigliato:": "Recommended protocol:",
+    "Importo ufficiale EUR:": "Official EUR amount:",
+    "Cosa acquista:": "What they buy:",
+    "Incluso nel pacchetto": "Included in the package",
+    "Dati bonifico copiati.": "Bank details copied.",
+    "Riepilogo copiato.": "Summary copied.",
+    "Copia manualmente:": "Copy manually:"
+  },
+  "fr": {
+    "Cosa acquisti:": "Ce que vous achetez :",
+    "Perché vale:": "Pourquoi cela compte :",
+    "Riservato a profili business/enterprise.": "Réservé aux profils business/enterprise.",
+    "Ideale per": "Idéal pour",
+    "Cosa compra il cliente": "Ce que le client achète",
+    "Valore chiave": "Valeur clé",
+    "Prezzo": "Prix",
+    "Scegli la tipologia cliente per attivare il consiglio AETERNA.": "Choisissez le type de client pour activer le conseil AETERNA.",
+    "Scegli tipologia cliente e pacchetto.": "Choisissez le type de client et le forfait.",
+    "Il totale si aggiorna progressivamente. Nessuna cifra viene mostrata prima della scelta.": "Le total se met à jour progressivement. Aucun montant n'est affiché avant le choix.",
+    "Tipologia:": "Type de client :",
+    "Pacchetto:": "Forfait :",
+    "Profili aggiuntivi:": "Profils supplémentaires :",
+    "Complessità digitale:": "Complexité numérique :",
+    "Extra:": "Extras :",
+    "Importo contrattuale in EUR:": "Montant contractuel en EUR :",
+    "Totale stimato": "Total estimé",
+    "Cliente:": "Client :",
+    "Telefono:": "Téléphone :",
+    "Paese:": "Pays :",
+    "Pacchetto selezionato:": "Forfait sélectionné :",
+    "Protocollo consigliato:": "Protocole conseillé :",
+    "Importo ufficiale EUR:": "Montant officiel EUR :",
+    "Cosa acquista:": "Ce qui est acheté :",
+    "Incluso nel pacchetto": "Inclus dans le forfait",
+    "Dati bonifico copiati.": "Données de virement copiées.",
+    "Riepilogo copiato.": "Résumé copié.",
+    "Copia manualmente:": "Copiez manuellement :"
+  },
+  "es": {
+    "Cosa acquisti:": "Qué compras:",
+    "Perché vale:": "Por qué vale:",
+    "Riservato a profili business/enterprise.": "Reservado a perfiles business/enterprise.",
+    "Ideale per": "Ideal para",
+    "Cosa compra il cliente": "Qué compra el cliente",
+    "Valore chiave": "Valor clave",
+    "Prezzo": "Precio",
+    "Scegli la tipologia cliente per attivare il consiglio AETERNA.": "Elige el tipo de cliente para activar el consejo AETERNA.",
+    "Scegli tipologia cliente e pacchetto.": "Elige tipo de cliente y paquete.",
+    "Il totale si aggiorna progressivamente. Nessuna cifra viene mostrata prima della scelta.": "El total se actualiza progresivamente. No se muestra ningún importe antes de elegir.",
+    "Tipologia:": "Tipo de cliente:",
+    "Pacchetto:": "Paquete:",
+    "Profili aggiuntivi:": "Perfiles adicionales:",
+    "Complessità digitale:": "Complejidad digital:",
+    "Extra:": "Extras:",
+    "Importo contrattuale in EUR:": "Importe contractual en EUR:",
+    "Totale stimato": "Total estimado",
+    "Cliente:": "Cliente:",
+    "Telefono:": "Teléfono:",
+    "Paese:": "País:",
+    "Pacchetto selezionato:": "Paquete seleccionado:",
+    "Protocollo consigliato:": "Protocolo recomendado:",
+    "Importo ufficiale EUR:": "Importe oficial EUR:",
+    "Cosa acquista:": "Qué adquiere:",
+    "Incluso nel pacchetto": "Incluido en el paquete",
+    "Dati bonifico copiati.": "Datos bancarios copiados.",
+    "Riepilogo copiato.": "Resumen copiado.",
+    "Copia manualmente:": "Copia manualmente:"
+  },
+  "pt": {
+    "Cosa acquisti:": "O que você compra:",
+    "Perché vale:": "Por que vale:",
+    "Riservato a profili business/enterprise.": "Reservado a perfis business/enterprise.",
+    "Ideale per": "Ideal para",
+    "Cosa compra il cliente": "O que o cliente compra",
+    "Valore chiave": "Valor-chave",
+    "Prezzo": "Preço",
+    "Scegli la tipologia cliente per attivare il consiglio AETERNA.": "Escolha o tipo de cliente para ativar o conselho AETERNA.",
+    "Scegli tipologia cliente e pacchetto.": "Escolha tipo de cliente e pacote.",
+    "Il totale si aggiorna progressivamente. Nessuna cifra viene mostrata prima della scelta.": "O total é atualizado progressivamente. Nenhum valor aparece antes da escolha.",
+    "Tipologia:": "Tipo de cliente:",
+    "Pacchetto:": "Pacote:",
+    "Profili aggiuntivi:": "Perfis adicionais:",
+    "Complessità digitale:": "Complexidade digital:",
+    "Extra:": "Extras:",
+    "Importo contrattuale in EUR:": "Valor contratual em EUR:",
+    "Totale stimato": "Total estimado",
+    "Cliente:": "Cliente:",
+    "Telefono:": "Telefone:",
+    "Paese:": "País:",
+    "Pacchetto selezionato:": "Pacote selecionado:",
+    "Protocollo consigliato:": "Protocolo recomendado:",
+    "Importo ufficiale EUR:": "Valor oficial EUR:",
+    "Cosa acquista:": "O que adquire:",
+    "Incluso nel pacchetto": "Incluído no pacote",
+    "Dati bonifico copiati.": "Dados bancários copiados.",
+    "Riepilogo copiato.": "Resumo copiado.",
+    "Copia manualmente:": "Copie manualmente:"
+  }
+};
+const AETERNA_CONFIG_PLACEHOLDERS = {
+  "en": {
+    "Mario Rossi / Azienda SRL": "Mario Rossi / Company Ltd",
+    "nome@email.com": "name@email.com",
+    "+39 ...": "+1 ...",
+    "Italia / United States / Brazil...": "Italy / United States / Brazil..."
+  },
+  "fr": {
+    "Mario Rossi / Azienda SRL": "Mario Rossi / Entreprise SARL",
+    "nome@email.com": "nom@email.com",
+    "+39 ...": "+33 ...",
+    "Italia / United States / Brazil...": "Italie / France / Brésil..."
+  },
+  "es": {
+    "Mario Rossi / Azienda SRL": "Mario Rossi / Empresa SL",
+    "nome@email.com": "nombre@email.com",
+    "+39 ...": "+34 ...",
+    "Italia / United States / Brazil...": "Italia / España / Brasil..."
+  },
+  "pt": {
+    "Mario Rossi / Azienda SRL": "Mario Rossi / Empresa LTDA",
+    "nome@email.com": "nome@email.com",
+    "+39 ...": "+55 ...",
+    "Italia / United States / Brazil...": "Itália / Portugal / Brasil..."
+  }
+};
 const STEP_NAMES = {
   it:["Profilo","Perimetro","Risk","Pacchetto","Extra","Pagamento"],
   en:["Profile","Perimeter","Risk","Package","Extras","Payment"],
-  fr:["Profil","Périmètre","Risk","Forfait","Extras","Paiement"],
-  es:["Perfil","Perímetro","Risk","Paquete","Extras","Pago"],
-  pt:["Perfil","Perímetro","Risk","Pacote","Extras","Pagamento"]
+  fr:["Profil","Périmètre","Risque","Forfait","Extras","Paiement"],
+  es:["Perfil","Perímetro","Riesgo","Paquete","Extras","Pago"],
+  pt:["Perfil","Perímetro","Risco","Pacote","Extras","Pagamento"]
 };
 
 function $(id){return document.getElementById(id)}
@@ -562,6 +2442,52 @@ function value(id){const el=$(id);return el?el.value:""}
 function num(id){return Math.max(0,parseFloat(value(id))||0)}
 function escapeHTML(s){return String(s||"").replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[m]))}
 function t(){return I18N[currentLang]||I18N.it}
+
+function aeternaTranslateValue(value, map){
+  if(!value || !map){return value}
+  const trimmed = String(value).trim().replace(/\s+/g, " ");
+  return map[trimmed] || value;
+}
+
+function aeternaTranslateDynamic(){
+  const textMap = AETERNA_CONFIG_TEXT[currentLang] || {};
+  const placeholderMap = AETERNA_CONFIG_PLACEHOLDERS[currentLang] || {};
+  const reverseText = {};
+  Object.values(AETERNA_CONFIG_TEXT).forEach((langMap) => {
+    Object.entries(langMap).forEach(([source, translated]) => { reverseText[translated] = source; });
+  });
+  const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, {
+    acceptNode(node){
+      const parent = node.parentElement;
+      if(!parent || ["SCRIPT","STYLE"].includes(parent.tagName)){return NodeFilter.FILTER_REJECT}
+      if(parent.closest("[data-i18n],[data-i18n-html]")){return NodeFilter.FILTER_REJECT}
+      return node.nodeValue.trim() ? NodeFilter.FILTER_ACCEPT : NodeFilter.FILTER_REJECT;
+    }
+  });
+  const nodes = [];
+  while(walker.nextNode()) nodes.push(walker.currentNode);
+  nodes.forEach((node) => {
+    const raw = node.nodeValue;
+    const trimmed = raw.trim().replace(/\s+/g, " ");
+    if(!node.__aeternaSourceText){
+      node.__aeternaSourceText = reverseText[trimmed] || trimmed;
+    }
+    const translated = currentLang === "it" ? node.__aeternaSourceText : (textMap[node.__aeternaSourceText] || node.__aeternaSourceText);
+    node.nodeValue = raw.replace(raw.trim(), translated);
+  });
+  document.querySelectorAll("[placeholder]").forEach((node) => {
+    const current = node.getAttribute("placeholder");
+    const reverse = {};
+    Object.values(AETERNA_CONFIG_PLACEHOLDERS).forEach((langMap) => {
+      Object.entries(langMap).forEach(([source, translated]) => { reverse[translated] = source; });
+    });
+    if(!node.dataset.aeternaPlaceholderSource){
+      node.dataset.aeternaPlaceholderSource = reverse[current] || current;
+    }
+    node.setAttribute("placeholder", currentLang === "it" ? node.dataset.aeternaPlaceholderSource : (placeholderMap[node.dataset.aeternaPlaceholderSource] || node.dataset.aeternaPlaceholderSource));
+  });
+}
+
 
 function showLogoFallback(){
   const logo=$("aeternaLogo"), fallback=$("logoFallback");
@@ -590,6 +2516,7 @@ function applyLanguage(lang){
   renderExtras();
   renderCompare();
   updateAll();
+  aeternaTranslateDynamic();
 }
 
 function fillSelect(id,items){
@@ -757,6 +2684,7 @@ function updateAll(){
   renderExtras();
   if(currentStep===6) renderFinal();
   for(let i=1;i<=6;i++){const b=$("bar"+i);if(b)b.style.width=(i<=currentStep?"100%":"0%")}
+  aeternaTranslateDynamic();
 }
 
 function validateStep1(){
