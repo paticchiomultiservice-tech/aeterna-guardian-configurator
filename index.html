@@ -4,8 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>AETERNA Guardian™ | Configuratore Rinascita</title>
-<link rel="icon" type="image/png" href="https://paticchiomultiservice-tech.github.io/aeterna-civil-shield/nuovologo.png?v=guardian-configurator-rinascita-v6-preventivo-ordinato">
-<link rel="apple-touch-icon" href="https://paticchiomultiservice-tech.github.io/aeterna-civil-shield/nuovologo.png?v=guardian-configurator-rinascita-v6-preventivo-ordinato">
+<link rel="icon" type="image/png" href="nuovologo.png?v=guardian-configurator-super">
+<link rel="apple-touch-icon" href="nuovologo.png?v=guardian-configurator-super">
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
@@ -21,22 +21,22 @@ body:before{
   position:fixed;
   inset:-20%;
   background:
-    radial-gradient(circle at 18% 8%,rgba(212,175,55,.12),transparent 33%),
+    radial-gradient(circle at 18% 8%,rgba(245,184,46,.12),transparent 33%),
     radial-gradient(circle at 88% 4%,rgba(0,255,153,.06),transparent 30%),
-    radial-gradient(circle at 75% 95%,rgba(212,175,55,.08),transparent 34%);
+    radial-gradient(circle at 75% 95%,rgba(245,184,46,.08),transparent 34%);
   filter:blur(8px);
   pointer-events:none;
   z-index:0;
 }
 :root{
-  --gold:#d4af37;
-  --gold2:#fff0a6;
+  --gold:#f5b82e;
+  --gold2:#ffe58a;
   --green:#00ff99;
   --red:#ff4d4d;
   --orange:#ffb84d;
   --dark:#080808;
   --dark2:#111;
-  --line:rgba(212,175,55,.18);
+  --line:rgba(245,184,46,.24);
   --line2:rgba(255,255,255,.10);
   --muted:#a6a6a6;
 }
@@ -47,10 +47,10 @@ body:before{
   width:94px;height:94px;min-width:94px;
   border-radius:26px;
   border:2px solid var(--gold);
-  background:#070707 url("https://paticchiomultiservice-tech.github.io/aeterna-civil-shield/nuovologo.png?v=guardian-configurator-rinascita-v6-preventivo-ordinato") center/contain no-repeat;
+  background:#070707 url("nuovologo.png?v=guardian-configurator-super") center/contain no-repeat;
   display:flex;align-items:center;justify-content:center;
   overflow:hidden;
-  box-shadow:0 0 46px rgba(212,175,55,.24);
+  box-shadow:0 0 46px rgba(245,184,46,.24);
 }
 .logo-shell img{width:100%;height:100%;object-fit:cover;display:block;background:#070707}
 .logo-fallback{display:none;width:100%;height:100%;align-items:center;justify-content:center;background:#070707}
@@ -68,11 +68,11 @@ select,input,textarea{
   font-size:15px;
   outline:none;
 }
-select:focus,input:focus,textarea:focus{border-color:rgba(212,175,55,.7);box-shadow:0 0 0 3px rgba(212,175,55,.09)}
+select:focus,input:focus,textarea:focus{border-color:rgba(245,184,46,.7);box-shadow:0 0 0 3px rgba(245,184,46,.09)}
 .control{min-width:190px}
 .badge{padding:11px 14px;border:1px solid var(--line);background:#0b0b0b;border-radius:999px;color:#ddd;font-size:12px}
-.hero{display:grid;grid-template-columns:1.12fr .88fr;gap:22px;margin-bottom:22px}
-.card,.step,.side-card{background:linear-gradient(145deg,#0b0b0b,#060606);border:1px solid var(--line);border-radius:30px;box-shadow:0 0 60px rgba(212,175,55,.07)}
+.hero{display:grid;grid-template-columns:1fr;gap:22px;margin-bottom:22px}
+.card,.step,.side-card{background:linear-gradient(145deg,#0b0b0b,#060606);border:1px solid var(--line);border-radius:30px;box-shadow:0 0 60px rgba(245,184,46,.07)}
 .card{padding:30px}
 .hero-title{font-size:clamp(34px,4vw,60px);line-height:.95;letter-spacing:-1.7px;margin-bottom:18px}
 .hero-title span{color:var(--gold)}
@@ -83,6 +83,8 @@ select:focus,input:focus,textarea:focus{border-color:rgba(212,175,55,.7);box-sha
 .value-card{padding:20px;border-radius:25px;background:#0a0a0a;border:1px solid var(--line)}
 .value-card .num{font-size:34px;color:var(--gold);font-weight:950;margin-bottom:8px}
 .value-card p{font-size:14px;line-height:1.55;color:#cfcfcf}
+.confirmation-box{display:none;margin-top:18px;padding:18px;border-radius:20px;border:1px solid rgba(0,255,153,.26);background:rgba(0,255,153,.055);color:#e9fff6;line-height:1.65}
+.confirmation-box strong{color:var(--green)}
 .layout{display:grid;grid-template-columns:360px 1fr;gap:22px;align-items:start}
 .sidebar{position:sticky;top:14px;display:grid;gap:16px}
 .side-card{padding:20px;border-radius:28px}
@@ -108,15 +110,15 @@ select:focus,input:focus,textarea:focus{border-color:rgba(212,175,55,.7);box-sha
 label{font-weight:850;color:#eee;font-size:14px}
 .help{font-size:12px;color:#989898;line-height:1.45}
 textarea{min-height:115px;resize:vertical;line-height:1.55}
-.info{padding:16px;border-radius:20px;border:1px solid rgba(212,175,55,.16);background:rgba(212,175,55,.045);color:#d5d5d5;line-height:1.65;margin-top:16px}
+.info{padding:16px;border-radius:20px;border:1px solid rgba(245,184,46,.16);background:rgba(245,184,46,.045);color:#d5d5d5;line-height:1.65;margin-top:16px}
 .info.ok{border-color:rgba(0,255,153,.20);background:rgba(0,255,153,.045)}
 .info.warn{border-color:rgba(255,184,77,.25);background:rgba(255,184,77,.055)}
 .goal-panel{margin-top:14px;display:grid;grid-template-columns:1fr;gap:12px}
-.goal-card{padding:17px;border-radius:22px;border:1px solid rgba(212,175,55,.18);background:#090909}
+.goal-card{padding:17px;border-radius:22px;border:1px solid rgba(245,184,46,.18);background:#090909}
 .goal-card strong{color:var(--gold)}
 .goal-card p{margin-top:8px;color:#cfcfcf;line-height:1.58;font-size:14px}
 .goal-card.recommended{border-color:rgba(0,255,153,.32);background:rgba(0,255,153,.045)}
-.goal-card.selected{border-color:var(--gold);box-shadow:0 0 0 3px rgba(212,175,55,.08)}
+.goal-card.selected{border-color:var(--gold);box-shadow:0 0 0 3px rgba(245,184,46,.08)}
 .goal-pill{display:inline-block;margin-left:8px;padding:5px 8px;border-radius:999px;border:1px solid rgba(0,255,153,.24);color:var(--green);font-size:10px;font-weight:950;letter-spacing:.6px}
 .perimeter-intro{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:18px}
 .perimeter-intro div{padding:16px;border-radius:22px;background:#090909;border:1px solid rgba(255,255,255,.09);color:#cfcfcf;line-height:1.55;font-size:13px}
@@ -126,22 +128,21 @@ textarea{min-height:115px;resize:vertical;line-height:1.55}
 .perimeter-section p{color:#bfbfbf;line-height:1.55;font-size:13px;margin-bottom:14px}
 .package-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:15px}
 .package{padding:18px;border-radius:24px;background:#080808;border:1px solid rgba(255,255,255,.09);cursor:pointer;position:relative;transition:.18s;min-height:360px}
-.package:hover{transform:translateY(-2px);border-color:rgba(212,175,55,.45)}
-.package.selected{border-color:var(--gold);box-shadow:0 0 0 3px rgba(212,175,55,.08),0 0 38px rgba(212,175,55,.12)}
+.package:hover{transform:translateY(-2px);border-color:rgba(245,184,46,.45)}
+.package.selected{border-color:var(--gold);box-shadow:0 0 0 3px rgba(245,184,46,.08),0 0 38px rgba(245,184,46,.12)}
 .package.recommended:before{content:"AETERNA CHOICE";position:absolute;top:12px;right:12px;background:rgba(0,255,153,.12);border:1px solid rgba(0,255,153,.25);color:var(--green);font-size:10px;font-weight:950;padding:6px 8px;border-radius:999px}
 .pkg-name{font-size:20px;color:var(--gold);font-weight:950;margin-bottom:8px;padding-right:96px}
 .pkg-price{font-size:27px;color:#fff;font-weight:950;margin:10px 0}
 .pkg-ideal{color:#c9c9c9;font-size:13px;line-height:1.55;margin-bottom:12px}
-.pkg-value{margin-top:12px;padding:12px;border-radius:15px;background:rgba(212,175,55,.05);border:1px solid rgba(212,175,55,.13);font-size:12.5px;line-height:1.5;color:#d6d6d6}
+.pkg-value{margin-top:12px;padding:12px;border-radius:15px;background:rgba(245,184,46,.05);border:1px solid rgba(245,184,46,.13);font-size:12.5px;line-height:1.5;color:#d6d6d6}
 ul{padding-left:18px}
 li{margin:7px 0;color:#d1d1d1;line-height:1.45;font-size:13px}
 .extra-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
 .extra{border:1px solid rgba(255,255,255,.10);background:#080808;border-radius:22px;padding:16px;cursor:pointer;transition:.18s;min-height:118px}
 .extra.locked{opacity:.42;cursor:not-allowed}
-.extra.active{border-color:var(--gold);box-shadow:0 0 0 3px rgba(212,175,55,.08)}
+.extra.active{border-color:var(--gold);box-shadow:0 0 0 3px rgba(245,184,46,.08)}
 .extra-top{display:flex;justify-content:space-between;gap:12px;align-items:flex-start}
 .extra-name{font-weight:950;color:#fff}
-.extra-price{color:var(--green);font-weight:900;white-space:nowrap}
 .extra-desc{margin-top:9px;color:#aaa;font-size:13px;line-height:1.5}
 .risk-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:16px}
 .risk-card{padding:18px;border-radius:22px;border:1px solid rgba(255,255,255,.10);background:#080808}
@@ -152,11 +153,11 @@ li{margin:7px 0;color:#d1d1d1;line-height:1.45;font-size:13px}
 .summary-box h3,.payment-box h3{color:var(--gold);margin-bottom:14px}
 .total-big{display:flex;justify-content:space-between;gap:14px;align-items:center;margin:18px 0;padding:18px;border-radius:18px;background:rgba(0,255,153,.055);border:1px solid rgba(0,255,153,.18)}
 .total-big strong{font-size:30px;color:var(--green)}
-.payment-ready{margin-top:14px;padding:16px;border-radius:20px;background:rgba(212,175,55,.05);border:1px solid rgba(212,175,55,.18);line-height:1.65;color:#ddd}
+.payment-ready{margin-top:14px;padding:16px;border-radius:20px;background:rgba(245,184,46,.05);border:1px solid rgba(245,184,46,.18);line-height:1.65;color:#ddd}
 .copy-row{display:flex;gap:10px;margin-top:14px;flex-wrap:wrap}
 .navigation{display:flex;gap:12px;justify-content:space-between;margin-top:24px;flex-wrap:wrap}
 button{border:0;border-radius:16px;padding:14px 18px;font-weight:950;cursor:pointer;letter-spacing:.3px}
-.btn-next{background:linear-gradient(135deg,var(--gold),#fff0a6);color:#050505}
+.btn-next{background:linear-gradient(135deg,var(--gold),#ffe58a);color:#050505}
 .btn-back{background:#151515;color:#e7e7e7;border:1px solid rgba(255,255,255,.12)}
 .btn-secondary{background:#0f0f0f;color:var(--gold);border:1px solid var(--line)}
 .btn-pay{background:linear-gradient(135deg,#00ff99,#caffdf);color:#02150d}
@@ -187,9 +188,9 @@ th{color:var(--gold);background:#090909}
 <header class="topbar">
   <div class="logo-area">
     <div class="logo-shell" aria-label="AETERNA Guardian logo">
-      <img id="aeternaLogo" src="https://paticchiomultiservice-tech.github.io/aeterna-civil-shield/nuovologo.png?v=guardian-configurator-rinascita-v6-preventivo-ordinato" alt="AETERNA Guardian" loading="eager" decoding="async" fetchpriority="high" onerror="showLogoFallback()">
+      <img id="aeternaLogo" src="nuovologo.png?v=guardian-configurator-super" alt="AETERNA Guardian" loading="eager" decoding="async" fetchpriority="high" onerror="showLogoFallback()">
       <div id="logoFallback" class="logo-fallback" aria-hidden="true">
-        <svg viewBox="0 0 100 100"><defs><linearGradient id="g" x1="0" x2="1" y1="0" y2="1"><stop offset="0" stop-color="#fff2a6"/><stop offset=".45" stop-color="#d4af37"/><stop offset="1" stop-color="#8a6d1f"/></linearGradient></defs><path d="M50 6 L83 20 V46 C83 69 69 86 50 94 C31 86 17 69 17 46 V20 Z" fill="none" stroke="url(#g)" stroke-width="7"/><path d="M50 22 L73 75 H62 L57 62 H42 L37 75 H27 Z M45 53 H54 L50 39 Z" fill="url(#g)"/></svg>
+        <svg viewBox="0 0 100 100"><defs><linearGradient id="g" x1="0" x2="1" y1="0" y2="1"><stop offset="0" stop-color="#fff2a6"/><stop offset=".45" stop-color="#f5b82e"/><stop offset="1" stop-color="#8a6d1f"/></linearGradient></defs><path d="M50 6 L83 20 V46 C83 69 69 86 50 94 C31 86 17 69 17 46 V20 Z" fill="none" stroke="url(#g)" stroke-width="7"/><path d="M50 22 L73 75 H62 L57 62 H42 L37 75 H27 Z M45 53 H54 L50 39 Z" fill="url(#g)"/></svg>
       </div>
     </div>
     <div>
@@ -219,12 +220,6 @@ th{color:var(--gold);background:#090909}
       <div class="mini-badge">Protocollo AETERNA™</div><div class="mini-badge">Digital Legacy™</div><div class="mini-badge">Civil Shield™</div><div class="mini-badge">Continuity Shield™</div><div class="mini-badge">Zero Retention™</div>
     </div>
   </div>
-  <div class="value-grid">
-    <div class="value-card"><div class="num">0€</div><p data-i18n="value1">Partenza pulita: nessun prezzo iniziale finché il cliente non sceglie.</p></div>
-    <div class="value-card"><div class="num">PDF</div><p data-i18n="value2">Report Guardian™ incluso anche nel Base in versione sintetica.</p></div>
-    <div class="value-card"><div class="num">AI</div><p data-i18n="value3">Risk Snapshot™ per suggerire il pacchetto più coerente.</p></div>
-    <div class="value-card"><div class="num">15K</div><p data-i18n="value4">Percorsi Enterprise costruiti per operazioni complesse e grandi compagnie.</p></div>
-  </div>
 </section>
 
 <div class="layout">
@@ -239,7 +234,7 @@ th{color:var(--gold);background:#090909}
     <div class="live-total zero" id="liveTotal">€ 0,00</div>
     <div class="live-small" id="liveCurrency">Base EUR: € 0,00</div>
     <div class="live-small" id="livePayment">Scegli tipologia cliente e pacchetto</div>
-    <div class="breakdown" id="liveDetails">Il totale si aggiorna progressivamente.</div>
+    <div class="breakdown" id="liveDetails">Scegli tipologia e pacchetto: il preventivo mostrerà subito le voci che formano il totale.</div>
   </div>
   <div class="side-card reco">
     <div class="side-title" data-i18n="bestFitTitle">Percorso consigliato</div>
@@ -263,7 +258,7 @@ th{color:var(--gold);background:#090909}
     <div class="field"><label data-i18n="phoneLabel">Telefono *</label><input id="telefono" type="text" placeholder="+39 ..."></div>
     <div class="field"><label data-i18n="countryLabel">Paese</label><input id="paese" type="text" placeholder="Italia / United States / Brazil..."></div>
     <div class="field"><label data-i18n="clientTypeLabel">Tipologia cliente *</label><select id="cliente"></select><div class="help" id="clientTypeHelp"></div></div>
-    <input id="goal" type="hidden" value="complete">
+    <input id="goal" type="hidden" value="protection">
   </div>
   <div class="goal-panel" id="goalPanel"></div>
   <div class="info ok" data-i18n="step1Info">Consiglio AETERNA: partire dal Protocollo completo permette di non proteggere solo l’emergenza, ma anche continuità, eredità digitale e prevenzione futura. La tariffa base varia per tipologia cliente: privato, professionista, creator, PMI o Enterprise.</div>
@@ -370,7 +365,7 @@ th{color:var(--gold);background:#090909}
       <div id="finalSummary"></div>
     </div>
     <div class="payment-box">
-      <h3 data-i18n="paymentTitle">Pre-finestra bonifico</h3>
+      <h3 data-i18n="paymentTitle">Dati bonifico</h3>
       <p id="paymentText"></p>
       <div class="payment-ready" id="bankTransferBox"></div>
       <div class="copy-row">
@@ -379,8 +374,9 @@ th{color:var(--gold);background:#090909}
       </div>
     </div>
   </div>
-  <div class="info ok" data-i18n="sendInfo">Il pulsante registra la richiesta nel Google Sheet e prepara l’email operativa. Il pagamento resta tramite bonifico con causale generata.</div>
-  <div class="navigation"><button class="btn-back" onclick="prevStep()" data-i18n="backBtn">INDIETRO</button><button class="btn-pay" onclick="completeOnboarding()" data-i18n="paySendBtn">INVIA RICHIESTA E PAGA</button></div>
+  <div class="info ok" data-i18n="sendInfo">Invia la richiesta: riceverai numero richiesta, riepilogo e dati per completare il pagamento tramite bonifico.</div>
+  <div class="confirmation-box" id="confirmationBox"></div>
+  <div class="navigation"><button class="btn-back" onclick="prevStep()" data-i18n="backBtn">INDIETRO</button><button class="btn-pay" onclick="completeOnboarding()" data-i18n="paySendBtn">INVIA RICHIESTA E PROCEDI AL BONIFICO</button></div>
 </section>
 </main>
 </div>
@@ -391,7 +387,7 @@ th{color:var(--gold);background:#090909}
 <script>
 const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwXgJmz2HDhukJTixDSC0YkW6EPWI-SdAYEnGK8lXgNfXfFkxeCXH3eCBtEGd1Xnc3RYQ/exec";
 const SUPPORT_EMAIL = "info@aeternadigitallegacy.com";
-const LOGO_SOURCES = ["https://paticchiomultiservice-tech.github.io/aeterna-civil-shield/nuovologo.png?v=guardian-configurator-rinascita-v6-preventivo-ordinato","nuovologo.png?v=guardian-configurator-rinascita-v6-preventivo-ordinato","https://paticchiomultiservice-tech.github.io/aeterna-guardian-configurator/nuovologo.png?v=guardian-configurator-rinascita-v6-preventivo-ordinato"];
+const LOGO_SOURCES = ["nuovologo.png?v=guardian-configurator-super","https://paticchiomultiservice-tech.github.io/aeterna-civil-shield/nuovologo.png?v=guardian-configurator-super","https://paticchiomultiservice-tech.github.io/aeterna-guardian-configurator/nuovologo.png?v=guardian-configurator-super"];
 
 let currentStep = 1;
 let selectedPackage = "";
@@ -399,6 +395,8 @@ let recommendedPackage = "";
 let minimumPackage = "";
 let currentLang = "it";
 let currentCurrency = "EUR";
+let requestNumber = "";
+const DEFAULT_GOAL = "protection";
 
 const FX = {
   EUR: { symbol:"€", rate:1, suffix:"EUR" },
@@ -411,17 +409,12 @@ const FX = {
 const PACKAGE_PRICES = { base:120, silver:320, gold:690, guardian:1290 };
 const EXTRA_PROFILE_PRICE = 50;
 
-/*
-  Logica interna non esposta al cliente:
-  il preventivo parte da 0 e cresce solo dopo scelta di tipologia + pacchetto.
-  PMI = 2x. Enterprise / grandi compagnie = 4x.
-*/
 const CLIENT_MULTIPLIERS = {
   "Privato": 1.00,
   "Professionista": 1.35,
   "Creator / Influencer": 1.60,
   "PMI": 2.00,
-  "Azienda Enterprise": 4.00
+  "Azienda Enterprise": 2.00
 };
 
 const CLIENT_COMPLEXITY_LABEL = {
@@ -429,24 +422,24 @@ const CLIENT_COMPLEXITY_LABEL = {
   "Professionista": "Professionista",
   "Creator / Influencer": "Creator / profilo pubblico",
   "PMI": "PMI / struttura aziendale",
-  "Azienda Enterprise": "Enterprise / grandi compagnie"
+  "Azienda Enterprise": "Enterprise / struttura complessa"
 };
 
 const EXTRAS = {
   digitalLegacy: { price:190, scope:"all" },
   continuity: { price:240, scope:"all" },
-  reputation: { price:290, scope:"all" },
+  reputation: { price:210, scope:"all" },
   accountRecovery: { price:160, scope:"all" },
-  familyAccess: { price:120, scope:"all" },
-  creatorProtection: { price:290, scope:"creator" },
-  businessContinuity: { price:590, scope:"business" },
-  staffTraining: { price:890, scope:"business" },
-  brandMonitoring: { price:1490, scope:"business" },
-  executiveShield: { price:2490, scope:"enterprise" },
-  vendorAccessReview: { price:2900, scope:"enterprise" },
-  crisisWarRoom: { price:3900, scope:"enterprise" },
-  boardReport: { price:4900, scope:"enterprise" },
-  secureKit: { price:79, scope:"all" }
+  familyAccess: { price:180, scope:"all" },
+  businessContinuity: { price:390, scope:"business" },
+  creatorProtection: { price:260, scope:"creator" },
+  staffTraining: { price:490, scope:"business" },
+  brandMonitoring: { price:390, scope:"business" },
+  executiveShield: { price:520, scope:"enterprise" },
+  vendorAccessReview: { price:420, scope:"enterprise" },
+  crisisWarRoom: { price:900, scope:"enterprise" },
+  boardReport: { price:650, scope:"enterprise" },
+  secureKit: { price:120, scope:"all" }
 };
 
 const I18N = {
@@ -456,30 +449,30 @@ heroKicker:"Configuratore preventivo globale",
 heroTitle:"Siamo solidi. <span>Siamo preziosi. Siamo per sempre.</span>",
 heroText:"Costruisci il tuo Protocollo AETERNA™: protezione account, anti-truffa, continuità digitale, eredità digitale e supporto Guardian™ in un percorso chiaro.",
 noteTitle:"Nota operativa:",
-noteText:"il configuratore parte da zero. Il totale compare solo dopo aver scelto tipologia cliente e pacchetto.",
-value1:"Partenza pulita: nessun prezzo iniziale finché il cliente non sceglie.",
-value2:"Report Guardian™ incluso anche nel Base in versione sintetica.",
+noteText:"scegli il profilo, indica l’obiettivo e costruisci il preventivo. Ogni voce scelta comparirà nel riepilogo prima dell’invio.",
+value1:"Preventivo costruito sulle scelte reali del cliente.",
+value2:"Report Guardian™ incluso nei percorsi principali.",
 value3:"Risk Snapshot™ per suggerire il pacchetto più coerente.",
-value4:"Percorsi Enterprise costruiti per operazioni complesse e grandi compagnie.",
+value4:"Percorsi Enterprise gestiti con maggiorazione dedicata x2.",
 progressTitle:"Guardian Progress™", liveTitle:"Preventivo Live™", estimateTotal:"Totale stimato", bestFitTitle:"Percorso consigliato", applyRecommended:"Applica pacchetto consigliato", supportTitle:"Supporto Guardian™", privacyNote:"AETERNA non chiede password, non conserva credenziali e lavora con logica Zero Retention.",
-step1Title:"Profilo cliente", step1Desc:"Inserisci i dati essenziali. Il configuratore adatterà il preventivo al tipo di cliente e al livello di protezione richiesto.", nameLabel:"Nome o azienda *", emailLabel:"Email operativa *", phoneLabel:"Telefono *", countryLabel:"Paese", clientTypeLabel:"Tipologia cliente *", goalLabel:"Obiettivo principale", step1Info:"Il configuratore non mostra un prezzo aggressivo in apertura: parte da zero e costruisce il valore passo dopo passo.",
+step1Title:"Profilo cliente", step1Desc:"Inserisci i dati essenziali e scegli l’obiettivo principale. Il preventivo si adatterà al bisogno reale e al livello di protezione richiesto.", nameLabel:"Nome o azienda *", emailLabel:"Email operativa *", phoneLabel:"Telefono *", countryLabel:"Paese", clientTypeLabel:"Tipologia cliente *", goalLabel:"Obiettivo principale", step1Info:"Scegli l’obiettivo più vicino alla situazione attuale: il sistema consiglierà un percorso coerente senza forzare automaticamente il pacchetto massimo.",
 step2Title:"Perimetro digitale guidato", step2Desc:"Non serve essere tecnici. Conta solo ciò che il cliente usa davvero: account, email, siti, dispositivi, archivi e persone coinvolte.", perimA:"1. Persone", perimAText:"Quanti profili o persone devono essere protetti.", perimB:"2. Asset digitali", perimBText:"Account, email, siti, wallet, cloud e archivi.", perimC:"3. Complessità", perimCText:"Più accessi condivisi e dispositivi ci sono, più il protocollo deve essere strutturato.",
 peopleSection:"Persone e profili", peopleSectionText:"Qui misuriamo quante identità digitali devono essere protette. Il primo profilo è incluso nel pacchetto, ogni profilo aggiuntivo aumenta il lavoro operativo.", profilesLabel:"Profili protetti", profilesHelp:"Esempio: te stesso, familiare, socio, profilo aziendale.", collabLabel:"Collaboratori/familiari", collabHelp:"Persone che accedono o devono essere autorizzate.", publicExposureLabel:"Esposizione pubblica", publicExposureHelp:"Bassa per uso privato, alta per creator/azienda.",
 assetSection:"Account e canali", assetSectionText:"Questi sono i punti dove un furto accessi, una truffa o una perdita password può creare danni reali.", criticalAccountsLabel:"Account critici", criticalHelp:"Banca, PEC, SPID, account lavoro, pannelli amministrativi.", socialLabel:"Account social", socialHelp:"Instagram, Facebook, TikTok, LinkedIn, YouTube.", emailNumLabel:"Email operative", emailHelp:"Email personali, lavoro, amministrazione o supporto.", sitesLabel:"Siti web", domainsLabel:"Domini", walletLabel:"Wallet crypto",
 continuitySection:"Continuità e archivi", continuitySectionText:"Serve a capire cosa succede se il cliente perde accessi, dispositivi, documenti o continuità operativa.", cloudLabel:"Cloud / archivi", devicesLabel:"Dispositivi", documentsLabel:"Archivi importanti", step2Info:"Formula chiara: pacchetto scelto + profili aggiuntivi + complessità digitale + moduli extra. Il cliente vede cosa paga e perché.",
 step3Title:"Risk Snapshot™", step3Desc:"Una pre-analisi rapida per capire il livello minimo consigliato e il valore del Protocollo completo.", phishingLabel:"Tentativi phishing", scamLabel:"Truffe o scam", dataExposureLabel:"Esposizione dati", reputationRiskLabel:"Rischio reputazionale", twofaLabel:"Autenticazione 2FA", backupLabel:"Backup", paymentsLabel:"Pagamenti online", lostAccessLabel:"Perdita accessi", legacyNeedLabel:"Eredità digitale", sharedAccessLabel:"Accessi condivisi",
 step4Title:"Cosa acquista il cliente", step4Desc:"Ogni pacchetto non è una semplice scansione: è un livello di protezione, continuità, reportistica e supporto AETERNA.",
-step5Title:"Moduli aggiuntivi", step5Desc:"Aggiungi solo ciò che serve. Alcuni moduli sono dedicati a PMI, grandi compagnie e gruppi complessi.", currencyDisclaimer:"Le valute non EUR sono stime indicative. Il pagamento ufficiale resta in EUR salvo conferma specifica AETERNA.",
-step6Title:"Riepilogo, richiesta e pagamento", step6Desc:"Il cliente è pronto: verifica il riepilogo, copia i dati del bonifico e invia la richiesta ad AETERNA.", summaryTitle:"Riepilogo operativo", paymentTitle:"Pre-finestra bonifico", copyBankBtn:"COPIA DATI BONIFICO", copyQuoteBtn:"COPIA RIEPILOGO", sendInfo:"Il pulsante registra la richiesta nel Google Sheet e prepara l’email operativa. Il pagamento resta tramite bonifico con causale generata.",
-continueBtn:"CONTINUA →", backBtn:"INDIETRO", paySendBtn:"INVIA RICHIESTA E PAGA", footer:"AETERNA Guardian™ fornisce una stima preliminare basata sui dati dichiarati. L’audit completo viene attivato dopo conferma della richiesta e del pagamento.",
-clients:[["","Scegli tipologia cliente"],["Privato","Privato / famiglia"],["Professionista","Libero professionista"],["Creator / Influencer","Creator / Influencer"],["PMI","PMI / azienda"],["Azienda Enterprise","Enterprise / grandi compagnie"]],
-goals:[["complete","Protocollo completo AETERNA™ — consigliato"],["protection","Protezione account e anti-truffa"],["legacy","Eredità digitale"],["continuity","Continuità operativa"],["reputation","Reputazione / impersonificazione"]],
+step5Title:"Moduli aggiuntivi", step5Desc:"Aggiungi solo ciò che serve. Alcuni moduli sono dedicati a PMI, strutture complesse e percorsi ad alta esposizione.", currencyDisclaimer:"Le valute non EUR sono stime indicative. Il pagamento ufficiale resta in EUR salvo conferma specifica AETERNA.",
+step6Title:"Riepilogo, richiesta e pagamento", step6Desc:"Il cliente è pronto: verifica il riepilogo, copia i dati del bonifico e invia la richiesta ad AETERNA.", summaryTitle:"Riepilogo operativo", paymentTitle:"Dati bonifico", copyBankBtn:"COPIA DATI BONIFICO", copyQuoteBtn:"COPIA RIEPILOGO", sendInfo:"Invia la richiesta: riceverai numero richiesta, riepilogo e dati per completare il pagamento tramite bonifico.",
+continueBtn:"CONTINUA →", backBtn:"INDIETRO", paySendBtn:"INVIA RICHIESTA E PROCEDI AL BONIFICO", footer:"AETERNA Guardian™ fornisce una stima preliminare basata sui dati dichiarati. L’audit completo viene attivato dopo conferma della richiesta e del pagamento.",
+clients:[["","Scegli tipologia cliente"],["Privato","Privato / famiglia"],["Professionista","Libero professionista"],["Creator / Influencer","Creator / Influencer"],["PMI","PMI / azienda"],["Azienda Enterprise","Enterprise / struttura complessa"]],
+goals:[["protection","Proteggermi da truffe"],["family","Proteggere la mia famiglia"],["business","Proteggere la mia attività"],["legacy","Preparare eredità digitale"],["complete","Protocollo completo AETERNA™"]],
 goalCards:{
-complete:["Protocollo completo AETERNA™","Scelta consigliata: unisce protezione, anti-truffa, continuità digitale, eredità digitale e report Guardian™ in un percorso unico.","CONSIGLIATO"],
-protection:["Protezione account e anti-truffa","Riduce rischio phishing, perdita accessi, truffe, link sospetti e messaggi fraudolenti.",""],
-legacy:["Eredità digitale","Organizza accessi, volontà digitali, archivi e referenti autorizzati per il futuro.",""],
-continuity:["Continuità operativa","Prepara procedure per non bloccare famiglia, lavoro o azienda in caso di emergenza digitale.",""],
-reputation:["Reputazione / impersonificazione","Aiuta a gestire esposizione pubblica, profili falsi, creator, aziende e rischio reputazionale.",""]
+protection:["Proteggermi da truffe","Riduce rischio phishing, perdita accessi, link sospetti, messaggi fraudolenti e richieste di pagamento pericolose.",""],
+family:["Proteggere la mia famiglia","Ordina account, referenti autorizzati, accessi essenziali e protezione quotidiana per più persone.",""],
+business:["Proteggere la mia attività","Aiuta professionisti, PMI e strutture complesse a proteggere accessi, continuità, brand e operatività.",""],
+legacy:["Preparare eredità digitale","Organizza accessi, volontà digitali, archivi e referenti autorizzati per il futuro.",""],
+complete:["Protocollo completo AETERNA™","Unisce protezione, anti-truffa, continuità digitale, eredità digitale e report Guardian™ in un percorso unico.","COMPLETO"]
 },
 publicExposure:[["0","Bassa"],["2","Media"],["4","Alta / pubblica"]],
 riskOptions:{
@@ -498,7 +491,7 @@ packages:{
 base:{name:"Base Shield™", priceLabel:"120€", ideal:"Ingresso accessibile per privati e piccoli ecosistemi digitali.", buy:"Acquisti una prima mappatura ordinata, Civil Shield™ illimitato e un report sintetico.", value:"Serve a iniziare subito senza lasciare il cliente solo davanti a messaggi, link e truffe.", services:["Civil Shield™ illimitato","Audit iniziale essenziale","Mappatura account principali","Guardian Report™ sintetico","Supporto via email"]},
 silver:{name:"Silver Shield™", priceLabel:"320€", ideal:"Professionisti, privati evoluti e piccoli business.", buy:"Acquisti un audit più profondo, analisi esposizione dati e piano di recupero account.", value:"Trasforma la protezione da reattiva a organizzata.", services:["Tutto Base Shield™","Audit cyber avanzato","Analisi esposizione dati estesa","Piano recupero account principali","Guardian Report™ esteso"]},
 gold:{name:"Gold Shield™", priceLabel:"690€", ideal:"Creator, professionisti esposti, PMI leggere e asset multipli.", buy:"Acquisti protezione avanzata, continuità preliminare, reputazione e promemoria semestrale.", value:"Ideale quando un blocco account o una truffa può creare danno economico o reputazionale.", services:["Tutto Silver Shield™","Analisi reputazionale avanzata","Continuità Digitale™ preliminare","Digital Legacy™ preliminare","Promemoria password semestrale"]},
-guardian:{name:"Guardian Shield™", priceLabel:"1290€", ideal:"PMI, creator ad alta esposizione, famiglie complesse e grandi compagnie.", buy:"Acquisti il Protocollo AETERNA™ completo: protezione, continuità, eredità digitale, report premium e revisione.", value:"È il pacchetto che mostra davvero il valore AETERNA: non solo difesa, ma futuro digitale ordinato.", services:["Tutto Gold Shield™","Protocollo AETERNA™ completo","Digital Legacy™ avanzato","Continuità Digitale™ avanzata","Guardian Report™ premium","Revisione periodica"]}
+guardian:{name:"Guardian Shield™", priceLabel:"1290€", ideal:"PMI, creator ad alta esposizione, famiglie complesse e strutture aziendali evolute.", buy:"Acquisti il Protocollo AETERNA™ completo: protezione, continuità, eredità digitale, report premium e revisione.", value:"È il pacchetto che mostra davvero il valore AETERNA: non solo difesa, ma futuro digitale ordinato.", services:["Tutto Gold Shield™","Protocollo AETERNA™ completo","Digital Legacy™ avanzato","Continuità Digitale™ avanzata","Guardian Report™ premium","Revisione periodica"]}
 },
 extras:{
 digitalLegacy:["Digital Legacy™","Piano dedicato a eredità digitale, referenti autorizzati e continuità familiare."],
@@ -506,7 +499,6 @@ continuity:["Continuità Digitale™","Riduce il rischio di blocco operativo in 
 reputation:["Reputation Shield™","Controllo esposizione reputazionale, profili falsi e impersonificazione."],
 accountRecovery:["Account Recovery Plan™","Piano ordinato per recupero account critici e prove di proprietà."],
 familyAccess:["Family Access Protocol™","Gestione accessi familiari autorizzati senza consegnare password in modo disordinato."],
-businessContinuity:["Business Continuity™","Percorso per PMI, ruoli operativi, accessi condivisi e continuità aziendale."],
 creatorProtection:["Creator Protection™","Protezione dedicata a creator, profili pubblici e canali monetizzati."],
 businessContinuity:["Business Continuity™","Modulo PMI: ruoli operativi, accessi condivisi, procedure minime e continuità aziendale."],
 staffTraining:["Staff Anti-Scam Training™","Micro-formazione anti-truffa per personale, familiari o collaboratori."],
@@ -608,7 +600,7 @@ const AETERNA_CONFIG_LANGS = {
     "paymentTitle": "Bank transfer pre-window",
     "copyBankBtn": "COPY BANK DETAILS",
     "copyQuoteBtn": "COPY SUMMARY",
-    "sendInfo": "The button records the request in Google Sheet and prepares the operational email. Payment remains by bank transfer with generated reason.",
+    "sendInfo": "Submit the request: you will receive the request number, summary and bank details to complete payment by transfer.",
     "continueBtn": "CONTINUE →",
     "backBtn": "BACK",
     "paySendBtn": "SEND REQUEST AND PAYMENT INSTRUCTIONS",
@@ -1046,7 +1038,7 @@ const AETERNA_CONFIG_LANGS = {
     "paymentTitle": "Pré-fenêtre de virement",
     "copyBankBtn": "COPIER LES DONNÉES BANCAIRES",
     "copyQuoteBtn": "COPIER LE RÉSUMÉ",
-    "sendInfo": "Le bouton enregistre la demande dans Google Sheet et prépare l'email opérationnel. Le paiement reste par virement avec motif généré.",
+    "sendInfo": "Envoyez la demande : vous recevrez le numéro de demande, le récapitulatif et les données pour compléter le paiement par virement.",
     "continueBtn": "CONTINUER →",
     "backBtn": "RETOUR",
     "paySendBtn": "ENVOYER DEMANDE ET INSTRUCTIONS DE PAIEMENT",
@@ -1484,7 +1476,7 @@ const AETERNA_CONFIG_LANGS = {
     "paymentTitle": "Preventana de transferencia",
     "copyBankBtn": "COPIAR DATOS BANCARIOS",
     "copyQuoteBtn": "COPIAR RESUMEN",
-    "sendInfo": "El botón registra la solicitud en Google Sheet y prepara el email operativo. El pago queda por transferencia con concepto generado.",
+    "sendInfo": "Envía la solicitud: recibirás el número de solicitud, el resumen y los datos para completar el pago por transferencia.",
     "continueBtn": "CONTINUAR →",
     "backBtn": "ATRÁS",
     "paySendBtn": "ENVIAR SOLICITUD E INSTRUCCIONES DE PAGO",
@@ -1922,7 +1914,7 @@ const AETERNA_CONFIG_LANGS = {
     "paymentTitle": "Pré-janela de transferência",
     "copyBankBtn": "COPIAR DADOS BANCÁRIOS",
     "copyQuoteBtn": "COPIAR RESUMO",
-    "sendInfo": "O botão registra a solicitação no Google Sheet e prepara o email operacional. O pagamento permanece por transferência com motivo gerado.",
+    "sendInfo": "Envie a solicitação: você receberá o número da solicitação, o resumo e os dados para concluir o pagamento por transferência.",
     "continueBtn": "CONTINUAR →",
     "backBtn": "VOLTAR",
     "paySendBtn": "ENVIAR SOLICITAÇÃO E INSTRUÇÕES DE PAGAMENTO",
@@ -2278,6 +2270,79 @@ const AETERNA_CONFIG_LANGS = {
     "payment": "Moeda contratual: EUR. A transferência SEPA opera em euros. Clientes fora da zona euro podem solicitar confirmação AETERNA para pagamento internacional/SWIFT ou conversão bancária. Valores USD/GBP/CHF/BRL são indicativos."
   }
 };
+const AETERNA_SUPER_LANG_OVERRIDES = {
+  en: {
+    noteText:"choose the profile, select the main objective and build the quote. Every selected item appears in the final breakdown before submission.",
+    step1Desc:"Enter the essential details and choose the main objective. The quote adapts to the real need and required level of protection.",
+    step1Info:"Choose the objective closest to the current situation: the system recommends a coherent path without automatically forcing the highest package.",
+    paymentTitle:"Bank transfer details",
+    sendInfo:"Submit the request: you will receive the request number, summary and bank details to complete payment by transfer.",
+    paySendBtn:"SUBMIT REQUEST AND PROCEED TO BANK TRANSFER",
+    clients:[["","Choose client type"],["Privato","Private / family"],["Professionista","Professional"],["Creator / Influencer","Creator / Influencer"],["PMI","SME / company"],["Azienda Enterprise","Enterprise / complex structure"]],
+    goals:[["protection","Protect me from scams"],["family","Protect my family"],["business","Protect my business"],["legacy","Prepare digital legacy"],["complete","Complete AETERNA™ protocol"]],
+    goalCards:{
+      protection:["Protect me from scams","Reduces phishing, lost access, suspicious links, fraudulent messages and dangerous payment requests.",""],
+      family:["Protect my family","Organizes accounts, authorized contacts, essential access and everyday protection for multiple people.",""],
+      business:["Protect my business","Helps professionals, SMEs and complex structures protect access, continuity, brand and operations.",""],
+      legacy:["Prepare digital legacy","Organizes access, digital wishes, archives and authorized contacts for the future.",""],
+      complete:["Complete AETERNA™ protocol","Combines protection, anti-scam defense, digital continuity, digital legacy and Guardian™ reporting in one path.","COMPLETE"]
+    }
+  },
+  fr: {
+    noteText:"choisissez le profil, indiquez l’objectif principal et construisez le devis. Chaque élément choisi apparaît dans le récapitulatif final avant l’envoi.",
+    step1Desc:"Saisissez les informations essentielles et choisissez l’objectif principal. Le devis s’adapte au besoin réel et au niveau de protection requis.",
+    step1Info:"Choisissez l’objectif le plus proche de la situation actuelle : le système recommande un parcours cohérent sans imposer automatiquement l’offre maximale.",
+    paymentTitle:"Données de virement",
+    sendInfo:"Envoyez la demande : vous recevrez le numéro de demande, le récapitulatif et les données pour compléter le paiement par virement.",
+    paySendBtn:"ENVOYER LA DEMANDE ET PROCÉDER AU VIREMENT",
+    clients:[["","Choisir le type de client"],["Privato","Particulier / famille"],["Professionista","Professionnel indépendant"],["Creator / Influencer","Créateur / influenceur"],["PMI","PME / entreprise"],["Azienda Enterprise","Enterprise / structure complexe"]],
+    goals:[["protection","Me protéger des arnaques"],["family","Protéger ma famille"],["business","Protéger mon activité"],["legacy","Préparer l’héritage numérique"],["complete","Protocole AETERNA™ complet"]],
+    goalCards:{
+      protection:["Me protéger des arnaques","Réduit le risque de phishing, perte d’accès, liens suspects, messages frauduleux et demandes de paiement dangereuses.",""],
+      family:["Protéger ma famille","Organise les comptes, référents autorisés, accès essentiels et protection quotidienne de plusieurs personnes.",""],
+      business:["Protéger mon activité","Aide les professionnels, PME et structures complexes à protéger accès, continuité, marque et opérations.",""],
+      legacy:["Préparer l’héritage numérique","Organise accès, volontés numériques, archives et référents autorisés pour l’avenir.",""],
+      complete:["Protocole AETERNA™ complet","Unit protection, anti-arnaque, continuité numérique, héritage numérique et rapport Guardian™ dans un parcours unique.","COMPLET"]
+    }
+  },
+  es: {
+    noteText:"elige el perfil, indica el objetivo principal y construye el presupuesto. Cada elemento elegido aparecerá en el resumen final antes del envío.",
+    step1Desc:"Introduce los datos esenciales y elige el objetivo principal. El presupuesto se adapta a la necesidad real y al nivel de protección requerido.",
+    step1Info:"Elige el objetivo más cercano a la situación actual: el sistema recomienda un camino coherente sin forzar automáticamente el paquete máximo.",
+    paymentTitle:"Datos de transferencia",
+    sendInfo:"Envía la solicitud: recibirás el número de solicitud, el resumen y los datos para completar el pago por transferencia.",
+    paySendBtn:"ENVIAR SOLICITUD Y PROCEDER A LA TRANSFERENCIA",
+    clients:[["","Elige tipo de cliente"],["Privato","Privado / familia"],["Professionista","Profesional independiente"],["Creator / Influencer","Creator / Influencer"],["PMI","PYME / empresa"],["Azienda Enterprise","Enterprise / estructura compleja"]],
+    goals:[["protection","Protegerme de estafas"],["family","Proteger a mi familia"],["business","Proteger mi actividad"],["legacy","Preparar legado digital"],["complete","Protocolo AETERNA™ completo"]],
+    goalCards:{
+      protection:["Protegerme de estafas","Reduce phishing, pérdida de accesos, enlaces sospechosos, mensajes fraudulentos y solicitudes de pago peligrosas.",""],
+      family:["Proteger a mi familia","Ordena cuentas, referentes autorizados, accesos esenciales y protección diaria para varias personas.",""],
+      business:["Proteger mi actividad","Ayuda a profesionales, pymes y estructuras complejas a proteger accesos, continuidad, marca y operativa.",""],
+      legacy:["Preparar legado digital","Organiza accesos, voluntades digitales, archivos y referentes autorizados para el futuro.",""],
+      complete:["Protocolo AETERNA™ completo","Une protección, antiestafa, continuidad digital, legado digital e informe Guardian™ en un solo recorrido.","COMPLETO"]
+    }
+  },
+  pt: {
+    noteText:"escolha o perfil, indique o objetivo principal e construa o orçamento. Cada item selecionado aparece no resumo final antes do envio.",
+    step1Desc:"Insira os dados essenciais e escolha o objetivo principal. O orçamento se adapta à necessidade real e ao nível de proteção exigido.",
+    step1Info:"Escolha o objetivo mais próximo da situação atual: o sistema recomenda um caminho coerente sem forçar automaticamente o pacote máximo.",
+    paymentTitle:"Dados de transferência",
+    sendInfo:"Envie a solicitação: você receberá o número da solicitação, o resumo e os dados para concluir o pagamento por transferência.",
+    paySendBtn:"ENVIAR SOLICITAÇÃO E PROSSEGUIR COM A TRANSFERÊNCIA",
+    clients:[["","Escolha o tipo de cliente"],["Privato","Pessoa física / família"],["Professionista","Profissional autônomo"],["Creator / Influencer","Criador / influenciador"],["PMI","PME / empresa"],["Azienda Enterprise","Enterprise / estrutura complexa"]],
+    goals:[["protection","Proteger-me de golpes"],["family","Proteger minha família"],["business","Proteger minha atividade"],["legacy","Preparar legado digital"],["complete","Protocolo AETERNA™ completo"]],
+    goalCards:{
+      protection:["Proteger-me de golpes","Reduz phishing, perda de acesso, links suspeitos, mensagens fraudulentas e pedidos de pagamento perigosos.",""],
+      family:["Proteger minha família","Organiza contas, contatos autorizados, acessos essenciais e proteção diária para várias pessoas.",""],
+      business:["Proteger minha atividade","Ajuda profissionais, PMEs e estruturas complexas a proteger acessos, continuidade, marca e operação.",""],
+      legacy:["Preparar legado digital","Organiza acessos, vontades digitais, arquivos e contatos autorizados para o futuro.",""],
+      complete:["Protocolo AETERNA™ completo","Une proteção, anti-golpe, continuidade digital, legado digital e relatório Guardian™ em um único percurso.","COMPLETO"]
+    }
+  }
+};
+Object.keys(AETERNA_SUPER_LANG_OVERRIDES).forEach(function(lang){
+  AETERNA_CONFIG_LANGS[lang] = Object.assign({}, AETERNA_CONFIG_LANGS[lang] || {}, AETERNA_SUPER_LANG_OVERRIDES[lang]);
+});
 Object.keys(AETERNA_CONFIG_LANGS).forEach(function(lang){
   I18N[lang] = makeLangCopy(I18N.it, AETERNA_CONFIG_LANGS[lang]);
 });
@@ -2292,7 +2357,7 @@ const AETERNA_CONFIG_TEXT = {
     "Prezzo": "Price",
     "Scegli la tipologia cliente per attivare il consiglio AETERNA.": "Choose the client type to activate AETERNA's recommendation.",
     "Scegli tipologia cliente e pacchetto.": "Choose client type and package.",
-    "Il totale si aggiorna progressivamente. Nessuna cifra viene mostrata prima della scelta.": "The total updates progressively. No amount is shown before the choice.",
+    "Scegli tipologia e pacchetto: il preventivo mostrerà subito le voci che formano il totale.": "Choose client type and package: the quote will immediately show the items that form the total.",
     "Tipologia:": "Client type:",
     "Pacchetto:": "Package:",
     "Profili aggiuntivi:": "Additional profiles:",
@@ -2322,7 +2387,7 @@ const AETERNA_CONFIG_TEXT = {
     "Prezzo": "Prix",
     "Scegli la tipologia cliente per attivare il consiglio AETERNA.": "Choisissez le type de client pour activer le conseil AETERNA.",
     "Scegli tipologia cliente e pacchetto.": "Choisissez le type de client et le forfait.",
-    "Il totale si aggiorna progressivamente. Nessuna cifra viene mostrata prima della scelta.": "Le total se met à jour progressivement. Aucun montant n'est affiché avant le choix.",
+    "Scegli tipologia e pacchetto: il preventivo mostrerà subito le voci che formano il totale.": "Choisissez le type de client et le forfait : le devis affichera immédiatement les éléments qui composent le total.",
     "Tipologia:": "Type de client :",
     "Pacchetto:": "Forfait :",
     "Profili aggiuntivi:": "Profils supplémentaires :",
@@ -2352,7 +2417,7 @@ const AETERNA_CONFIG_TEXT = {
     "Prezzo": "Precio",
     "Scegli la tipologia cliente per attivare il consiglio AETERNA.": "Elige el tipo de cliente para activar el consejo AETERNA.",
     "Scegli tipologia cliente e pacchetto.": "Elige tipo de cliente y paquete.",
-    "Il totale si aggiorna progressivamente. Nessuna cifra viene mostrata prima della scelta.": "El total se actualiza progresivamente. No se muestra ningún importe antes de elegir.",
+    "Scegli tipologia e pacchetto: il preventivo mostrerà subito le voci che formano il totale.": "Elige tipo de cliente y paquete: el presupuesto mostrará de inmediato las partidas que forman el total.",
     "Tipologia:": "Tipo de cliente:",
     "Pacchetto:": "Paquete:",
     "Profili aggiuntivi:": "Perfiles adicionales:",
@@ -2382,7 +2447,7 @@ const AETERNA_CONFIG_TEXT = {
     "Prezzo": "Preço",
     "Scegli la tipologia cliente per attivare il consiglio AETERNA.": "Escolha o tipo de cliente para ativar o conselho AETERNA.",
     "Scegli tipologia cliente e pacchetto.": "Escolha tipo de cliente e pacote.",
-    "Il totale si aggiorna progressivamente. Nessuna cifra viene mostrata prima della scelta.": "O total é atualizado progressivamente. Nenhum valor aparece antes da escolha.",
+    "Scegli tipologia e pacchetto: il preventivo mostrerà subito le voci che formano il totale.": "Escolha tipo de cliente e pacote: o orçamento mostrará imediatamente os itens que formam o total.",
     "Tipologia:": "Tipo de cliente:",
     "Pacchetto:": "Pacote:",
     "Profili aggiuntivi:": "Perfis adicionais:",
@@ -2527,15 +2592,15 @@ function fillSelect(id,items){
 }
 function buildSelects(){
   fillSelect("cliente",t().clients);
-  if(!value("goal")) $("goal").value="complete";
+  if(!value("goal")) $("goal").value=DEFAULT_GOAL;
   fillSelect("publicExposure",t().publicExposure);
   Object.entries(t().riskOptions).forEach(([id,items])=>fillSelect(id,items));
 }
 
 function renderGoalPanel(){
   const cards=t().goalCards;
-  const order=["complete","protection","legacy","continuity","reputation"];
-  const current=value("goal") || "complete";
+  const order=["protection","family","business","legacy","complete"];
+  const current=value("goal") || DEFAULT_GOAL;
   $("goalPanel").innerHTML=order.map(k=>{
     const c=cards[k];
     return `<div class="goal-card ${k==="complete"?"recommended":""} ${current===k?"selected":""}" onclick="selectGoal('${k}')" role="button" tabindex="0">
@@ -2574,7 +2639,8 @@ function riskScore(){
   if(value("cliente")==="Azienda Enterprise") score += 18;
   if(value("cliente")==="Creator / Influencer") score += 10;
   if(value("goal")==="complete") score += 12;
-  if(value("goal")==="reputation") score += 8;
+  if(value("goal")==="business") score += 8;
+  if(value("goal")==="family") score += 6;
   if(value("goal")==="legacy") score += 6;
   return Math.min(100,Math.round(score));
 }
@@ -2587,11 +2653,17 @@ function minimumRiskPackage(){
 }
 function recommendedKey(){
   if(!value("cliente")) return "";
-  if(value("goal")==="complete") return "guardian";
+  const goal=value("goal") || DEFAULT_GOAL;
+  if(goal==="complete") return "guardian";
   const min=minimumRiskPackage().key;
-  if(value("cliente")==="Azienda Enterprise") return "guardian";
-  if(value("cliente")==="PMI" && (min==="base"||min==="silver")) return "gold";
-  if(min==="base" && (value("cliente")==="Professionista" || value("cliente")==="Creator / Influencer")) return "silver";
+  const client=value("cliente");
+  if(goal==="business"){
+    if(client==="Azienda Enterprise" && min!=="guardian") return "gold";
+    if((client==="PMI" || client==="Creator / Influencer") && (min==="base"||min==="silver")) return "gold";
+  }
+  if(goal==="family" && min==="base") return "silver";
+  if(goal==="legacy" && (min==="base" || min==="silver")) return "gold";
+  if(min==="base" && (client==="Professionista" || client==="Creator / Influencer")) return "silver";
   return min;
 }
 
@@ -2652,7 +2724,7 @@ function renderExtras(){
     const e=EXTRAS[k];
     const allowed=extraAllowed(e.scope);
     const checked=document.querySelector(`.extra-check[value="${k}"]`)?.checked && allowed ? "checked" : "";
-    return `<label class="extra ${checked?"active":""} ${!allowed?"locked":""}" data-extra="${k}"><div class="extra-top"><span class="extra-name">${escapeHTML(name)}</span><span class="extra-price">+${currencyFormat(e.price)}</span></div><div class="extra-desc">${escapeHTML(desc)}${!allowed?"<br><br>Riservato a profili business/enterprise.":""}</div><input class="extra-check" type="checkbox" value="${k}" ${checked} ${!allowed?"disabled":""} style="display:none"></label>`;
+    return `<label class="extra ${checked?"active":""} ${!allowed?"locked":""}" data-extra="${k}"><div class="extra-top"><span class="extra-name">${escapeHTML(name)}</span></div><div class="extra-desc">${escapeHTML(desc)}${!allowed?"<br><br>Riservato a profili business/enterprise.":""}</div><input class="extra-check" type="checkbox" value="${k}" ${checked} ${!allowed?"disabled":""} style="display:none"></label>`;
   }).join("");
   document.querySelectorAll(".extra").forEach(card=>{card.addEventListener("click",(ev)=>{if(card.classList.contains("locked")){ev.preventDefault();return;}setTimeout(()=>{card.classList.toggle("active",card.querySelector("input").checked);updateAll()},0);});});
 }
@@ -2667,13 +2739,13 @@ function applyRecommendedPackage(){if(!value("cliente")){alert("Prima scegli la 
 
 function updateRisk(){
   if(!value("cliente")){recommendedPackage="";minimumPackage="";$("riskLevel").textContent="—";$("minimumPackage").textContent="—";$("suggestedPackage").textContent="—";$("riskAdvice").innerHTML="Scegli la tipologia cliente per attivare il consiglio AETERNA.";$("recommendationBox").innerHTML="Scegli tipologia cliente e pacchetto.";return;}
-  const min=minimumRiskPackage();minimumPackage=min.key;recommendedPackage=recommendedKey();$("riskLevel").textContent=min.label+" "+min.score+"%";$("minimumPackage").textContent=t().packages[min.key].name;$("suggestedPackage").textContent=recommendedPackage ? t().packages[recommendedPackage].name : "—";$("riskAdvice").innerHTML=recommendedPackage ? `<strong>${t().packages[recommendedPackage].name}</strong><br>${escapeHTML(value("goal")==="complete" ? "Protocollo completo consigliato: protegge oggi, organizza la continuità e prepara il futuro digitale." : "Il pacchetto consigliato deriva da rischio, complessità e obiettivo dichiarato. AETERNA consiglia sempre di valutare il Protocollo completo.")}` : "—";$("recommendationBox").innerHTML=recommendedPackage ? `<strong>${t().packages[recommendedPackage].name}</strong><br>${escapeHTML(t().packages[recommendedPackage].value)}` : "Scegli tipologia cliente e pacchetto.";
+  const min=minimumRiskPackage();minimumPackage=min.key;recommendedPackage=recommendedKey();$("riskLevel").textContent=min.label+" "+min.score+"%";$("minimumPackage").textContent=t().packages[min.key].name;$("suggestedPackage").textContent=recommendedPackage ? t().packages[recommendedPackage].name : "—";$("riskAdvice").innerHTML=recommendedPackage ? `<strong>${t().packages[recommendedPackage].name}</strong><br>${escapeHTML(value("goal")==="complete" ? "Protocollo completo consigliato: protegge oggi, organizza la continuità e prepara il futuro digitale." : "Il pacchetto consigliato deriva da obiettivo dichiarato, rischio e complessità del perimetro digitale.")}` : "—";$("recommendationBox").innerHTML=recommendedPackage ? `<strong>${t().packages[recommendedPackage].name}</strong><br>${escapeHTML(t().packages[recommendedPackage].value)}` : "Scegli tipologia cliente e pacchetto.";
 }
 
 function updatePrice(){
   const pr=pricing();$("liveTotal").textContent=currencyFormat(pr.total);$("liveTotal").classList.toggle("zero", pr.total===0);$("liveCurrency").textContent="Base EUR: "+euro(pr.total);$("livePayment").textContent=pr.total>0 ? (currentCurrency==="EUR" ? "Pagamento: bonifico EUR" : "Pagamento: EUR ufficiale / conversione indicativa") : "Scegli tipologia cliente e pacchetto";
   const help=$("clientTypeHelp"); if(help){help.textContent=value("cliente") ? "Il preventivo si adatta al tipo di cliente e alla complessità reale del perimetro digitale." : "Scegli la tipologia per iniziare il calcolo.";}
-  if(pr.total===0){$("liveDetails").innerHTML="Il totale si aggiorna progressivamente. Nessuna cifra viene mostrata prima della scelta.";return;}
+  if(pr.total===0){$("liveDetails").innerHTML="Scegli tipologia e pacchetto: il preventivo mostrerà subito le voci che formano il totale.";return;}
   $("liveDetails").innerHTML=`Tipologia: <strong>${escapeHTML(CLIENT_COMPLEXITY_LABEL[pr.cliente] || pr.cliente)}</strong><br>Pacchetto: <strong>${currencyFormat(pr.packageCost)}</strong><br>Profili aggiuntivi: <strong>${currencyFormat(pr.profileCost)}</strong><br>Complessità digitale: <strong>${currencyFormat(pr.complexity)}</strong><br>Extra: <strong>${currencyFormat(pr.extraCost)}</strong><br><small>Importo contrattuale in EUR: ${euro(pr.total)}</small>`;
 }
 
@@ -2698,13 +2770,29 @@ function validateStep2(){if(num("profiliProtetti")<1){alert("Profili protetti mi
 function validateStep4(){if(!selectedPackage){alert("Seleziona un pacchetto prima di continuare.");return false}return true}
 function validateCurrent(){if(currentStep===1)return validateStep1(); if(currentStep===2)return validateStep2(); if(currentStep===4)return validateStep4(); return true}
 
+function scrollStepToFields(){
+  const stepEl=$("step"+currentStep);
+  if(!stepEl) return;
+  let target=null;
+  if(currentStep===4) target=$("packageGrid");
+  else if(currentStep===5) target=$("extraGrid");
+  else if(currentStep===6) target=$("finalSummary");
+  else target=stepEl.querySelector("input:not([type='hidden']), select, textarea");
+  target=target || stepEl;
+  const top=target.getBoundingClientRect().top + window.scrollY - Math.max(70, Math.min(150, window.innerHeight*0.18));
+  window.scrollTo({top:Math.max(0,top),behavior:"smooth"});
+  if(["INPUT","SELECT","TEXTAREA"].includes(target.tagName)){
+    setTimeout(()=>target.focus({preventScroll:true}),320);
+  }
+}
+
 function showStep(step){
   currentStep=Math.max(1,Math.min(6,step));
   document.querySelectorAll(".step").forEach(s=>s.classList.remove("active"));
   $("step"+currentStep).classList.add("active");
   if(currentStep===6) renderFinal();
   updateAll();
-  setTimeout(()=>{$("wizardTop").scrollIntoView({behavior:"smooth",block:"start"})},80);
+  setTimeout(scrollStepToFields,80);
 }
 function nextStep(){if(validateCurrent())showStep(currentStep+1)}
 function prevStep(){showStep(currentStep-1)}
@@ -2739,6 +2827,58 @@ function getSelectedServiceListForEmail(){
   return list.length ? list.map(s => "• " + s).join("\n") : "Nessun pacchetto selezionato";
 }
 
+function generateRequestNumber(){
+  const d=new Date();
+  const pad=n=>String(n).padStart(2,"0");
+  const stamp=d.getFullYear()+pad(d.getMonth()+1)+pad(d.getDate())+"-"+pad(d.getHours())+pad(d.getMinutes())+pad(d.getSeconds());
+  const rnd=Math.random().toString(36).slice(2,6).toUpperCase();
+  return "AET-"+stamp+"-"+rnd;
+}
+function getRequestNumber(){
+  if(!requestNumber) requestNumber=generateRequestNumber();
+  return requestNumber;
+}
+
+function selectedExtraItems(){
+  const pr=pricing();
+  return pr.extras.map(k=>({
+    key:k,
+    name:t().extras[k] ? t().extras[k][0] : k,
+    desc:t().extras[k] ? t().extras[k][1] : "",
+    price:EXTRAS[k]?.price || 0
+  }));
+}
+
+function quoteBreakdownText(){
+  const pr=pricing();
+  const lines=[
+    "Pacchetto selezionato: "+euro(pr.packageCost),
+    "Profili aggiuntivi: "+euro(pr.profileCost),
+    "Complessità digitale: "+euro(pr.complexity)
+  ];
+  const extras=selectedExtraItems();
+  if(extras.length){
+    extras.forEach(item=>lines.push("Modulo extra - "+item.name+": "+euro(item.price)));
+  }else{
+    lines.push("Moduli extra: "+euro(0));
+  }
+  lines.push("Totale ufficiale EUR: "+euro(pr.total));
+  return lines.join("\n");
+}
+
+function quoteBreakdownHTML(){
+  const pr=pricing();
+  const extras=selectedExtraItems();
+  const rows=[
+    ["Pacchetto selezionato", pr.packageCost],
+    ["Profili aggiuntivi", pr.profileCost],
+    ["Complessità digitale", pr.complexity]
+  ];
+  extras.forEach(item=>rows.push(["Modulo extra - "+item.name, item.price]));
+  if(!extras.length) rows.push(["Moduli extra", 0]);
+  return `<h3>Voci economiche del preventivo</h3><table><tr><th>Voce</th><th>Importo EUR</th></tr>${rows.map(([label,amount])=>`<tr><td>${escapeHTML(label)}</td><td><strong>${euro(amount)}</strong></td></tr>`).join("")}<tr><td><strong>Totale ufficiale</strong></td><td><strong>${euro(pr.total)}</strong></td></tr></table>`;
+}
+
 function getQuoteSummaryText(){
   const pr = pricing();
   const min = minimumRiskPackage();
@@ -2747,6 +2887,8 @@ function getQuoteSummaryText(){
   const extraNames = pr.extras.map(k => t().extras[k] ? t().extras[k][0] : k).join(", ") || "Nessun extra";
 
   return `PREVENTIVO AETERNA GUARDIAN™
+
+Numero richiesta: ${getRequestNumber()}
 
 Cliente: ${value("nome") || "—"}
 Email: ${value("email") || "—"}
@@ -2764,7 +2906,9 @@ ${getSelectedServiceListForEmail()}
 Extra selezionati:
 ${extraNames}
 
-Totale ufficiale EUR: ${pr.total.toFixed(2)}€
+Voci economiche:
+${quoteBreakdownText()}
+
 Totale visualizzato: ${currencyFormat(pr.total)}
 
 Pagamento:
@@ -2796,13 +2940,14 @@ function getInternalNotesForSheet(){
 
 function buildPayload(){
   const pr=pricing(), min=minimumRiskPackage();
+  const numeroRichiesta=getRequestNumber();
   const packName = selectedPackage ? t().packages[selectedPackage].name : "";
   const recommendedName = recommendedPackage ? t().packages[recommendedPackage].name : "";
   const extraNames = pr.extras.map(k=>t().extras[k] ? t().extras[k][0] : k).join(", ");
 
   return {
-    // Campi ordinati per Google Sheet / colpo d'occhio
     StatoRichiesta:"DA VERIFICARE",
+    NumeroRichiesta:numeroRichiesta,
     DataRichiesta:new Date().toLocaleString("it-IT"),
     Cliente:value("nome"),
     Email:value("email"),
@@ -2815,15 +2960,15 @@ function buildPayload(){
     ServiziAcquistati:getSelectedServiceListForSheet(),
     TotaleEUR:pr.total.toFixed(2),
     TotaleVisualizzato:currencyFormat(pr.total),
+    VociEconomiche:quoteBreakdownText(),
     ValutaVisualizzata:currentCurrency,
     RiskSnapshot:value("cliente") ? (min.label + " " + min.score + "%") : "—",
-    CausaleBonifico:"AETERNA Guardian - " + (value("nome") || "Cliente") + " - " + (packName || "Pacchetto"),
+    CausaleBonifico:numeroRichiesta + " - AETERNA Guardian - " + (value("nome") || "Cliente") + " - " + (packName || "Pacchetto"),
     IBAN:"IT72Q0306979272100000007248",
     Beneficiario:"Andrea Paticchio",
     PreventivoOrdinato:getQuoteSummaryText(),
     NoteInterne:getInternalNotesForSheet(),
 
-    // Campi tecnici/dettaglio per analisi futura
     createdAt:new Date().toISOString(),
     source:"AETERNA Guardian Configuratore Rinascita V6 - Preventivo Ordinato",
     language:currentLang,
@@ -2849,7 +2994,7 @@ function bankText(){
 Beneficiario: Andrea Paticchio
 IBAN: IT72Q0306979272100000007248
 Importo: ${p.totaleEUR} EUR
-Causale: AETERNA Guardian - ${p.nome} - ${p.pacchetto}
+Causale: ${p.NumeroRichiesta} - AETERNA Guardian - ${p.nome} - ${p.pacchetto}
 
 Dopo il bonifico inviare conferma a:
 ${SUPPORT_EMAIL}
@@ -2858,7 +3003,7 @@ ${SUPPORT_EMAIL}
 
 function renderFinal(){
   const pr=pricing(), p=buildPayload();const pack=selectedPackage ? t().packages[selectedPackage] : null;if(!pack){$("finalSummary").innerHTML="Seleziona un pacchetto per generare il riepilogo.";$("paymentText").innerHTML="";$("bankTransferBox").innerHTML="";return;}
-  $("finalSummary").innerHTML=`<p><strong>Cliente:</strong> ${escapeHTML(p.nome)}<br><strong>Email:</strong> ${escapeHTML(p.email)}<br><strong>Telefono:</strong> ${escapeHTML(p.telefono)}<br><strong>Paese:</strong> ${escapeHTML(p.paese)||"—"}<br><strong>Tipologia:</strong> ${escapeHTML(CLIENT_COMPLEXITY_LABEL[value("cliente")] || value("cliente"))}<br><strong>Pacchetto selezionato:</strong> ${pack.name}<br><strong>Protocollo consigliato:</strong> ${recommendedPackage ? t().packages[recommendedPackage].name : "—"}<br><strong>Risk Snapshot™:</strong> ${p.riskLevel} ${p.riskScore}%</p><div class="total-big"><span>Totale stimato</span><strong>${currencyFormat(pr.total)}</strong></div><p><strong>Importo ufficiale EUR:</strong> ${euro(pr.total)}<br><strong>Cosa acquista:</strong> ${escapeHTML(pack.buy)}<br><strong>Perché vale:</strong> ${escapeHTML(pack.value)}</p><h3>Incluso nel pacchetto</h3><ul>${pack.services.map(s=>`<li>${escapeHTML(s)}</li>`).join("")}</ul>`;
+  $("finalSummary").innerHTML=`<p><strong>Numero richiesta:</strong> ${escapeHTML(p.NumeroRichiesta)}<br><strong>Cliente:</strong> ${escapeHTML(p.nome)}<br><strong>Email:</strong> ${escapeHTML(p.email)}<br><strong>Telefono:</strong> ${escapeHTML(p.telefono)}<br><strong>Paese:</strong> ${escapeHTML(p.paese)||"—"}<br><strong>Tipologia:</strong> ${escapeHTML(CLIENT_COMPLEXITY_LABEL[value("cliente")] || value("cliente"))}<br><strong>Pacchetto selezionato:</strong> ${pack.name}<br><strong>Protocollo consigliato:</strong> ${recommendedPackage ? t().packages[recommendedPackage].name : "—"}<br><strong>Risk Snapshot™:</strong> ${p.riskLevel} ${p.riskScore}%</p><div class="total-big"><span>Totale stimato</span><strong>${currencyFormat(pr.total)}</strong></div>${quoteBreakdownHTML()}<p><strong>Cosa acquista:</strong> ${escapeHTML(pack.buy)}<br><strong>Perché vale:</strong> ${escapeHTML(pack.value)}</p><h3>Incluso nel pacchetto</h3><ul>${pack.services.map(s=>`<li>${escapeHTML(s)}</li>`).join("")}</ul>`;
   $("paymentText").innerHTML=escapeHTML(t().payment);$("bankTransferBox").innerHTML=bankText().replace(/\n/g,"<br>");
 }
 
@@ -2868,29 +3013,41 @@ async function copyText(txt,msg){
 function copyBankTransfer(){copyText(bankText(), currentLang==="it"?"Dati bonifico copiati.":"Bank details copied.")}
 function copyQuoteSummary(){copyText(quoteText(), currentLang==="it"?"Riepilogo copiato.":"Summary copied.")}
 
-function submitToSheet(payload){
+async function submitToSheet(payload){
   try{
-    fetch(SCRIPT_URL,{method:"POST",mode:"no-cors",headers:{"Content-Type":"text/plain;charset=utf-8"},body:JSON.stringify(payload)}).catch(()=>{});
-  }catch(e){}
+    await fetch(SCRIPT_URL,{method:"POST",mode:"no-cors",headers:{"Content-Type":"text/plain;charset=utf-8"},body:JSON.stringify(payload)});
+    return true;
+  }catch(e){return false}
 }
 
-function completeOnboarding(){
+function showConfirmation(payload, sent){
+  const box=$("confirmationBox");
+  if(!box) return;
+  box.style.display="block";
+  box.innerHTML=sent
+    ? `<strong>Richiesta inviata.</strong><br>Numero richiesta: <strong>${escapeHTML(payload.NumeroRichiesta)}</strong><br>Controlla la causale del bonifico e conserva questo numero per ogni comunicazione con AETERNA.`
+    : `<strong>Richiesta preparata.</strong><br>Numero richiesta: <strong>${escapeHTML(payload.NumeroRichiesta)}</strong><br>Se la registrazione automatica non parte, invia il riepilogo copiato a ${SUPPORT_EMAIL}.`;
+  box.scrollIntoView({behavior:"smooth",block:"center"});
+}
+
+async function completeOnboarding(){
   if(!validateStep1()||!validateStep2()||!validateStep4()) return;
   renderFinal();
   const payload=buildPayload();
   if(parseFloat(payload.totaleEUR)<=0){alert("Preventivo non valido: seleziona tipologia e pacchetto.");return}
-  submitToSheet(payload);
-  copyBankTransfer();
+  const sent=await submitToSheet(payload);
+  showConfirmation(payload,sent);
+  await copyText(bankText(), currentLang==="it"?"Dati bonifico copiati.":"Bank details copied.");
   const subject=encodeURIComponent("AETERNA Guardian Request™ - "+(payload.nome||"Cliente"));
   const body=encodeURIComponent(quoteText());
-  setTimeout(()=>{window.location.href=`mailto:${SUPPORT_EMAIL}?subject=${subject}&body=${body}`},600);
+  setTimeout(()=>{window.location.href=`mailto:${SUPPORT_EMAIL}?subject=${subject}&body=${body}`},900);
 }
 
 document.addEventListener("DOMContentLoaded",()=>{
   fixLogo();
   renderProgress();
   buildSelects();
-  $("goal").value="complete";
+  $("goal").value=value("goal") || DEFAULT_GOAL;
   currentLang=localStorage.getItem("aeternaGuardianLang")||"it";
   currentCurrency=localStorage.getItem("aeternaGuardianCurrency")||"EUR";
   $("languageSelect").value=currentLang;
