@@ -19,12 +19,12 @@ body{
 body:before{
   content:"";
   position:fixed;
-  inset:-20%;
+  inset:0;
   background:
     radial-gradient(circle at 18% 8%,rgba(245,184,46,.12),transparent 33%),
     radial-gradient(circle at 88% 4%,rgba(0,255,153,.06),transparent 30%),
     radial-gradient(circle at 75% 95%,rgba(245,184,46,.08),transparent 34%);
-  filter:blur(8px);
+  opacity:.9;
   pointer-events:none;
   z-index:0;
 }
@@ -40,12 +40,12 @@ body:before{
   --line2:rgba(255,255,255,.10);
   --muted:#a6a6a6;
 }
-.container{position:relative;z-index:1;max-width:1660px;margin:auto;padding:28px 20px 80px}
-.topbar{display:flex;justify-content:space-between;align-items:center;gap:18px;flex-wrap:wrap;margin-bottom:22px}
+.container{position:relative;z-index:1;max-width:1280px;margin:auto;padding:18px 20px 80px}
+.topbar{position:sticky;top:12px;z-index:20;display:flex;justify-content:space-between;align-items:center;gap:18px;flex-wrap:wrap;margin-bottom:16px;padding:12px 14px;border:1px solid rgba(245,184,46,.18);border-radius:26px;background:rgba(5,5,5,.82);backdrop-filter:blur(18px);box-shadow:0 18px 58px rgba(0,0,0,.32),0 0 34px rgba(245,184,46,.08)}
 .logo-area{display:flex;align-items:center;gap:18px}
 .logo-shell{
-  width:94px;height:94px;min-width:94px;
-  border-radius:26px;
+  width:76px;height:76px;min-width:76px;
+  border-radius:22px;
   border:2px solid var(--gold);
   background:#070707 url("nuovologo.png?v=guardian-configurator-super") center/contain no-repeat;
   display:flex;align-items:center;justify-content:center;
@@ -55,7 +55,7 @@ body:before{
 .logo-shell img{width:100%;height:100%;object-fit:cover;display:block;background:#070707}
 .logo-fallback{display:none;width:100%;height:100%;align-items:center;justify-content:center;background:#070707}
 .logo-fallback svg{width:74%;height:74%}
-.brand{font-size:32px;font-weight:950;color:var(--gold);letter-spacing:-.7px}
+.brand{font-size:30px;font-weight:950;color:var(--gold);letter-spacing:0}
 .status{margin-top:6px;color:var(--green);font-size:12px;letter-spacing:1.7px;text-transform:uppercase;font-weight:850}
 .controls{display:flex;gap:10px;flex-wrap:wrap;justify-content:flex-end;align-items:center}
 select,input,textarea{
@@ -71,13 +71,13 @@ select,input,textarea{
 select:focus,input:focus,textarea:focus{border-color:rgba(245,184,46,.7);box-shadow:0 0 0 3px rgba(245,184,46,.09)}
 .control{min-width:190px}
 .badge{padding:11px 14px;border:1px solid var(--line);background:#0b0b0b;border-radius:999px;color:#ddd;font-size:12px}
-.hero{display:grid;grid-template-columns:1fr;gap:22px;margin-bottom:22px}
-.card,.step,.side-card{background:linear-gradient(145deg,#0b0b0b,#060606);border:1px solid var(--line);border-radius:30px;box-shadow:0 0 60px rgba(245,184,46,.07)}
-.card{padding:30px}
-.hero-title{font-size:clamp(34px,4vw,60px);line-height:.95;letter-spacing:-1.7px;margin-bottom:18px}
+.hero{display:grid;grid-template-columns:1fr;gap:16px;margin-bottom:16px}
+.card,.step,.side-card{background:linear-gradient(145deg,#0b0b0b,#060606);border:1px solid var(--line);border-radius:28px;box-shadow:0 0 60px rgba(245,184,46,.07)}
+.card{padding:22px 24px}
+.hero-title{font-size:clamp(30px,3vw,44px);line-height:1.04;letter-spacing:0;margin-bottom:12px}
 .hero-title span{color:var(--gold)}
-.hero-text{font-size:17px;line-height:1.75;color:#d2d2d2;max-width:1040px}
-.hero-note{margin-top:18px;padding:18px;border-radius:22px;border:1px solid rgba(0,255,153,.2);background:rgba(0,255,153,.045);color:#d4d4d4;line-height:1.65}
+.hero-text{font-size:16px;line-height:1.65;color:#d2d2d2;max-width:980px}
+.hero-note{margin-top:14px;padding:14px 16px;border-radius:20px;border:1px solid rgba(0,255,153,.2);background:rgba(0,255,153,.045);color:#d4d4d4;line-height:1.55}
 .kicker{font-size:12px;color:var(--green);letter-spacing:1.6px;text-transform:uppercase;font-weight:900;margin-bottom:10px}
 .value-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
 .value-card{padding:20px;border-radius:25px;background:#0a0a0a;border:1px solid var(--line)}
@@ -85,9 +85,13 @@ select:focus,input:focus,textarea:focus{border-color:rgba(245,184,46,.7);box-sha
 .value-card p{font-size:14px;line-height:1.55;color:#cfcfcf}
 .confirmation-box{display:none;margin-top:18px;padding:18px;border-radius:20px;border:1px solid rgba(0,255,153,.26);background:rgba(0,255,153,.055);color:#e9fff6;line-height:1.65}
 .confirmation-box strong{color:var(--green)}
-.layout{display:grid;grid-template-columns:360px 1fr;gap:22px;align-items:start}
-.sidebar{position:sticky;top:14px;display:grid;gap:16px}
-.side-card{padding:20px;border-radius:28px}
+.layout{display:block}
+.sidebar{position:relative;top:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px;margin-top:28px}
+.dashboard-heading{grid-column:1/-1;display:flex;align-items:end;justify-content:space-between;gap:16px;padding:0 4px}
+.dashboard-heading h2{font-size:26px;color:var(--gold);line-height:1}
+.side-card{padding:20px;border-radius:24px;min-height:100%}
+.dashboard-field{margin-top:16px;padding-top:14px;border-top:1px solid rgba(255,255,255,.08)}
+.dashboard-field label{display:block;margin-bottom:7px}
 .side-title{color:var(--gold);font-weight:950;margin-bottom:14px;text-transform:uppercase;letter-spacing:.8px;font-size:13px}
 .progress-item{margin:13px 0}
 .progress-row{display:flex;justify-content:space-between;gap:12px;font-size:12px;color:#d6d6d6;margin-bottom:7px}
@@ -99,10 +103,11 @@ select:focus,input:focus,textarea:focus{border-color:rgba(245,184,46,.7);box-sha
 .live-small{color:#cfcfcf;line-height:1.6;font-size:14px;margin-top:8px}
 .breakdown{margin-top:14px;padding-top:14px;border-top:1px solid rgba(255,255,255,.08);color:#bdbdbd;font-size:13px;line-height:1.7}
 .reco{border-color:rgba(0,255,153,.22);background:rgba(0,255,153,.035)}
-.wizard{min-width:0}
-.step{display:none;padding:28px}
-.step.active{display:block}
-.step-title{font-size:34px;color:var(--gold);margin-bottom:10px}
+.wizard{min-width:0;max-width:1180px;margin:0 auto}
+.step{display:none;position:relative;overflow:hidden;padding:32px}
+.step:before{content:"";position:absolute;inset:0 0 auto 0;height:3px;background:linear-gradient(90deg,var(--gold),rgba(0,255,153,.75),transparent);opacity:.8}
+.step.active{display:block;animation:stepRise .22s ease-out}
+.step-title{font-size:36px;color:var(--gold);margin-bottom:10px;letter-spacing:0}
 .step-desc{color:#cfcfcf;line-height:1.68;margin-bottom:22px;font-size:16px}
 .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
 .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
@@ -113,8 +118,9 @@ textarea{min-height:115px;resize:vertical;line-height:1.55}
 .info{padding:16px;border-radius:20px;border:1px solid rgba(245,184,46,.16);background:rgba(245,184,46,.045);color:#d5d5d5;line-height:1.65;margin-top:16px}
 .info.ok{border-color:rgba(0,255,153,.20);background:rgba(0,255,153,.045)}
 .info.warn{border-color:rgba(255,184,77,.25);background:rgba(255,184,77,.055)}
-.goal-panel{margin-top:14px;display:grid;grid-template-columns:1fr;gap:12px}
-.goal-card{padding:17px;border-radius:22px;border:1px solid rgba(245,184,46,.18);background:#090909}
+.goal-panel{margin-top:14px;display:grid;grid-template-columns:repeat(auto-fit,minmax(205px,1fr));gap:12px}
+.goal-card{padding:17px;border-radius:18px;border:1px solid rgba(245,184,46,.18);background:#090909;cursor:pointer;transition:.18s}
+.goal-card:hover{border-color:rgba(245,184,46,.46);transform:translateY(-1px)}
 .goal-card strong{color:var(--gold)}
 .goal-card p{margin-top:8px;color:#cfcfcf;line-height:1.58;font-size:14px}
 .goal-card.recommended{border-color:rgba(0,255,153,.32);background:rgba(0,255,153,.045)}
@@ -143,13 +149,11 @@ li{margin:7px 0;color:#d1d1d1;line-height:1.45;font-size:13px}
 .extra.active{border-color:var(--gold);box-shadow:0 0 0 3px rgba(245,184,46,.08)}
 .extra-top{display:flex;justify-content:space-between;gap:12px;align-items:flex-start}
 .extra-name{font-weight:950;color:#fff}
-.extra-desc{margin-top:9px;color:var(--gold2);font-size:13px;line-height:1.58}
+.extra-desc{margin-top:9px;color:#aaa;font-size:13px;line-height:1.5}
 .risk-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:16px}
 .risk-card{padding:18px;border-radius:22px;border:1px solid rgba(255,255,255,.10);background:#080808}
 .risk-card h3{font-size:13px;text-transform:uppercase;color:#aaa;margin-bottom:7px;letter-spacing:.8px}
 .risk-card p{font-size:22px;font-weight:950;color:var(--gold)}
-.risk-card.threat{border-color:rgba(255,77,77,.38);background:linear-gradient(145deg,rgba(255,77,77,.10),#080808 60%)}
-.risk-help{display:block;margin-top:10px;color:#d8d8d8;font-size:12px;line-height:1.45}
 .summary-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:18px}
 .summary-box,.payment-box{padding:20px;border-radius:24px;background:#080808;border:1px solid var(--line)}
 .summary-box h3,.payment-box h3{color:var(--gold);margin-bottom:14px}
@@ -166,18 +170,28 @@ button{border:0;border-radius:16px;padding:14px 18px;font-weight:950;cursor:poin
 .footer{margin-top:30px;padding:20px;text-align:center;color:#9a9a9a;line-height:1.6;font-size:13px}
 .mini-badges{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
 .mini-badge{font-size:12px;color:#d7d7d7;border:1px solid rgba(255,255,255,.09);background:#080808;border-radius:999px;padding:8px 10px}
+.pulse-panel{margin-top:18px;padding:18px;border-radius:24px;background:rgba(0,255,153,.035);border:1px solid rgba(0,255,153,.18)}
+.pulse-panel h3{color:var(--gold);font-size:18px;margin-bottom:8px}
+.pulse-panel p{color:#cfcfcf;line-height:1.6;font-size:14px;margin-bottom:16px}
+.pulse-area-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:10px}
+.pulse-option{display:flex;align-items:center;gap:8px;border:1px solid rgba(255,255,255,.10);background:#080808;border-radius:16px;padding:12px;color:#e6e6e6;font-size:13px;font-weight:800;cursor:pointer}
+.pulse-option input{width:auto;margin:0;accent-color:var(--gold)}
 .compare{overflow-x:auto;margin-top:16px}
 table{width:100%;border-collapse:collapse;min-width:760px}
 td,th{border:1px solid rgba(255,255,255,.10);padding:12px;text-align:left;color:#ddd;font-size:13px;vertical-align:top}
 th{color:var(--gold);background:#090909}
-@media(max-width:1180px){.layout,.hero,.summary-grid{grid-template-columns:1fr}.sidebar{position:relative;top:0}.package-grid{grid-template-columns:repeat(2,1fr)}}
+@keyframes stepRise{from{opacity:.72;transform:translateY(8px)}to{opacity:1;transform:none}}
+@media(max-width:1180px){.hero,.summary-grid{grid-template-columns:1fr}.sidebar{grid-template-columns:repeat(2,minmax(0,1fr))}.package-grid{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:760px){
-  .container{padding:18px 12px 70px}
-  .logo-shell{width:68px;height:68px;min-width:68px;border-radius:19px}
-  .brand{font-size:24px}
+  .container{padding:12px 12px 70px}
+  .topbar{top:8px;border-radius:22px}
+  .logo-shell{width:60px;height:60px;min-width:60px;border-radius:18px}
+  .logo-area{gap:12px}
+  .brand{font-size:22px}
+  .status{font-size:10px;letter-spacing:1.2px}
   .card,.step{padding:20px;border-radius:24px}
-  .grid,.grid-3,.extra-grid,.risk-grid,.value-grid,.package-grid,.perimeter-intro{grid-template-columns:1fr}
-  .hero-title{font-size:34px}
+  .grid,.grid-3,.extra-grid,.risk-grid,.value-grid,.package-grid,.perimeter-intro,.pulse-area-grid,.sidebar{grid-template-columns:1fr}
+  .hero-title{font-size:30px}
   .live-total{font-size:34px}
   .navigation{flex-direction:column}
   button{width:100%}
@@ -204,11 +218,6 @@ th{color:var(--gold);background:#090909}
     <select id="languageSelect" class="control" aria-label="Language">
       <option value="it">Italiano</option><option value="en">English</option><option value="fr">Français</option><option value="es">Español</option><option value="pt">Português</option>
     </select>
-    <select id="currencySelect" class="control" aria-label="Currency">
-      <option value="EUR">EUR €</option><option value="USD">USD $</option><option value="GBP">GBP £</option><option value="CHF">CHF</option><option value="BRL">BRL R$</option>
-    </select>
-    <div class="badge">Civil Shield™ ∞</div>
-    <div class="badge">Guardian Report™ PDF</div>
   </div>
 </header>
 
@@ -219,36 +228,12 @@ th{color:var(--gold);background:#090909}
     <p class="hero-text" data-i18n="heroText">Costruisci il tuo Protocollo AETERNA™: protezione account, anti-truffa, continuità digitale, eredità digitale e supporto Guardian™ in un percorso chiaro.</p>
     <div class="hero-note"><strong data-i18n="noteTitle">Nota operativa:</strong> <span data-i18n="noteText">il configuratore produce una stima preliminare. Il team AETERNA conferma il preventivo definitivo dopo verifica dei dati.</span></div>
     <div class="mini-badges">
-      <div class="mini-badge">Protocollo AETERNA™</div><div class="mini-badge">Digital Legacy™</div><div class="mini-badge">Civil Shield™</div><div class="mini-badge">Continuity Shield™</div><div class="mini-badge">Zero Retention™</div>
+      <div class="mini-badge">Protocollo AETERNA™</div><div class="mini-badge">AETERNA Pulse 365™</div><div class="mini-badge">Digital Legacy™</div><div class="mini-badge">Civil Shield™</div><div class="mini-badge">Continuity Shield™</div><div class="mini-badge">Zero Retention™</div>
     </div>
   </div>
 </section>
 
 <div class="layout">
-<aside class="sidebar">
-  <div class="side-card">
-    <div class="side-title" data-i18n="progressTitle">Guardian Progress™</div>
-    <div id="progressList"></div>
-  </div>
-  <div class="side-card">
-    <div class="side-title" data-i18n="liveTitle">Preventivo Live™</div>
-    <div class="live-total-label" data-i18n="estimateTotal">Totale stimato</div>
-    <div class="live-total zero" id="liveTotal">€ 0,00</div>
-    <div class="live-small" id="liveCurrency">Base EUR: € 0,00</div>
-    <div class="live-small" id="livePayment">Scegli tipologia cliente e pacchetto</div>
-    <div class="breakdown" id="liveDetails">Scegli tipologia e pacchetto: il preventivo mostrerà subito le voci che formano il totale.</div>
-  </div>
-  <div class="side-card reco">
-    <div class="side-title" data-i18n="bestFitTitle">Percorso consigliato</div>
-    <div class="live-small" id="recommendationBox">—</div>
-    <button class="btn-secondary" style="margin-top:14px;width:100%" onclick="applyRecommendedPackage()" data-i18n="applyRecommended">Applica pacchetto consigliato</button>
-  </div>
-  <div class="side-card">
-    <div class="side-title" data-i18n="supportTitle">Supporto Guardian™</div>
-    <div class="live-small">info@aeternadigitallegacy.com<br><br><span data-i18n="privacyNote">AETERNA non chiede password, non conserva credenziali e lavora con logica Zero Retention.</span></div>
-  </div>
-</aside>
-
 <main class="wizard" id="wizardTop">
 <section class="step active" id="step1">
   <div class="kicker">Step 1 / 6</div>
@@ -269,8 +254,8 @@ th{color:var(--gold);background:#090909}
 
 <section class="step" id="step2">
   <div class="kicker">Step 2 / 6</div>
-  <h2 class="step-title" data-i18n="step2Title">Mappa semplice della tua vita digitale</h2>
-  <p class="step-desc" data-i18n="step2Desc">Rispondi come se stessi contando le chiavi di casa: persone, account, dispositivi e archivi. Ogni numero aiuta AETERNA a capire cosa proteggere e quanto lavoro serve.</p>
+  <h2 class="step-title" data-i18n="step2Title">Perimetro digitale guidato</h2>
+  <p class="step-desc" data-i18n="step2Desc">Non serve essere tecnici. Conta solo ciò che il cliente usa davvero: account, email, siti, dispositivi, archivi e persone coinvolte.</p>
   <div class="perimeter-intro">
     <div><strong data-i18n="perimA">1. Persone</strong><span data-i18n="perimAText">Quanti profili o persone devono essere protetti.</span></div>
     <div><strong data-i18n="perimB">2. Asset digitali</strong><span data-i18n="perimBText">Account, email, siti, wallet, cloud e archivi.</span></div>
@@ -278,8 +263,8 @@ th{color:var(--gold);background:#090909}
   </div>
 
   <div class="perimeter-section">
-    <h3 data-i18n="peopleSection">Persone e profili da proteggere</h3>
-    <p data-i18n="peopleSectionText">Pensa alle persone che hanno una vita digitale da mettere al sicuro. Se proteggi solo te stesso, scrivi 1. Se vuoi proteggere anche famiglia, soci o profili aziendali, aumenta il numero.</p>
+    <h3 data-i18n="peopleSection">Persone e profili</h3>
+    <p data-i18n="peopleSectionText">Qui misuriamo quante identità digitali devono essere protette. Il primo profilo è incluso nel pacchetto, ogni profilo aggiuntivo aumenta il lavoro operativo.</p>
     <div class="grid-3">
       <div class="field"><label data-i18n="profilesLabel">Profili protetti</label><input id="profiliProtetti" type="number" min="1" value="1"><div class="help" data-i18n="profilesHelp">Esempio: te stesso, familiare, socio, profilo aziendale.</div></div>
       <div class="field"><label data-i18n="collabLabel">Collaboratori/familiari</label><input id="collaboratori" type="number" min="0" value="0"><div class="help" data-i18n="collabHelp">Persone che accedono o devono essere autorizzate.</div></div>
@@ -288,8 +273,8 @@ th{color:var(--gold);background:#090909}
   </div>
 
   <div class="perimeter-section">
-    <h3 data-i18n="assetSection">Account e canali importanti</h3>
-    <p data-i18n="assetSectionText">Qui contiamo le porte digitali: email, social, banca, siti, domini e wallet. Se qualcuno entra da una porta sbagliata, può creare danni veri.</p>
+    <h3 data-i18n="assetSection">Account e canali</h3>
+    <p data-i18n="assetSectionText">Questi sono i punti dove un furto accessi, una truffa o una perdita password può creare danni reali.</p>
     <div class="grid-3">
       <div class="field"><label data-i18n="criticalAccountsLabel">Account critici</label><input id="accountCritici" type="number" min="0" value="0"><div class="help" data-i18n="criticalHelp">Banca, PEC, SPID, account lavoro, pannelli amministrativi.</div></div>
       <div class="field"><label data-i18n="socialLabel">Account social</label><input id="social" type="number" min="0" value="0"><div class="help" data-i18n="socialHelp">Instagram, Facebook, TikTok, LinkedIn, YouTube.</div></div>
@@ -301,8 +286,8 @@ th{color:var(--gold);background:#090909}
   </div>
 
   <div class="perimeter-section">
-    <h3 data-i18n="continuitySection">Continuità e archivi da non perdere</h3>
-    <p data-i18n="continuitySectionText">Qui contiamo ciò che deve restare accessibile anche in emergenza: cloud, dispositivi, documenti, foto, istruzioni e archivi di famiglia o azienda.</p>
+    <h3 data-i18n="continuitySection">Continuità e archivi</h3>
+    <p data-i18n="continuitySectionText">Serve a capire cosa succede se il cliente perde accessi, dispositivi, documenti o continuità operativa.</p>
     <div class="grid-3">
       <div class="field"><label data-i18n="cloudLabel">Cloud / archivi</label><input id="cloud" type="number" min="0" value="0"></div>
       <div class="field"><label data-i18n="devicesLabel">Dispositivi</label><input id="dispositivi" type="number" min="0" value="1"></div>
@@ -316,8 +301,8 @@ th{color:var(--gold);background:#090909}
 
 <section class="step" id="step3">
   <div class="kicker">Step 3 / 6</div>
-  <h2 class="step-title" data-i18n="step3Title">Risk Snapshot™ · controllo rischio digitale</h2>
-  <p class="step-desc" data-i18n="step3Desc">Rispondi a queste domande come a un check-up. Se molte risposte indicano problemi, il livello minaccia sale: significa che un errore, una truffa o un accesso perso possono colpire soldi, account, famiglia o lavoro.</p>
+  <h2 class="step-title" data-i18n="step3Title">Risk Snapshot™</h2>
+  <p class="step-desc" data-i18n="step3Desc">Una pre-analisi rapida per capire il livello minimo consigliato e il valore del Protocollo completo.</p>
   <div class="grid">
     <div class="field"><label data-i18n="phishingLabel">Tentativi phishing</label><select id="phishing"></select></div>
     <div class="field"><label data-i18n="scamLabel">Truffe o scam</label><select id="scam"></select></div>
@@ -331,9 +316,9 @@ th{color:var(--gold);background:#090909}
     <div class="field"><label data-i18n="sharedAccessLabel">Accessi condivisi</label><select id="sharedAccess"></select></div>
   </div>
   <div class="risk-grid">
-    <div class="risk-card threat"><h3>Threat Level™ · livello minaccia</h3><p id="riskLevel">—</p><span class="risk-help">È il semaforo del pericolo: più sale, più account, soldi, famiglia o lavoro possono essere colpiti.</span></div>
-    <div class="risk-card"><h3>Minimum Shield™ · scudo minimo</h3><p id="minimumPackage">—</p><span class="risk-help">È il livello minimo da cui partire per non restare scoperti davanti al rischio.</span></div>
-    <div class="risk-card"><h3>Strategic Protocol™ · scelta AETERNA</h3><p id="suggestedPackage">Guardian™</p><span class="risk-help">È il percorso consigliato per proteggere oggi e non perdere continuità domani.</span></div>
+    <div class="risk-card"><h3>Threat Level™</h3><p id="riskLevel">—</p></div>
+    <div class="risk-card"><h3>Minimum Shield™</h3><p id="minimumPackage">—</p></div>
+    <div class="risk-card"><h3>Strategic Protocol™</h3><p id="suggestedPackage">Guardian™</p></div>
   </div>
   <div class="info ok" id="riskAdvice">—</div>
   <div class="navigation"><button class="btn-back" onclick="prevStep()" data-i18n="backBtn">INDIETRO</button><button class="btn-secondary" onclick="applyRecommendedPackage()" data-i18n="applyRecommended">APPLICA PACCHETTO CONSIGLIATO</button><button class="btn-next" onclick="nextStep()" data-i18n="continueBtn">CONTINUA →</button></div>
@@ -353,6 +338,18 @@ th{color:var(--gold);background:#090909}
   <h2 class="step-title" data-i18n="step5Title">Moduli aggiuntivi</h2>
   <p class="step-desc" data-i18n="step5Desc">Aggiungi solo ciò che serve. Ogni extra deve avere un motivo operativo chiaro.</p>
   <div class="extra-grid" id="extraGrid"></div>
+  <div class="pulse-panel">
+    <h3 data-i18n="pulseSetupTitle">AETERNA Pulse 365™ incluso</h3>
+    <p data-i18n="pulseSetupDesc">Il battito quotidiano della sicurezza digitale: avvisi, azioni pratiche e promemoria collegati al pacchetto scelto.</p>
+    <div class="grid">
+      <div class="field"><label data-i18n="pulseEmailLabel">Vuoi ricevere avvisi via email?</label><select id="pulseEmail"></select></div>
+      <div class="field"><label data-i18n="pulseChannelLabel">Canale avvisi preferito</label><select id="pulseChannel"></select></div>
+      <div class="field"><label data-i18n="operationalProfileLabel">Profilo operativo</label><select id="operationalProfile"></select></div>
+      <div class="field"><label data-i18n="urgencyLabel">Urgenza percepita</label><select id="urgencyLevel"></select></div>
+    </div>
+    <h3 style="margin-top:18px" data-i18n="sensitiveAreasTitle">Aree sensibili da presidiare</h3>
+    <div class="pulse-area-grid" id="sensitiveAreasGrid"></div>
+  </div>
   <div class="info warn" data-i18n="currencyDisclaimer">Le valute non EUR sono stime indicative. Il pagamento ufficiale resta in EUR salvo conferma specifica AETERNA.</div>
   <div class="navigation"><button class="btn-back" onclick="prevStep()" data-i18n="backBtn">INDIETRO</button><button class="btn-next" onclick="nextStep()" data-i18n="continueBtn">CONTINUA →</button></div>
 </section>
@@ -381,6 +378,39 @@ th{color:var(--gold);background:#090909}
   <div class="navigation"><button class="btn-back" onclick="prevStep()" data-i18n="backBtn">INDIETRO</button><button class="btn-pay" onclick="completeOnboarding()" data-i18n="paySendBtn">INVIA RICHIESTA E PROCEDI AL BONIFICO</button></div>
 </section>
 </main>
+<aside class="sidebar" id="guardianDashboard" aria-label="Dashboard operativa AETERNA">
+  <div class="dashboard-heading">
+    <div class="kicker" data-i18n="dashboardKicker">AETERNA command view</div>
+    <h2 data-i18n="dashboardTitle">Controllo finale</h2>
+  </div>
+  <div class="side-card">
+    <div class="side-title" data-i18n="progressTitle">Guardian Progress™</div>
+    <div id="progressList"></div>
+  </div>
+  <div class="side-card">
+    <div class="side-title" data-i18n="liveTitle">Preventivo Live™</div>
+    <div class="live-total-label" data-i18n="estimateTotal">Totale stimato</div>
+    <div class="live-total zero" id="liveTotal">€ 0,00</div>
+    <div class="live-small" id="liveCurrency">Base EUR: € 0,00</div>
+    <div class="live-small" id="livePayment">Scegli tipologia cliente e pacchetto</div>
+    <div class="breakdown" id="liveDetails">Scegli tipologia e pacchetto: il preventivo mostrerà subito le voci che formano il totale.</div>
+    <div class="dashboard-field">
+      <label for="currencySelect" data-i18n="currencyLabel">Valuta visualizzata</label>
+      <select id="currencySelect" class="control" aria-label="Currency">
+        <option value="EUR">EUR €</option><option value="USD">USD $</option><option value="GBP">GBP £</option><option value="CHF">CHF</option><option value="BRL">BRL R$</option>
+      </select>
+    </div>
+  </div>
+  <div class="side-card reco">
+    <div class="side-title" data-i18n="bestFitTitle">Percorso consigliato</div>
+    <div class="live-small" id="recommendationBox">—</div>
+    <button class="btn-secondary" style="margin-top:14px;width:100%" onclick="applyRecommendedPackage()" data-i18n="applyRecommended">Applica pacchetto consigliato</button>
+  </div>
+  <div class="side-card">
+    <div class="side-title" data-i18n="supportTitle">Supporto Guardian™</div>
+    <div class="live-small">info@aeternadigitallegacy.com<br><br><span data-i18n="privacyNote">AETERNA non chiede password, non conserva credenziali e lavora con logica Zero Retention.</span></div>
+  </div>
+</aside>
 </div>
 
 <div class="footer" data-i18n="footer">AETERNA Guardian™ fornisce una stima preliminare basata sui dati dichiarati. L’audit completo viene attivato dopo conferma della richiesta e del pagamento.</div>
@@ -410,7 +440,7 @@ const FX = {
 
 const PACKAGE_PRICES = { base:120, silver:320, gold:690, guardian:1290 };
 const EXTRA_PROFILE_PRICE = 50;
-const ENTERPRISE_LAYER_PRICE = 280;
+const ENTERPRISE_LAYER = 280;
 
 const CLIENT_MULTIPLIERS = {
   "Privato": 1.00,
@@ -445,6 +475,13 @@ const EXTRAS = {
   secureKit: { price:120, scope:"all" }
 };
 
+const PULSE_PACKAGE_LEVEL = {
+  base:"light",
+  silver:"standard",
+  gold:"advanced",
+  guardian:"elite"
+};
+
 const I18N = {
 it: {
 status:"Super Configuratore Preventivi",
@@ -456,16 +493,17 @@ noteText:"scegli il profilo, indica l’obiettivo e costruisci il preventivo. Og
 value1:"Preventivo costruito sulle scelte reali del cliente.",
 value2:"Report Guardian™ incluso nei percorsi principali.",
 value3:"Risk Snapshot™ per suggerire il pacchetto più coerente.",
-value4:"Prezzo progressivo per tipologia cliente: ogni livello aggiunge complessità fino al raddoppio Enterprise.",
-progressTitle:"Guardian Progress™", liveTitle:"Preventivo Live™", estimateTotal:"Totale stimato", bestFitTitle:"Percorso consigliato", applyRecommended:"Applica pacchetto consigliato", supportTitle:"Supporto Guardian™", privacyNote:"AETERNA non chiede password, non conserva credenziali e lavora con logica Zero Retention.",
+value4:"Percorsi Enterprise gestiti con maggiorazione dedicata x2.",
+progressTitle:"Guardian Progress™", liveTitle:"Preventivo Live™", estimateTotal:"Totale stimato", bestFitTitle:"Percorso consigliato", applyRecommended:"Applica pacchetto consigliato", supportTitle:"Supporto Guardian™", privacyNote:"AETERNA non chiede password, non conserva credenziali e lavora con logica Zero Retention.", dashboardKicker:"AETERNA command view", dashboardTitle:"Controllo finale", currencyLabel:"Valuta visualizzata",
 step1Title:"Profilo cliente", step1Desc:"Inserisci i dati essenziali e scegli l’obiettivo principale. Il preventivo si adatterà al bisogno reale e al livello di protezione richiesto.", nameLabel:"Nome o azienda *", emailLabel:"Email operativa *", phoneLabel:"Telefono *", countryLabel:"Paese", clientTypeLabel:"Tipologia cliente *", goalLabel:"Obiettivo principale", step1Info:"Scegli l’obiettivo più vicino alla situazione attuale: il sistema consiglierà un percorso coerente senza forzare automaticamente il pacchetto massimo.",
-step2Title:"Mappa semplice della tua vita digitale", step2Desc:"Rispondi come se stessi contando le chiavi di casa: persone, account, dispositivi e archivi. Ogni numero aiuta AETERNA a capire cosa proteggere e quanto lavoro serve.", perimA:"1. Persone", perimAText:"Conta quante persone o profili devono essere protetti.", perimB:"2. Cose digitali", perimBText:"Conta account, email, siti, wallet, cloud e archivi importanti.", perimC:"3. Difficoltà", perimCText:"Più persone, password e dispositivi ci sono, più serve ordine.",
-peopleSection:"Persone e profili da proteggere", peopleSectionText:"Pensa alle persone che hanno una vita digitale da mettere al sicuro. Se proteggi solo te stesso, scrivi 1. Se vuoi proteggere anche famiglia, soci o profili aziendali, aumenta il numero.", profilesLabel:"Profili protetti", profilesHelp:"Esempio facile: io = 1. Io + moglie = 2. Famiglia di 4 persone = 4.", collabLabel:"Collaboratori/familiari", collabHelp:"Conta chi può entrare, aiutare o deve essere autorizzato in caso di bisogno.", publicExposureLabel:"Quanto sei visibile online", publicExposureHelp:"Bassa: uso privato. Media: lavori online. Alta: sei creator, azienda o figura pubblica.",
-assetSection:"Account e canali importanti", assetSectionText:"Qui contiamo le porte digitali: email, social, banca, siti, domini e wallet. Se qualcuno entra da una porta sbagliata, può creare danni veri.", criticalAccountsLabel:"Account critici", criticalHelp:"Conta quelli che non puoi perdere: banca, PEC, SPID, lavoro, pannelli amministrativi.", socialLabel:"Account social", socialHelp:"Instagram, Facebook, TikTok, LinkedIn, YouTube e profili pubblici.", emailNumLabel:"Email operative", emailHelp:"Conta le email che usi davvero per vita, lavoro, pagamenti o accessi.", sitesLabel:"Siti web", domainsLabel:"Domini", walletLabel:"Wallet crypto",
-continuitySection:"Continuità e archivi da non perdere", continuitySectionText:"Qui contiamo ciò che deve restare accessibile anche in emergenza: cloud, dispositivi, documenti, foto, istruzioni e archivi di famiglia o azienda.", cloudLabel:"Cloud / archivi", devicesLabel:"Dispositivi", documentsLabel:"Archivi importanti", step2Info:"Il totale si aggiorna mentre compili: pacchetto consigliato, profili, complessità digitale e moduli extra vengono separati nel riepilogo.",
-step3Title:"Risk Snapshot™ · controllo rischio digitale", step3Desc:"Rispondi a queste domande come a un check-up. Se molte risposte indicano problemi, il livello minaccia sale: significa che un errore, una truffa o un accesso perso possono colpire soldi, account, famiglia o lavoro.", phishingLabel:"Messaggi o link strani", scamLabel:"Truffe o tentativi di truffa", dataExposureLabel:"Dati finiti in giro", reputationRiskLabel:"Rischio profili falsi o reputazione", twofaLabel:"Codice di sicurezza 2FA", backupLabel:"Copie di sicurezza", paymentsLabel:"Pagamenti online", lostAccessLabel:"Account persi o bloccati", legacyNeedLabel:"Istruzioni per il futuro", sharedAccessLabel:"Accessi usati da più persone",
-step4Title:"Cosa acquista il cliente", step4Desc:"Ogni pacchetto non è una semplice scansione: è un livello di protezione, continuità, reportistica e supporto AETERNA.",
-step5Title:"Moduli aggiuntivi", step5Desc:"Aggiungi solo ciò che serve. Alcuni moduli sono dedicati a PMI, strutture complesse e percorsi ad alta esposizione.", currencyDisclaimer:"Le valute non EUR sono stime indicative. Il pagamento ufficiale resta in EUR salvo conferma specifica AETERNA.",
+step2Title:"Perimetro digitale guidato", step2Desc:"Non serve essere tecnici. Conta solo ciò che il cliente usa davvero: account, email, siti, dispositivi, archivi e persone coinvolte.", perimA:"1. Persone", perimAText:"Quanti profili o persone devono essere protetti.", perimB:"2. Asset digitali", perimBText:"Account, email, siti, wallet, cloud e archivi.", perimC:"3. Complessità", perimCText:"Più accessi condivisi e dispositivi ci sono, più il protocollo deve essere strutturato.",
+peopleSection:"Persone e profili", peopleSectionText:"Qui misuriamo quante identità digitali devono essere protette. Il primo profilo è incluso nel pacchetto, ogni profilo aggiuntivo aumenta il lavoro operativo.", profilesLabel:"Profili protetti", profilesHelp:"Esempio: te stesso, familiare, socio, profilo aziendale.", collabLabel:"Collaboratori/familiari", collabHelp:"Persone che accedono o devono essere autorizzate.", publicExposureLabel:"Esposizione pubblica", publicExposureHelp:"Bassa per uso privato, alta per creator/azienda.",
+assetSection:"Account e canali", assetSectionText:"Questi sono i punti dove un furto accessi, una truffa o una perdita password può creare danni reali.", criticalAccountsLabel:"Account critici", criticalHelp:"Banca, PEC, SPID, account lavoro, pannelli amministrativi.", socialLabel:"Account social", socialHelp:"Instagram, Facebook, TikTok, LinkedIn, YouTube.", emailNumLabel:"Email operative", emailHelp:"Email personali, lavoro, amministrazione o supporto.", sitesLabel:"Siti web", domainsLabel:"Domini", walletLabel:"Wallet crypto",
+continuitySection:"Continuità e archivi", continuitySectionText:"Serve a capire cosa succede se il cliente perde accessi, dispositivi, documenti o continuità operativa.", cloudLabel:"Cloud / archivi", devicesLabel:"Dispositivi", documentsLabel:"Archivi importanti", step2Info:"Formula chiara: pacchetto scelto + profili aggiuntivi + complessità digitale + moduli extra. Il cliente vede cosa paga e perché.",
+step3Title:"Risk Snapshot™", step3Desc:"Una pre-analisi rapida per capire il livello minimo consigliato e il valore del Protocollo completo.", phishingLabel:"Tentativi phishing", scamLabel:"Truffe o scam", dataExposureLabel:"Esposizione dati", reputationRiskLabel:"Rischio reputazionale", twofaLabel:"Autenticazione 2FA", backupLabel:"Backup", paymentsLabel:"Pagamenti online", lostAccessLabel:"Perdita accessi", legacyNeedLabel:"Eredità digitale", sharedAccessLabel:"Accessi condivisi",
+ step4Title:"Cosa acquista il cliente", step4Desc:"Ogni pacchetto non è una semplice scansione: è un livello di protezione, continuità, reportistica, Pulse 365 e supporto AETERNA.",
+ step5Title:"Moduli aggiuntivi", step5Desc:"Aggiungi solo ciò che serve. Pulse 365 resta incluso nel pacchetto scelto e aumenta il valore percepito senza prezzo separato.", currencyDisclaimer:"Le valute non EUR sono stime indicative. Il pagamento ufficiale resta in EUR salvo conferma specifica AETERNA.",
+ pulseSetupTitle:"AETERNA Pulse 365™ incluso", pulseSetupDesc:"Il battito quotidiano della sicurezza digitale: avvisi, azioni pratiche e promemoria collegati al pacchetto scelto.", pulseEmailLabel:"Vuoi ricevere avvisi via email?", pulseChannelLabel:"Canale avvisi preferito", operationalProfileLabel:"Profilo operativo", urgencyLabel:"Urgenza percepita", sensitiveAreasTitle:"Aree sensibili da presidiare", pulseIncludedLabel:"Pulse 365 incluso", pulseTableLabel:"Pulse 365", pulseSummaryTitle:"AETERNA Pulse 365™",
 step6Title:"Riepilogo, richiesta e pagamento", step6Desc:"Il cliente è pronto: verifica il riepilogo, copia i dati del bonifico e invia la richiesta ad AETERNA.", summaryTitle:"Riepilogo operativo", paymentTitle:"Dati bonifico", copyBankBtn:"COPIA DATI BONIFICO", copyQuoteBtn:"COPIA RIEPILOGO", sendInfo:"Invia la richiesta: riceverai numero richiesta, riepilogo e dati per completare il pagamento tramite bonifico.",
 continueBtn:"CONTINUA →", backBtn:"INDIETRO", paySendBtn:"INVIA RICHIESTA E PROCEDI AL BONIFICO", footer:"AETERNA Guardian™ fornisce una stima preliminare basata sui dati dichiarati. L’audit completo viene attivato dopo conferma della richiesta e del pagamento.",
 clients:[["","Scegli tipologia cliente"],["Privato","Privato / famiglia"],["Professionista","Libero professionista"],["Creator / Influencer","Creator / Influencer"],["PMI","PMI / azienda"],["Azienda Enterprise","Enterprise / struttura complessa"]],
@@ -486,9 +524,21 @@ reputationRisk:[["0","Reputazione stabile"],["2","Segnalazioni o contenuti sospe
 twofa:[["0","2FA attiva sui principali account"],["2","2FA parziale"],["4","2FA assente"]],
 backup:[["0","Backup regolari presenti"],["2","Backup incompleti"],["4","Nessun backup disponibile"]],
 payments:[["0","Nessun pagamento online rilevante"],["1","Pagamenti online occasionali"],["2","Pagamenti online frequenti"]],
-lostAccess:[["0","Nessuna perdita accessi"],["2","Perdita accessi risolta"],["4","Account ancora bloccati o persi"]],
-legacyNeed:[["0","Non prioritaria"],["2","Presente ma non urgente"],["4","Molto importante"]],
-sharedAccess:[["0","Nessun accesso condiviso"],["2","Pochi accessi condivisi"],["4","Più persone accedono agli stessi asset"]]
+  lostAccess:[["0","Nessuna perdita accessi"],["2","Perdita accessi risolta"],["4","Account ancora bloccati o persi"]],
+  legacyNeed:[["0","Non prioritaria"],["2","Presente ma non urgente"],["4","Molto importante"]],
+  sharedAccess:[["0","Nessun accesso condiviso"],["2","Pochi accessi condivisi"],["4","Più persone accedono agli stessi asset"]]
+},
+pulseEmailOptions:[["si","Sì, desidero gli avvisi via email"],["no","No, solo riepilogo e contatto AETERNA"]],
+pulseChannelOptions:[["email","Email"],["whatsapp","WhatsApp quando disponibile"],["telegram","Telegram quando disponibile"],["sms","SMS quando disponibile"]],
+operationalProfiles:[["privato","Privato / famiglia"],["professionista","Professionista"],["creator","Creator / profilo pubblico"],["azienda","Azienda / team"],["admin","Amministratore o referente operativo"]],
+urgencyOptions:[["bassa","Bassa: prevenzione ordinata"],["media","Media: serve controllo a breve"],["alta","Alta: rischio percepito"],["critica","Critica: possibile emergenza"]],
+sensitiveAreas:[["truffe","Truffe"],["banca","Banca e pagamenti"],["password","Password"],["social","Social"],["figli","Figli / famiglia"],["azienda","Azienda"],["backup","Backup"],["eredita","Eredità digitale"]],
+pulseLevels:{
+  light:{name:"AETERNA Pulse 365™ Light", short:"Avviso digitale quotidiano generale, azione AETERNA della settimana e promemoria base.", next:"Esegui un controllo semplice su email sospette, password principali e backup essenziali."},
+  standard:{name:"AETERNA Pulse 365™ Standard", short:"Avvisi più mirati, due azioni protettive a settimana e mini report mensile.", next:"Completa il check settimanale rapido e verifica gli account più usati prima di cliccare o pagare."},
+  advanced:{name:"AETERNA Pulse 365™ Advanced", short:"Azioni personalizzate, Digital Health Score, Scam Radar e controllo esposizione pubblica guidato.", next:"Controlla esposizione pubblica, backup, referenti e canali social o professionali più esposti."},
+  elite:{name:"AETERNA Pulse 365™ Elite", short:"Avvisi personalizzati, percorso emergenza digitale, report strategico e consigli collegati ai moduli acquistati.", next:"Avvia la verifica del rischio più urgente con Civil Shield™ Scan e prepara il percorso operativo Guardian."},
+  command:{name:"AETERNA Pulse 365™ Command", short:"Avvisi per amministratori e figure chiave, micro-formazione anti-scam e report direzionale.", next:"Definisci referente operativo, ruoli, accessi condivisi e primo tema settimanale per il team."}
 },
 packages:{
 base:{name:"Base Shield™", priceLabel:"120€", ideal:"Ingresso accessibile per privati e piccoli ecosistemi digitali.", buy:"Acquisti una prima mappatura ordinata, Civil Shield™ illimitato e un report sintetico.", value:"Serve a iniziare subito senza lasciare il cliente solo davanti a messaggi, link e truffe.", services:["Civil Shield™ illimitato","Audit iniziale essenziale","Mappatura account principali","Guardian Report™ sintetico","Supporto via email"]},
@@ -2346,6 +2396,62 @@ const AETERNA_SUPER_LANG_OVERRIDES = {
 Object.keys(AETERNA_SUPER_LANG_OVERRIDES).forEach(function(lang){
   AETERNA_CONFIG_LANGS[lang] = Object.assign({}, AETERNA_CONFIG_LANGS[lang] || {}, AETERNA_SUPER_LANG_OVERRIDES[lang]);
 });
+const AETERNA_PULSE_LANG_OVERRIDES = {
+  en:{
+    dashboardKicker:"AETERNA command view", dashboardTitle:"Final control", currencyLabel:"Displayed currency",
+    step4Desc:"Each package is not a simple scan: it is a level of protection, continuity, reporting, Pulse 365 and AETERNA support.",
+    step5Desc:"Add only what is needed. Pulse 365 remains included in the selected package and increases perceived value without a separate price.",
+    pulseSetupTitle:"AETERNA Pulse 365™ included", pulseSetupDesc:"The daily heartbeat of digital security: alerts, practical actions and reminders connected to the selected package.", pulseEmailLabel:"Do you want email alerts?", pulseChannelLabel:"Preferred alert channel", operationalProfileLabel:"Operational profile", urgencyLabel:"Perceived urgency", sensitiveAreasTitle:"Sensitive areas to monitor", pulseIncludedLabel:"Pulse 365 included", pulseTableLabel:"Pulse 365", pulseSummaryTitle:"AETERNA Pulse 365™",
+    pulseEmailOptions:[["si","Yes, send operational email alerts"],["no","No, only summary and AETERNA contact"]],
+    pulseChannelOptions:[["email","Email"],["whatsapp","WhatsApp when available"],["telegram","Telegram when available"],["sms","SMS when available"]],
+    operationalProfiles:[["privato","Private / family"],["professionista","Professional"],["creator","Creator / public profile"],["azienda","Company / team"],["admin","Administrator or operational contact"]],
+    urgencyOptions:[["bassa","Low: organized prevention"],["media","Medium: short-term check needed"],["alta","High: perceived risk"],["critica","Critical: possible emergency"]],
+    sensitiveAreas:[["truffe","Scams"],["banca","Banking and payments"],["password","Passwords"],["social","Social"],["figli","Children / family"],["azienda","Company"],["backup","Backup"],["eredita","Digital legacy"]],
+    pulseLevels:{
+      light:{name:"AETERNA Pulse 365™ Light", short:"General daily digital alert, weekly AETERNA action and basic reminders.", next:"Run a simple check on suspicious emails, key passwords and essential backups."},
+      standard:{name:"AETERNA Pulse 365™ Standard", short:"More targeted alerts, two protective actions per week and a monthly mini report.", next:"Complete the quick weekly check and verify your most used accounts before clicking or paying."},
+      advanced:{name:"AETERNA Pulse 365™ Advanced", short:"Personalized actions, Digital Health Score, Scam Radar and guided public exposure checks.", next:"Check public exposure, backups, contacts and the most exposed social or professional channels."},
+      elite:{name:"AETERNA Pulse 365™ Elite", short:"Personalized alerts, digital emergency path, strategic report and advice connected to selected modules.", next:"Verify the most urgent risk with Civil Shield™ Scan and prepare the Guardian operating path."},
+      command:{name:"AETERNA Pulse 365™ Command", short:"Alerts for administrators and key people, anti-scam micro-training and management reporting.", next:"Define the operational contact, roles, shared access and first weekly theme for the team."}
+    }
+  },
+  fr:{
+    dashboardKicker:"AETERNA command view", dashboardTitle:"Contrôle final", currencyLabel:"Devise affichée",
+    step4Desc:"Chaque forfait n’est pas une simple analyse : c’est un niveau de protection, continuité, reporting, Pulse 365 et support AETERNA.",
+    step5Desc:"Ajoutez seulement ce qui est utile. Pulse 365 reste inclus dans le forfait choisi et augmente la valeur perçue sans prix séparé.",
+    pulseSetupTitle:"AETERNA Pulse 365™ inclus", pulseSetupDesc:"Le battement quotidien de la sécurité numérique : alertes, actions pratiques et rappels liés au forfait choisi.", pulseEmailLabel:"Souhaitez-vous recevoir des alertes par email ?", pulseChannelLabel:"Canal d’alerte préféré", operationalProfileLabel:"Profil opérationnel", urgencyLabel:"Urgence perçue", sensitiveAreasTitle:"Zones sensibles à surveiller", pulseIncludedLabel:"Pulse 365 inclus", pulseTableLabel:"Pulse 365", pulseSummaryTitle:"AETERNA Pulse 365™",
+    pulseEmailOptions:[["si","Oui, envoyer les alertes opérationnelles par email"],["no","Non, seulement le récapitulatif et le contact AETERNA"]],
+    pulseChannelOptions:[["email","Email"],["whatsapp","WhatsApp quand disponible"],["telegram","Telegram quand disponible"],["sms","SMS quand disponible"]],
+    operationalProfiles:[["privato","Particulier / famille"],["professionista","Professionnel"],["creator","Créateur / profil public"],["azienda","Entreprise / équipe"],["admin","Administrateur ou référent opérationnel"]],
+    urgencyOptions:[["bassa","Basse : prévention ordonnée"],["media","Moyenne : contrôle à court terme"],["alta","Haute : risque perçu"],["critica","Critique : urgence possible"]],
+    sensitiveAreas:[["truffe","Arnaques"],["banca","Banque et paiements"],["password","Mots de passe"],["social","Réseaux sociaux"],["figli","Enfants / famille"],["azienda","Entreprise"],["backup","Sauvegarde"],["eredita","Héritage numérique"]]
+  },
+  es:{
+    dashboardKicker:"AETERNA command view", dashboardTitle:"Control final", currencyLabel:"Moneda mostrada",
+    step4Desc:"Cada paquete no es un simple escaneo: es un nivel de protección, continuidad, informes, Pulse 365 y soporte AETERNA.",
+    step5Desc:"Añade solo lo necesario. Pulse 365 queda incluido en el paquete elegido y aumenta el valor percibido sin precio separado.",
+    pulseSetupTitle:"AETERNA Pulse 365™ incluido", pulseSetupDesc:"El latido diario de la seguridad digital: avisos, acciones prácticas y recordatorios conectados al paquete elegido.", pulseEmailLabel:"¿Quieres recibir avisos por email?", pulseChannelLabel:"Canal de avisos preferido", operationalProfileLabel:"Perfil operativo", urgencyLabel:"Urgencia percibida", sensitiveAreasTitle:"Áreas sensibles a vigilar", pulseIncludedLabel:"Pulse 365 incluido", pulseTableLabel:"Pulse 365", pulseSummaryTitle:"AETERNA Pulse 365™",
+    pulseEmailOptions:[["si","Sí, enviar avisos operativos por email"],["no","No, solo resumen y contacto AETERNA"]],
+    pulseChannelOptions:[["email","Email"],["whatsapp","WhatsApp cuando esté disponible"],["telegram","Telegram cuando esté disponible"],["sms","SMS cuando esté disponible"]],
+    operationalProfiles:[["privato","Privado / familia"],["professionista","Profesional"],["creator","Creator / perfil público"],["azienda","Empresa / equipo"],["admin","Administrador o referente operativo"]],
+    urgencyOptions:[["bassa","Baja: prevención ordenada"],["media","Media: revisión a corto plazo"],["alta","Alta: riesgo percibido"],["critica","Crítica: posible emergencia"]],
+    sensitiveAreas:[["truffe","Estafas"],["banca","Banco y pagos"],["password","Contraseñas"],["social","Redes sociales"],["figli","Hijos / familia"],["azienda","Empresa"],["backup","Backup"],["eredita","Legado digital"]]
+  },
+  pt:{
+    dashboardKicker:"AETERNA command view", dashboardTitle:"Controle final", currencyLabel:"Moeda exibida",
+    step4Desc:"Cada pacote não é uma simples verificação: é um nível de proteção, continuidade, relatórios, Pulse 365 e suporte AETERNA.",
+    step5Desc:"Adicione apenas o que for necessário. O Pulse 365 permanece incluído no pacote escolhido e aumenta o valor percebido sem preço separado.",
+    pulseSetupTitle:"AETERNA Pulse 365™ incluído", pulseSetupDesc:"O pulso diário da segurança digital: alertas, ações práticas e lembretes conectados ao pacote escolhido.", pulseEmailLabel:"Deseja receber alertas por email?", pulseChannelLabel:"Canal de alertas preferido", operationalProfileLabel:"Perfil operacional", urgencyLabel:"Urgência percebida", sensitiveAreasTitle:"Áreas sensíveis a monitorar", pulseIncludedLabel:"Pulse 365 incluído", pulseTableLabel:"Pulse 365", pulseSummaryTitle:"AETERNA Pulse 365™",
+    pulseEmailOptions:[["si","Sim, enviar alertas operacionais por email"],["no","Não, apenas resumo e contato AETERNA"]],
+    pulseChannelOptions:[["email","Email"],["whatsapp","WhatsApp quando disponível"],["telegram","Telegram quando disponível"],["sms","SMS quando disponível"]],
+    operationalProfiles:[["privato","Pessoa física / família"],["professionista","Profissional"],["creator","Criador / perfil público"],["azienda","Empresa / equipe"],["admin","Administrador ou contato operacional"]],
+    urgencyOptions:[["bassa","Baixa: prevenção organizada"],["media","Média: verificação em curto prazo"],["alta","Alta: risco percebido"],["critica","Crítica: possível emergência"]],
+    sensitiveAreas:[["truffe","Golpes"],["banca","Banco e pagamentos"],["password","Senhas"],["social","Redes sociais"],["figli","Filhos / família"],["azienda","Empresa"],["backup","Backup"],["eredita","Legado digital"]]
+  }
+};
+Object.keys(AETERNA_PULSE_LANG_OVERRIDES).forEach(function(lang){
+  AETERNA_CONFIG_LANGS[lang] = Object.assign({}, AETERNA_CONFIG_LANGS[lang] || {}, AETERNA_PULSE_LANG_OVERRIDES[lang]);
+});
 Object.keys(AETERNA_CONFIG_LANGS).forEach(function(lang){
   I18N[lang] = makeLangCopy(I18N.it, AETERNA_CONFIG_LANGS[lang]);
 });
@@ -2568,7 +2674,7 @@ function fixLogo(){
   logo.onerror=function(){i++; if(i<LOGO_SOURCES.length){logo.src=LOGO_SOURCES[i];return} showLogoFallback()};
   logo.onload=function(){if(logo.naturalWidth>0 && $("logoFallback")) $("logoFallback").style.display="none"};
   logo.src=LOGO_SOURCES[0];
-  setTimeout(()=>{if((!logo.complete||logo.naturalWidth===0) && typeof logo.onerror==="function") logo.onerror()},1500);
+  setTimeout(()=>{if(!logo.complete||logo.naturalWidth===0) logo.onerror()},1500);
 }
 
 function applyLanguage(lang){
@@ -2578,6 +2684,7 @@ function applyLanguage(lang){
   document.querySelectorAll("[data-i18n]").forEach(n=>{const k=n.dataset.i18n;if(t()[k]) n.textContent=t()[k]});
   document.querySelectorAll("[data-i18n-html]").forEach(n=>{const k=n.dataset.i18nHtml;if(t()[k]) n.innerHTML=t()[k]});
   buildSelects();
+  renderSensitiveAreas();
   renderProgress();
   renderGoalPanel();
   renderPackages();
@@ -2598,6 +2705,19 @@ function buildSelects(){
   if(!value("goal")) $("goal").value=DEFAULT_GOAL;
   fillSelect("publicExposure",t().publicExposure);
   Object.entries(t().riskOptions).forEach(([id,items])=>fillSelect(id,items));
+  fillSelect("pulseEmail",t().pulseEmailOptions || I18N.it.pulseEmailOptions);
+  fillSelect("pulseChannel",t().pulseChannelOptions || I18N.it.pulseChannelOptions);
+  fillSelect("operationalProfile",t().operationalProfiles || I18N.it.operationalProfiles);
+  fillSelect("urgencyLevel",t().urgencyOptions || I18N.it.urgencyOptions);
+}
+
+function renderSensitiveAreas(){
+  const wrap=$("sensitiveAreasGrid");
+  if(!wrap) return;
+  const selected=new Set(selectedSensitiveAreas());
+  const items=t().sensitiveAreas || I18N.it.sensitiveAreas;
+  if(selected.size===0) ["truffe","password","backup"].forEach(key=>selected.add(key));
+  wrap.innerHTML=items.map(([key,label])=>`<label class="pulse-option"><input class="sensitive-area-check" type="checkbox" value="${escapeHTML(key)}" ${selected.has(key)?"checked":""} onchange="updateAll()"> ${escapeHTML(label)}</label>`).join("");
 }
 
 function renderGoalPanel(){
@@ -2615,7 +2735,6 @@ function renderGoalPanel(){
 
 function selectGoal(k){
   $("goal").value=k;
-  selectedPackage="";
   renderGoalPanel();
   updateAll();
 }
@@ -2630,6 +2749,69 @@ function currencyFormat(eur){
 }
 function euro(eur){return new Intl.NumberFormat("it-IT",{style:"currency",currency:"EUR"}).format(eur)}
 function selectedExtras(){return [...document.querySelectorAll(".extra-check:checked")].map(x=>x.value)}
+function selectedSensitiveAreas(){return [...document.querySelectorAll(".sensitive-area-check:checked")].map(x=>x.value)}
+
+function optionLabel(items, selectedValue){
+  const found=(items||[]).find(([v])=>v===selectedValue);
+  return found ? found[1] : (selectedValue || "—");
+}
+
+function sensitiveAreaLabels(){
+  const items=t().sensitiveAreas || I18N.it.sensitiveAreas;
+  const map=Object.fromEntries(items.map(([key,label])=>[key,label]));
+  return selectedSensitiveAreas().map(key=>map[key] || key);
+}
+
+function pulseLevelKey(packageKey){
+  if(value("cliente")==="Azienda Enterprise") return "command";
+  return PULSE_PACKAGE_LEVEL[packageKey || selectedPackage || recommendedPackage] || "light";
+}
+
+function pulsePlan(packageKey){
+  const key=pulseLevelKey(packageKey);
+  const levels=t().pulseLevels || I18N.it.pulseLevels;
+  const fallback=I18N.it.pulseLevels[key] || I18N.it.pulseLevels.light;
+  return Object.assign({key}, fallback, levels[key] || {});
+}
+
+function pulseRiskCategory(){
+  const areas=selectedSensitiveAreas();
+  if(value("cliente")==="Azienda Enterprise") return "Enterprise / continuità operativa";
+  if(areas.includes("banca")) return "Banca e pagamenti";
+  if(areas.includes("azienda")) return "Azienda e accessi condivisi";
+  if(areas.includes("figli")) return "Famiglia e protezione quotidiana";
+  if(areas.includes("social")) return "Reputazione e profili social";
+  if(areas.includes("eredita")) return "Eredità digitale";
+  if(areas.includes("backup")) return "Backup e continuità";
+  if(areas.includes("password")) return "Password e accessi";
+  return "Truffe e prevenzione";
+}
+
+function pulseNextAction(){
+  const plan=pulsePlan();
+  const areas=selectedSensitiveAreas();
+  if(areas.includes("banca")) return "Prima di pagare o cambiare IBAN, verifica email, link o documento con AETERNA Civil Shield™ Scan.";
+  if(areas.includes("password")) return "Controlla le password degli account critici e attiva 2FA dove manca.";
+  if(areas.includes("social")) return "Verifica accessi social, email di recupero e segnali di profili falsi o impersonificazione.";
+  if(areas.includes("backup")) return "Controlla che almeno un backup recente sia leggibile e separato dal dispositivo principale.";
+  return plan.next;
+}
+
+function pulseSummary(){
+  const plan=pulsePlan();
+  const areas=sensitiveAreaLabels();
+  return {
+    level:plan.name,
+    short:plan.short,
+    channel:optionLabel(t().pulseChannelOptions, value("pulseChannel") || "email"),
+    emailOptIn:optionLabel(t().pulseEmailOptions, value("pulseEmail") || "si"),
+    profile:optionLabel(t().operationalProfiles, value("operationalProfile") || "privato"),
+    urgency:optionLabel(t().urgencyOptions, value("urgencyLevel") || "media"),
+    areas:areas.length ? areas.join(", ") : "Truffe, password, backup",
+    riskCategory:pulseRiskCategory(),
+    nextAction:pulseNextAction()
+  };
+}
 
 function riskScore(){
   let score=0;
@@ -2671,8 +2853,7 @@ function recommendedKey(){
   return min;
 }
 
-function activePackageKey(){return selectedPackage || recommendedKey() || "";}
-function readyForQuote(){return !!value("cliente") && !!activePackageKey();}
+function readyForQuote(){return !!value("cliente") && !!selectedPackage;}
 function clientFactor(){return CLIENT_MULTIPLIERS[value("cliente")] || 0;}
 function extraAllowed(scope){
   const c=value("cliente");
@@ -2687,23 +2868,22 @@ function extraAllowed(scope){
 function pricing(){
   const extras=selectedExtras();
   if(!readyForQuote()){
-    return {cliente:value("cliente")||"",clientMultiplier:0,packageKey:"",packageBase:0,packageCost:0,profiles:Math.max(1,num("profiliProtetti")||1),profileCost:0,complexity:0,extraCost:0,enterprise:0,total:0,extras};
+    return {cliente:value("cliente")||"",clientMultiplier:0,packageBase:0,packageCost:0,profiles:Math.max(1,num("profiliProtetti")||1),profileCost:0,complexity:0,extraCost:0,enterprise:0,total:0,extras};
   }
   const cliente=value("cliente");
   const clientMultiplier=CLIENT_MULTIPLIERS[cliente] || 1;
-  const packageKey=activePackageKey();
-  const packageBase=PACKAGE_PRICES[packageKey] || 0;
+  const packageBase=PACKAGE_PRICES[selectedPackage] || 0;
   const packageCost=packageBase * clientMultiplier;
   const profiles=Math.max(1,num("profiliProtetti")||1);
   const profileCost=Math.max(0,profiles-1)*EXTRA_PROFILE_PRICE*clientMultiplier;
-  const rawComplexity=num("accountCritici")*10+num("social")*5+num("emailnum")*5+num("siti")*30+num("domini")*8+num("wallet")*60+num("cloud")*12+num("dispositivi")*8+num("collaboratori")*10+num("archiviDocumenti")*18;
-  const complexity=rawComplexity*clientMultiplier;
-  let extraCost=0;
-  extras.forEach(k=>extraCost += EXTRAS[k]?.price || 0);
-  extraCost=extraCost*clientMultiplier;
-  const enterprise=cliente==="Azienda Enterprise" ? ENTERPRISE_LAYER_PRICE : 0;
-  const total=packageCost+profileCost+complexity+extraCost;
-  return {cliente,clientMultiplier,packageKey,packageBase,packageCost,profiles,profileCost,complexity,extraCost,enterprise,total:total+enterprise,extras};
+  const complexityBase=num("accountCritici")*10+num("social")*5+num("emailnum")*5+num("siti")*30+num("domini")*8+num("wallet")*60+num("cloud")*12+num("dispositivi")*8+num("collaboratori")*10+num("archiviDocumenti")*18;
+  const complexity=complexityBase*clientMultiplier;
+  let extraBase=0;
+  extras.forEach(k=>extraBase += EXTRAS[k]?.price || 0);
+  const extraCost=extraBase*clientMultiplier;
+  const enterprise=cliente==="Azienda Enterprise" ? ENTERPRISE_LAYER : 0;
+  const total=packageCost+profileCost+complexity+extraCost+enterprise;
+  return {cliente,clientMultiplier,packageBase,packageCost,profiles,profileCost,complexity,extraCost,enterprise,total,extras};
 }
 
 function renderProgress(){
@@ -2716,10 +2896,11 @@ function renderPackages(){
   recommendedPackage=recommendedKey();
   $("packageGrid").innerHTML=Object.keys(PACKAGE_PRICES).map(k=>{
     const pack=p[k];
+    const pulse=pulsePlan(k);
     const price=value("cliente") ? (PACKAGE_PRICES[k]||0) * clientFactor() : null;
-    return `<div class="package ${activePackageKey()===k?"selected":""} ${recommendedPackage===k?"recommended":""}" onclick="selectPackage('${k}')">
+    return `<div class="package ${selectedPackage===k?"selected":""} ${recommendedPackage===k?"recommended":""}" onclick="selectPackage('${k}')">
       <div class="pkg-name">${pack.name}</div><div class="pkg-ideal">${pack.ideal}</div><div class="pkg-price">${price===null ? "—" : currencyFormat(price)}</div>
-      <div class="pkg-value"><strong>Cosa acquisti:</strong><br>${escapeHTML(pack.buy)}<br><br><strong>Perché vale:</strong><br>${escapeHTML(pack.value)}</div>
+      <div class="pkg-value"><strong>Cosa acquisti:</strong><br>${escapeHTML(pack.buy)}<br><br><strong>${escapeHTML(t().pulseIncludedLabel)}:</strong><br>${escapeHTML(pulse.name)} · ${escapeHTML(pulse.short)}<br><br><strong>Perché vale:</strong><br>${escapeHTML(pack.value)}</div>
       <ul>${pack.services.map(s=>`<li>${escapeHTML(s)}</li>`).join("")}</ul>
     </div>`;
   }).join("");
@@ -2739,7 +2920,7 @@ function renderExtras(){
 
 function renderCompare(){
   const p=t().packages;
-  $("compareTable").innerHTML=`<table><tr><th>Shield</th><th>Ideale per</th><th>Cosa compra il cliente</th><th>Valore chiave</th><th>Prezzo</th></tr>${Object.keys(PACKAGE_PRICES).map(k=>`<tr><td><strong>${p[k].name}</strong></td><td>${p[k].ideal}</td><td>${p[k].buy}</td><td>${p[k].value}</td><td><strong>${value("cliente") ? currencyFormat(PACKAGE_PRICES[k]*clientFactor()) : "—"}</strong></td></tr>`).join("")}</table>`;
+  $("compareTable").innerHTML=`<table><tr><th>Shield</th><th>Ideale per</th><th>${escapeHTML(t().pulseTableLabel)}</th><th>Cosa compra il cliente</th><th>Valore chiave</th><th>Prezzo</th></tr>${Object.keys(PACKAGE_PRICES).map(k=>`<tr><td><strong>${p[k].name}</strong></td><td>${p[k].ideal}</td><td>${escapeHTML(pulsePlan(k).name)}</td><td>${p[k].buy}</td><td>${p[k].value}</td><td><strong>${value("cliente") ? currencyFormat(PACKAGE_PRICES[k]*clientFactor()) : "—"}</strong></td></tr>`).join("")}</table>`;
 }
 
 function selectPackage(k){selectedPackage=k;renderPackages();updateAll()}
@@ -2747,22 +2928,15 @@ function applyRecommendedPackage(){if(!value("cliente")){alert("Prima scegli la 
 
 function updateRisk(){
   if(!value("cliente")){recommendedPackage="";minimumPackage="";$("riskLevel").textContent="—";$("minimumPackage").textContent="—";$("suggestedPackage").textContent="—";$("riskAdvice").innerHTML="Scegli la tipologia cliente per attivare il consiglio AETERNA.";$("recommendationBox").innerHTML="Scegli tipologia cliente e pacchetto.";return;}
-  const min=minimumRiskPackage();minimumPackage=min.key;recommendedPackage=recommendedKey();$("riskLevel").textContent=min.label+" "+min.score+"%";$("minimumPackage").textContent=t().packages[min.key].name;$("suggestedPackage").textContent=recommendedPackage ? t().packages[recommendedPackage].name : "—";
-  const threatMessage = min.score >= 74
-    ? "ATTENZIONE: livello critico. Un blocco account, una truffa o un accesso perso possono creare danni immediati a soldi, reputazione e continuità."
-    : min.score >= 50
-      ? "RISCHIO ALTO: ci sono segnali da non ignorare. Serve uno scudo strutturato prima che un problema diventi emergenza."
-      : min.score >= 24
-        ? "RISCHIO MEDIO: alcune porte digitali sono esposte. Intervenire ora evita problemi più costosi dopo."
-        : "RISCHIO CONTENUTO: buona base di partenza, ma gli accessi importanti vanno comunque ordinati prima dell’emergenza.";
-  $("riskAdvice").innerHTML=recommendedPackage ? `<strong>${escapeHTML(threatMessage)}</strong><br><br><strong>${t().packages[recommendedPackage].name}</strong><br>${escapeHTML(value("goal")==="complete" ? "Protocollo completo consigliato: protegge oggi, organizza la continuità e prepara il futuro digitale." : "Il pacchetto consigliato deriva da obiettivo dichiarato, rischio e complessità del perimetro digitale.")}` : "—";$("recommendationBox").innerHTML=recommendedPackage ? `<strong>${t().packages[recommendedPackage].name}</strong><br>${escapeHTML(t().packages[recommendedPackage].value)}` : "Scegli tipologia cliente e pacchetto.";
+  const min=minimumRiskPackage();minimumPackage=min.key;recommendedPackage=recommendedKey();$("riskLevel").textContent=min.label+" "+min.score+"%";$("minimumPackage").textContent=t().packages[min.key].name;$("suggestedPackage").textContent=recommendedPackage ? t().packages[recommendedPackage].name : "—";$("riskAdvice").innerHTML=recommendedPackage ? `<strong>${t().packages[recommendedPackage].name}</strong><br>${escapeHTML(value("goal")==="complete" ? "Protocollo completo consigliato: protegge oggi, organizza la continuità e prepara il futuro digitale." : "Il pacchetto consigliato deriva da obiettivo dichiarato, rischio e complessità del perimetro digitale.")}` : "—";$("recommendationBox").innerHTML=recommendedPackage ? `<strong>${t().packages[recommendedPackage].name}</strong><br>${escapeHTML(t().packages[recommendedPackage].value)}` : "Scegli tipologia cliente e pacchetto.";
 }
 
 function updatePrice(){
   const pr=pricing();$("liveTotal").textContent=currencyFormat(pr.total);$("liveTotal").classList.toggle("zero", pr.total===0);$("liveCurrency").textContent="Base EUR: "+euro(pr.total);$("livePayment").textContent=pr.total>0 ? (currentCurrency==="EUR" ? "Pagamento: bonifico EUR" : "Pagamento: EUR ufficiale / conversione indicativa") : "Scegli tipologia cliente e pacchetto";
   const help=$("clientTypeHelp"); if(help){help.textContent=value("cliente") ? "Il preventivo si adatta al tipo di cliente e alla complessità reale del perimetro digitale." : "Scegli la tipologia per iniziare il calcolo.";}
   if(pr.total===0){$("liveDetails").innerHTML="Scegli tipologia e pacchetto: il preventivo mostrerà subito le voci che formano il totale.";return;}
-  $("liveDetails").innerHTML=`Tipologia: <strong>${escapeHTML(CLIENT_COMPLEXITY_LABEL[pr.cliente] || pr.cliente)}</strong><br>Pacchetto: <strong>${currencyFormat(pr.packageCost)}</strong><br>Profili aggiuntivi: <strong>${currencyFormat(pr.profileCost)}</strong><br>Complessità digitale: <strong>${currencyFormat(pr.complexity)}</strong><br>Extra: <strong>${currencyFormat(pr.extraCost)}</strong>${pr.enterprise>0?`<br>Enterprise Layer: <strong>${currencyFormat(pr.enterprise)}</strong>`:""}<br><small>Importo contrattuale in EUR: ${euro(pr.total)}</small>`;
+  const enterpriseLine=pr.enterprise ? `<br>Enterprise Layer: <strong>${currencyFormat(pr.enterprise)}</strong>` : "";
+  $("liveDetails").innerHTML=`Tipologia: <strong>${escapeHTML(CLIENT_COMPLEXITY_LABEL[pr.cliente] || pr.cliente)}</strong><br>Pacchetto: <strong>${currencyFormat(pr.packageCost)}</strong><br>Profili aggiuntivi: <strong>${currencyFormat(pr.profileCost)}</strong><br>Complessità digitale: <strong>${currencyFormat(pr.complexity)}</strong><br>Extra: <strong>${currencyFormat(pr.extraCost)}</strong>${enterpriseLine}<br>${escapeHTML(t().pulseIncludedLabel)}: <strong>${escapeHTML(pulsePlan().name)}</strong><br><small>Importo contrattuale in EUR: ${euro(pr.total)}</small>`;
 }
 
 function updateAll(){
@@ -2783,7 +2957,7 @@ function validateStep1(){
   return true;
 }
 function validateStep2(){if(num("profiliProtetti")<1){alert("Profili protetti minimo 1.");return false}return true}
-function validateStep4(){if(!activePackageKey()){alert("Seleziona un pacchetto prima di continuare.");return false}return true}
+function validateStep4(){if(!selectedPackage){alert("Seleziona un pacchetto prima di continuare.");return false}return true}
 function validateCurrent(){if(currentStep===1)return validateStep1(); if(currentStep===2)return validateStep2(); if(currentStep===4)return validateStep4(); return true}
 
 function scrollStepToFields(){
@@ -2816,13 +2990,14 @@ function prevStep(){showStep(currentStep-1)}
 
 function getSelectedServiceNames(){
   const pr = pricing();
-  const key = activePackageKey();
-  const pack = key ? t().packages[key] : null;
+  const pack = selectedPackage ? t().packages[selectedPackage] : null;
   const services = [];
 
   if(pack){
     services.push("PACCHETTO: " + pack.name);
     pack.services.forEach(s => services.push("INCLUSO: " + s));
+    const pulse=pulseSummary();
+    services.push("INCLUSO: " + pulse.level + " — " + pulse.short);
   }
 
   pr.extras.forEach(k => {
@@ -2866,25 +3041,6 @@ function selectedExtraItems(){
   }));
 }
 
-function legacyEUR(eur){
-  return Math.round(Number(eur)||0).toLocaleString("it-IT")+"€";
-}
-
-function legacyQuoteFields(pr){
-  return {
-    baseMensile:legacyEUR(0),
-    costoProfili:legacyEUR(pr.profileCost),
-    costoAsset:legacyEUR(pr.complexity),
-    costoPacchetto:legacyEUR(pr.packageCost),
-    extraMensili:legacyEUR(pr.extraCost),
-    enterpriseLayer:legacyEUR(pr.enterprise),
-    totaleMensile:legacyEUR(pr.total),
-    totaleAnnuale:legacyEUR(pr.total),
-    unaTantum:legacyEUR(pr.total),
-    totalePreventivo:legacyEUR(pr.total)
-  };
-}
-
 function quoteBreakdownText(){
   const pr=pricing();
   const lines=[
@@ -2898,7 +3054,9 @@ function quoteBreakdownText(){
   }else{
     lines.push("Moduli extra: "+euro(0));
   }
-  if(pr.enterprise>0) lines.push("Enterprise Layer: "+euro(pr.enterprise));
+  if(pr.enterprise){
+    lines.push("Enterprise Layer: "+euro(pr.enterprise));
+  }
   lines.push("Totale ufficiale EUR: "+euro(pr.total));
   return lines.join("\n");
 }
@@ -2913,17 +3071,17 @@ function quoteBreakdownHTML(){
   ];
   extras.forEach(item=>rows.push(["Modulo extra - "+item.name, item.price]));
   if(!extras.length) rows.push(["Moduli extra", 0]);
-  if(pr.enterprise>0) rows.push(["Enterprise Layer", pr.enterprise]);
+  if(pr.enterprise) rows.push(["Enterprise Layer", pr.enterprise]);
   return `<h3>Voci economiche del preventivo</h3><table><tr><th>Voce</th><th>Importo EUR</th></tr>${rows.map(([label,amount])=>`<tr><td>${escapeHTML(label)}</td><td><strong>${euro(amount)}</strong></td></tr>`).join("")}<tr><td><strong>Totale ufficiale</strong></td><td><strong>${euro(pr.total)}</strong></td></tr></table>`;
 }
 
 function getQuoteSummaryText(){
   const pr = pricing();
   const min = minimumRiskPackage();
-  const packageKey = activePackageKey();
-  const packName = packageKey ? t().packages[packageKey].name : "Nessun pacchetto selezionato";
+  const packName = selectedPackage ? t().packages[selectedPackage].name : "Nessun pacchetto selezionato";
   const recommendedName = recommendedPackage ? t().packages[recommendedPackage].name : "—";
   const extraNames = pr.extras.map(k => t().extras[k] ? t().extras[k][0] : k).join(", ") || "Nessun extra";
+  const pulse = pulseSummary();
 
   return `PREVENTIVO AETERNA GUARDIAN™
 
@@ -2938,6 +3096,15 @@ Tipologia cliente: ${CLIENT_COMPLEXITY_LABEL[value("cliente")] || value("cliente
 Pacchetto selezionato: ${packName}
 Protocollo consigliato: ${recommendedName}
 Risk Snapshot: ${value("cliente") ? (min.label + " " + min.score + "%") : "—"}
+
+AETERNA Pulse 365:
+Livello incluso: ${pulse.level}
+Canale avvisi preferito: ${pulse.channel}
+Avvisi email: ${pulse.emailOptIn}
+Profilo operativo: ${pulse.profile}
+Aree sensibili: ${pulse.areas}
+Categoria rischio: ${pulse.riskCategory}
+Prossima azione AETERNA: ${pulse.nextAction}
 
 Servizi acquistati / inclusi:
 ${getSelectedServiceListForEmail()}
@@ -2964,6 +3131,7 @@ La stima è preliminare e sarà confermata dal team AETERNA.`;
 
 function getInternalNotesForSheet(){
   const pr = pricing();
+  const pulse = pulseSummary();
   return [
     "Origine: configuratore AETERNA Guardian",
     "Lingua: " + currentLang,
@@ -2972,6 +3140,9 @@ function getInternalNotesForSheet(){
     "ProfileCostEUR: " + pr.profileCost.toFixed(2),
     "ComplexityCostEUR: " + pr.complexity.toFixed(2),
     "ExtraCostEUR: " + pr.extraCost.toFixed(2),
+    "EnterpriseLayerEUR: " + pr.enterprise.toFixed(2),
+    "PulseLevel: " + pulse.level,
+    "PulseRiskCategory: " + pulse.riskCategory,
     "RiskScore: " + (value("cliente") ? minimumRiskPackage().score : 0)
   ].join(" | ");
 }
@@ -2980,11 +3151,10 @@ function getInternalNotesForSheet(){
 function buildPayload(){
   const pr=pricing(), min=minimumRiskPackage();
   const numeroRichiesta=getRequestNumber();
-  const packageKey = activePackageKey();
-  const packName = packageKey ? t().packages[packageKey].name : "";
+  const packName = selectedPackage ? t().packages[selectedPackage].name : "";
   const recommendedName = recommendedPackage ? t().packages[recommendedPackage].name : "";
   const extraNames = pr.extras.map(k=>t().extras[k] ? t().extras[k][0] : k).join(", ");
-  const legacy = legacyQuoteFields(pr);
+  const pulse = pulseSummary();
 
   return {
     StatoRichiesta:"DA VERIFICARE",
@@ -2999,39 +3169,17 @@ function buildPayload(){
     ProtocolloConsigliato:recommendedName,
     ExtraAcquistati:extraNames || "Nessun extra",
     ServiziAcquistati:getSelectedServiceListForSheet(),
+    LivelloPulse:pulse.level,
+    CanaleAvvisi:pulse.channel,
+    EmailAvvisi:pulse.emailOptIn,
+    ProfiloPulse:pulse.profile,
+    AreeSensibili:pulse.areas,
+    CategoriaRischio:pulse.riskCategory,
+    ProssimaAzioneAETERNA:pulse.nextAction,
+    UrgenzaPercepita:pulse.urgency,
     TotaleEUR:pr.total.toFixed(2),
     TotaleVisualizzato:currencyFormat(pr.total),
     VociEconomiche:quoteBreakdownText(),
-    TotalePreventivoEUR:pr.total.toFixed(2),
-    TotalePreventivo:legacy.totalePreventivo,
-    BaseMensile:legacy.baseMensile,
-    CostoProfili:legacy.costoProfili,
-    CostoAsset:legacy.costoAsset,
-    CostoPacchetto:legacy.costoPacchetto,
-    ExtraMensili:legacy.extraMensili,
-    EnterpriseLayer:legacy.enterpriseLayer,
-    TotaleMensile:legacy.totaleMensile,
-    TotaleAnnuale:legacy.totaleAnnuale,
-    UnaTantum:legacy.unaTantum,
-    baseMensile:legacy.baseMensile,
-    costoProfili:legacy.costoProfili,
-    costoAsset:legacy.costoAsset,
-    costoPacchetto:legacy.costoPacchetto,
-    extraMensili:legacy.extraMensili,
-    enterpriseLayer:legacy.enterpriseLayer,
-    totaleMensile:legacy.totaleMensile,
-    totaleAnnuale:legacy.totaleAnnuale,
-    unaTantum:legacy.unaTantum,
-    "BASE MENSILE":legacy.baseMensile,
-    "COSTO PROFILI":legacy.costoProfili,
-    "COSTO ASSET":legacy.costoAsset,
-    "COSTO PACCHETTO":legacy.costoPacchetto,
-    "EXTRA MENSILI":legacy.extraMensili,
-    "ENTERPRISE LAYER":legacy.enterpriseLayer,
-    "TOTALE MENSILE":legacy.totaleMensile,
-    "TOTALE ANNUALE":legacy.totaleAnnuale,
-    "UNA TANTUM":legacy.unaTantum,
-    "TOTALE PREVENTIVO":legacy.totalePreventivo,
     ValutaVisualizzata:currentCurrency,
     RiskSnapshot:value("cliente") ? (min.label + " " + min.score + "%") : "—",
     CausaleBonifico:numeroRichiesta + " - AETERNA Guardian - " + (value("nome") || "Cliente") + " - " + (packName || "Pacchetto"),
@@ -3041,16 +3189,17 @@ function buildPayload(){
     NoteInterne:getInternalNotesForSheet(),
 
     createdAt:new Date().toISOString(),
-    source:"AETERNA Guardian Configuratore Rinascita V6 - Preventivo Ordinato",
+    source:"AETERNA Guardian Configuratore Ultra Pulse V7 - Preventivo Ordinato",
     language:currentLang,
     displayCurrency:currentCurrency,
     nome:value("nome"), email:value("email"), telefono:value("telefono"), paese:value("paese"), cliente:value("cliente"), goal:value("goal"),
     profiliProtetti:num("profiliProtetti"), collaboratori:num("collaboratori"), publicExposure:value("publicExposure"),
     accountCritici:num("accountCritici"), social:num("social"), emailOperative:num("emailnum"), siti:num("siti"), domini:num("domini"), wallet:num("wallet"), cloud:num("cloud"), dispositivi:num("dispositivi"), archiviDocumenti:num("archiviDocumenti"),
     phishing:value("phishing"), scam:value("scam"), dataExposure:value("dataExposure"), reputationRisk:value("reputationRisk"), twofa:value("twofa"), backup:value("backup"), payments:value("payments"), lostAccess:value("lostAccess"), legacyNeed:value("legacyNeed"), sharedAccess:value("sharedAccess"),
-    pacchetto:packName, pacchettoKey:packageKey, protocolloConsigliato:recommendedName, minimumShield:min.key ? t().packages[min.key].name : "", riskScore:min.score, riskLevel:min.label,
+    pacchetto:packName, pacchettoKey:selectedPackage, protocolloConsigliato:recommendedName, minimumShield:min.key ? t().packages[min.key].name : "", riskScore:min.score, riskLevel:min.label,
+    livelloPulse:pulse.level, canaleAvvisi:pulse.channel, emailAvvisi:pulse.emailOptIn, profiloPulse:pulse.profile, areeSensibili:pulse.areas, categoriaRischio:pulse.riskCategory, prossimaAzioneAETERNA:pulse.nextAction, urgenzaPercepita:pulse.urgency,
     extraSelezionati:extraNames,
-    packageCost:pr.packageCost.toFixed(2), profileCost:pr.profileCost.toFixed(2), complexityCost:pr.complexity.toFixed(2), extraCost:pr.extraCost.toFixed(2), totaleEUR:pr.total.toFixed(2)
+    packageCost:pr.packageCost.toFixed(2), profileCost:pr.profileCost.toFixed(2), complexityCost:pr.complexity.toFixed(2), extraCost:pr.extraCost.toFixed(2), enterpriseLayer:pr.enterprise.toFixed(2), totaleEUR:pr.total.toFixed(2)
   };
 }
 
@@ -3073,8 +3222,8 @@ ${SUPPORT_EMAIL}
 }
 
 function renderFinal(){
-  const pr=pricing(), p=buildPayload();const packageKey=activePackageKey();const pack=packageKey ? t().packages[packageKey] : null;if(!pack){$("finalSummary").innerHTML="Seleziona un pacchetto per generare il riepilogo.";$("paymentText").innerHTML="";$("bankTransferBox").innerHTML="";return;}
-  $("finalSummary").innerHTML=`<p><strong>Numero richiesta:</strong> ${escapeHTML(p.NumeroRichiesta)}<br><strong>Cliente:</strong> ${escapeHTML(p.nome)}<br><strong>Email:</strong> ${escapeHTML(p.email)}<br><strong>Telefono:</strong> ${escapeHTML(p.telefono)}<br><strong>Paese:</strong> ${escapeHTML(p.paese)||"—"}<br><strong>Tipologia:</strong> ${escapeHTML(CLIENT_COMPLEXITY_LABEL[value("cliente")] || value("cliente"))}<br><strong>Pacchetto selezionato:</strong> ${pack.name}<br><strong>Protocollo consigliato:</strong> ${recommendedPackage ? t().packages[recommendedPackage].name : "—"}<br><strong>Risk Snapshot™:</strong> ${p.riskLevel} ${p.riskScore}%</p><div class="total-big"><span>Totale stimato</span><strong>${currencyFormat(pr.total)}</strong></div>${quoteBreakdownHTML()}<p><strong>Cosa acquista:</strong> ${escapeHTML(pack.buy)}<br><strong>Perché vale:</strong> ${escapeHTML(pack.value)}</p><h3>Incluso nel pacchetto</h3><ul>${pack.services.map(s=>`<li>${escapeHTML(s)}</li>`).join("")}</ul>`;
+  const pr=pricing(), p=buildPayload();const pack=selectedPackage ? t().packages[selectedPackage] : null;if(!pack){$("finalSummary").innerHTML="Seleziona un pacchetto per generare il riepilogo.";$("paymentText").innerHTML="";$("bankTransferBox").innerHTML="";return;}
+  $("finalSummary").innerHTML=`<p><strong>Numero richiesta:</strong> ${escapeHTML(p.NumeroRichiesta)}<br><strong>Cliente:</strong> ${escapeHTML(p.nome)}<br><strong>Email:</strong> ${escapeHTML(p.email)}<br><strong>Telefono:</strong> ${escapeHTML(p.telefono)}<br><strong>Paese:</strong> ${escapeHTML(p.paese)||"—"}<br><strong>Tipologia:</strong> ${escapeHTML(CLIENT_COMPLEXITY_LABEL[value("cliente")] || value("cliente"))}<br><strong>Pacchetto selezionato:</strong> ${pack.name}<br><strong>Protocollo consigliato:</strong> ${recommendedPackage ? t().packages[recommendedPackage].name : "—"}<br><strong>Risk Snapshot™:</strong> ${p.riskLevel} ${p.riskScore}%</p><div class="total-big"><span>Totale stimato</span><strong>${currencyFormat(pr.total)}</strong></div>${quoteBreakdownHTML()}<p><strong>Cosa acquista:</strong> ${escapeHTML(pack.buy)}<br><strong>Perché vale:</strong> ${escapeHTML(pack.value)}</p><h3>${escapeHTML(t().pulseSummaryTitle)}</h3><p><strong>${escapeHTML(t().pulseIncludedLabel)}:</strong> ${escapeHTML(p.LivelloPulse)}<br><strong>Canale:</strong> ${escapeHTML(p.CanaleAvvisi)}<br><strong>Aree sensibili:</strong> ${escapeHTML(p.AreeSensibili)}<br><strong>Categoria rischio:</strong> ${escapeHTML(p.CategoriaRischio)}<br><strong>Prossima azione AETERNA:</strong> ${escapeHTML(p.ProssimaAzioneAETERNA)}</p><h3>Incluso nel pacchetto</h3><ul>${pack.services.map(s=>`<li>${escapeHTML(s)}</li>`).join("")}<li>${escapeHTML(p.LivelloPulse)}</li></ul>`;
   $("paymentText").innerHTML=escapeHTML(t().payment);$("bankTransferBox").innerHTML=bankText().replace(/\n/g,"<br>");
 }
 
@@ -3096,8 +3245,8 @@ function showConfirmation(payload, sent){
   if(!box) return;
   box.style.display="block";
   box.innerHTML=sent
-    ? `<strong>Richiesta inviata al team AETERNA Digital Legacy.</strong><br>Numero richiesta: <strong>${escapeHTML(payload.NumeroRichiesta)}</strong><br>Controlla la causale del bonifico e conserva questo numero per ogni comunicazione con AETERNA.`
-    : `<strong>Richiesta preparata per il team AETERNA Digital Legacy.</strong><br>Numero richiesta: <strong>${escapeHTML(payload.NumeroRichiesta)}</strong><br>Se l’invio automatico non parte, invia il riepilogo copiato a ${SUPPORT_EMAIL}.`;
+    ? `<strong>Richiesta inviata.</strong><br>Numero richiesta: <strong>${escapeHTML(payload.NumeroRichiesta)}</strong><br>Controlla la causale del bonifico e conserva questo numero per ogni comunicazione con AETERNA.`
+    : `<strong>Richiesta preparata.</strong><br>Numero richiesta: <strong>${escapeHTML(payload.NumeroRichiesta)}</strong><br>Se la registrazione automatica non parte, invia il riepilogo copiato a ${SUPPORT_EMAIL}.`;
   box.scrollIntoView({behavior:"smooth",block:"center"});
 }
 
@@ -3126,6 +3275,7 @@ document.addEventListener("DOMContentLoaded",()=>{
   renderGoalPanel();
   renderPackages();
   renderExtras();
+  renderSensitiveAreas();
   renderCompare();
   applyLanguage(currentLang);
 
