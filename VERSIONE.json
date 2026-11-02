@@ -1,0 +1,9 @@
+{
+  "release": "2026-11-02-ui-candidate",
+  "acceptedCheckoutVersion": "AETERNA-CHECKOUT-2026-10-31-2",
+  "indexSha256": "eced71f7754a4e4b4d6c8a71cead63ae414021370f53223b491aa64b58910b0e",
+  "baselineSha256": "8f3346964ebd93f06bd3b3480ead3354e4a6472f739462b29a6967db77ab03d7",
+  "backendChanged": false,
+  "legalDocumentsChanged": false,
+  "pricesChanged": false
+}
