@@ -1,5 +1,6 @@
 {
   "release": "2026-11-06-profile-copy",
+  "deploymentRevision": 2,
   "acceptedCheckoutVersion": "AETERNA-CHECKOUT-2026-10-31-2",
   "indexSha256": "6b22a0fb82747b79ce6ccc832eebb65a22fc5b16a42e073cfc6efac57814110f",
   "baselineSha256": "8f3346964ebd93f06bd3b3480ead3354e4a6472f739462b29a6967db77ab03d7",
