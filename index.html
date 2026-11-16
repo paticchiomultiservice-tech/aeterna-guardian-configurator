@@ -439,8 +439,35 @@ button:focus-visible,a:focus-visible,.package:focus-visible {outline:3px solid v
 @keyframes aeFlowBack{from{opacity:.35;transform:translateY(-7px)}to{opacity:1;transform:translateY(0)}}
 @media(max-width:600px){.ae-flow-brief{padding:16px;margin:16px 0}.ae-flow-brief h3{font-size:17px}.ae-flow-brief p,.ae-flow-brief li{font-size:14px}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto!important}.step.ae-flow-next,.step.ae-flow-back{animation:none!important}.ae-flow-meter span,.ae-progress-list li{transition:none!important}}
+.ae-scanner-safety {
+  margin-block: 12px;
+  padding: 14px 16px;
+  border-inline-start: 4px solid #d8b85c;
+  border-radius: 6px;
+  background: #28261a;
+  color: #fff4d6;
+  line-height: 1.55;
+  overflow-wrap: anywhere;
+}
+.ae-scanner-safety[hidden] { display: none; }
+.ae-scanner-safety p { margin: 0; }
+.ae-scanner-safety p + p { margin-block-start: 8px; }
+.ae-scanner-safety p:first-child { font-weight: 700; }
 </style>
 <style id="ae-plain-fields">body .ae-shell p,body .step p,body .field label{font-size:1rem;line-height:1.65}body .ae-plain-field{font-size:1rem;line-height:1.65;color:#deded1;max-width:72ch;margin:8px 0 18px}body .ae-plain-intro{font-size:1.05rem;line-height:1.7;padding:16px;border-left:3px solid #e6c767;background:#d4af370b;color:#f5e6b8;margin:12px 0 22px}body input:not([type=checkbox]):not([type=radio]):not([type=hidden]),body select{min-height:48px;font-size:1rem!important;max-width:100%;box-sizing:border-box}body button,body .ae-choice,body .ae-option{min-height:48px}body input[type=checkbox],body input[type=radio]{width:23px;height:23px;min-width:23px;vertical-align:middle}body :focus-visible{outline:3px solid #ffe699;outline-offset:4px}body .field{min-width:0}body .ae-plain-field,body .ae-plain-intro{overflow-wrap:anywhere}@media(max-width:650px){body .ae-plain-field{font-size:1rem}.navigation button{width:100%}}
+</style>
+<style>
+.ae-experience .hero-continuity .card {
+  background: linear-gradient(90deg, #0c1715 16%, rgba(12,23,21,.95) 53%, rgba(12,23,21,.18)), url('/aeterna-continuita.webp') right 42% / cover;
+}
+.continuity-links {display:flex; flex-wrap:wrap; gap:10px; margin:0 0 19px}
+.continuity-links a {display:inline-flex; align-items:center; min-height:44px; padding:8px 15px; border:1px solid #77623b; border-radius:12px; color:#f6dd9b; text-underline-offset:3px}
+.continuity-links a:focus-visible {outline:2px solid #f6dd9b; outline-offset:3px}
+@media (max-width:700px) {
+  .ae-experience .hero-continuity .card {
+    background:linear-gradient(90deg, rgba(12,23,21,.97), rgba(12,23,21,.86)), url('/aeterna-continuita.webp') center / cover;
+  }
+}
 </style>
 </head>
 <body>
@@ -465,7 +492,7 @@ button:focus-visible,a:focus-visible,.package:focus-visible {outline:3px solid v
   </div>
 </header>
 
-<section class="hero">
+<section class="hero hero-continuity">
   <div class="card">
     <div class="kicker" data-i18n="heroKicker">Porta d'ingresso AETERNA</div>
     <h1 class="hero-title" data-i18n-html="heroTitle">Guardian™ costruisce il piano. <span>Pulse 365™ lo mantiene vivo.</span></h1>
@@ -477,6 +504,7 @@ button:focus-visible,a:focus-visible,.package:focus-visible {outline:3px solid v
   </div>
 </section>
 
+<nav class="continuity-links" aria-label="AETERNA"><a href="/qr-continuita.html" lang="it">QR di continuità</a><a href="/comuni.html" lang="it">Per i Comuni</a></nav>
 <div class="layout">
 <main class="wizard" id="wizardTop">
 <section class="step active" id="step1"><div class="info" data-checkout><strong data-ae="shortTitle"></strong><p id="ae-short-top-text"></p><button type="button" class="btn-secondary" data-doc="privacy" data-ae="privacy"></button></div>
@@ -3668,7 +3696,7 @@ function normalizeAccountEmail(value) {
     it:{
       hero:'La tua vita digitale. Un passo alla volta.', heroText:'Scegli un controllo occasionale oppure costruisci il percorso per i tuoi accessi, la tua famiglia o il tuo lavoro. Il prezzo resta visibile e la scelta resta tua.',
       note:'Non inserire password, codici OTP, chiavi private o dati di altre persone. Ti chiediamo solo ciò che serve al percorso e all’ordine.',
-      modeTitle:'Da dove vuoi iniziare?', guardian:'Guardian + Pulse 365', guardianText:'Un percorso annuale con servizi e scanner inclusi nel piano scelto.', scanner:'Scanner 10', scannerText:'10 analisi, acquisto singolo. Nessun abbonamento obbligatorio.', scannerPrice:'2,99 € una tantum', scannerLimit:'Dieci analisi complessive. I crediti non hanno scadenza temporale; nessun rinnovo automatico. L’accesso viene attivato dopo verifica del pagamento.',
+      modeTitle:'Da dove vuoi iniziare?', guardian:'Guardian + Pulse 365', guardianText:'Un percorso annuale con servizi e scanner inclusi nel piano scelto.', scanner:'Scanner 10', scannerText:'10 analisi, acquisto singolo. Nessun abbonamento obbligatorio.', scannerPrice:'2,99 € una tantum', scannerLimit:'Dieci analisi complessive. I crediti non hanno scadenza temporale; nessun rinnovo automatico. L’accesso viene attivato dopo verifica del pagamento.',scannerUrgent:"Pericolo immediato per una persona? Nell’UE chiama subito il 112. Fuori dall’UE usa il numero di emergenza locale. Non aspettare l’analisi.",scannerChannel:"La richiesta sembra arrivare da una banca, un ente o una persona che conosci? Apri l’app o il sito ufficiale che usi già, oppure richiama un numero che conoscevi prima del messaggio. Lascia da parte i link e i recapiti ricevuti.",
       goalsTitle:'Che cosa vuoi ottenere?', goalsHelp:'Puoi scegliere più obiettivi. Servono a orientare il consiglio: non aggiungono moduli o costi automaticamente.', noGoal:'Non sono sicuro: aiutami a scegliere',
       goals:{protection:['Riconoscere richieste sospette','Messaggi, pagamenti e pressioni da verificare prima di agire.'],access:['Non perdere i miei accessi','Alternative e istruzioni per gli account che contano.'],family:['Preparare la mia famiglia','Persone, ruoli e istruzioni comprensibili.'],legacy:['Organizzare ricordi e futuro','Archivi, volontà digitali e continuità, con i limiti del servizio.'],business:['Dare continuità al mio lavoro','Account, collaboratori e risorse dell’attività.'],ai:['Capire i permessi di app e AI','Individuare cosa può agire per me e quali verifiche richiedere.'],complete:['Valutare il percorso completo','Confrontare il piano Guardian con i servizi più estesi.']},
       steps:['Il tuo obiettivo','Il perimetro','Le tue priorità','Il piano','I moduli','Riepilogo e ordine'],
@@ -3691,7 +3719,7 @@ function normalizeAccountEmail(value) {
     en:{
       hero:'Your digital life. One step at a time.', heroText:'Choose an occasional check or build a path for your accounts, family or work. The price stays visible and the choice stays yours.',
       note:'Do not enter passwords, one-time codes, private keys or other people’s personal data. We ask only for what is needed for the service and your order.',
-      modeTitle:'Where would you like to start?', guardian:'Guardian + Pulse 365', guardianText:'An annual path with the services and scanner included in your selected plan.', scanner:'Scanner 10', scannerText:'10 analyses, one purchase. No subscription required.', scannerPrice:'€2.99 one-off', scannerLimit:'Ten analyses in total. Credits have no time expiry; no automatic renewal. Access is activated after payment is verified.',
+      modeTitle:'Where would you like to start?', guardian:'Guardian + Pulse 365', guardianText:'An annual path with the services and scanner included in your selected plan.', scanner:'Scanner 10', scannerText:'10 analyses, one purchase. No subscription required.', scannerPrice:'€2.99 one-off', scannerLimit:'Ten analyses in total. Credits have no time expiry; no automatic renewal. Access is activated after payment is verified.',scannerUrgent:"Is someone in immediate danger? In the EU, call 112 now. Outside the EU, call your local emergency number. Do not wait for a scan.",scannerChannel:"Does the request appear to come from a bank, an organisation or someone you know? Open the official app or website you already use, or call a number you knew before receiving the message. Avoid using the links or contact details in the message.",
       goalsTitle:'What would you like to achieve?', goalsHelp:'You can select more than one goal. They guide the recommendation and never add modules or charges automatically.', noGoal:'I am not sure: help me choose',
       goals:{protection:['Check suspicious requests','Messages, payments and pressure to verify before acting.'],access:['Keep access to my accounts','Alternatives and instructions for the accounts that matter.'],family:['Prepare my family','People, roles and understandable instructions.'],legacy:['Organise memories and the future','Archives, digital wishes and continuity within the service scope.'],business:['Keep my work running','Accounts, collaborators and business resources.'],ai:['Understand app and AI permissions','Identify what can act for me and what needs checking.'],complete:['Consider the complete path','Compare Guardian with its broader service scope.']},
       steps:['Your goals','Your scope','Your priorities','Your plan','Your modules','Review and order'],
@@ -3714,7 +3742,7 @@ function normalizeAccountEmail(value) {
     fr:{
       hero:'Votre vie numérique. Une étape à la fois.', heroText:'Choisissez une vérification ponctuelle ou préparez un parcours pour vos accès, votre famille ou votre activité. Le prix reste visible et le choix vous appartient.',
       note:'Ne saisissez ni mots de passe, ni codes à usage unique, ni clés privées, ni données personnelles de tiers. Seules les informations nécessaires au service et à la commande sont demandées.',
-      modeTitle:'Par où souhaitez-vous commencer ?', guardian:'Guardian + Pulse 365', guardianText:'Un parcours annuel avec les services et le scanner prévus dans l’offre choisie.', scanner:'Scanner 10', scannerText:'10 analyses, un achat unique. Aucun abonnement obligatoire.', scannerPrice:'2,99 € en une fois', scannerLimit:'Dix analyses au total. Les crédits n’ont pas de date d’expiration ; aucun renouvellement automatique. L’accès est activé après vérification du paiement.',
+      modeTitle:'Par où souhaitez-vous commencer ?', guardian:'Guardian + Pulse 365', guardianText:'Un parcours annuel avec les services et le scanner prévus dans l’offre choisie.', scanner:'Scanner 10', scannerText:'10 analyses, un achat unique. Aucun abonnement obligatoire.', scannerPrice:'2,99 € en une fois', scannerLimit:'Dix analyses au total. Les crédits n’ont pas de date d’expiration ; aucun renouvellement automatique. L’accès est activé après vérification du paiement.',scannerUrgent:"Une personne est en danger immédiat ? Dans l’UE, appelez le 112 sans attendre. Hors de l’UE, appelez le numéro d’urgence local. N’attendez pas l’analyse.",scannerChannel:"La demande semble venir d’une banque, d’un organisme ou d’une personne connue ? Ouvrez l’application ou le site officiel que vous utilisez déjà, ou composez un numéro que vous connaissiez avant le message. Écartez les liens et les coordonnées du message.",
       goalsTitle:'Que souhaitez-vous obtenir ?', goalsHelp:'Plusieurs objectifs sont possibles. Ils orientent le conseil, sans ajout automatique de modules ou de frais.', noGoal:'Je ne sais pas encore : aidez-moi à choisir',
       goals:{protection:['Vérifier les demandes suspectes','Messages, paiements et pressions à vérifier avant d’agir.'],access:['Conserver mes accès','Solutions de remplacement et instructions pour les comptes importants.'],family:['Préparer ma famille','Personnes, rôles et instructions compréhensibles.'],legacy:['Organiser les souvenirs et l’avenir','Archives, souhaits numériques et continuité dans les limites du service.'],business:['Assurer la continuité de mon activité','Comptes, collaborateurs et ressources professionnelles.'],ai:['Comprendre les autorisations des apps et de l’IA','Identifier ce qui peut agir pour moi et les vérifications nécessaires.'],complete:['Envisager le parcours complet','Comparer Guardian et son périmètre de services plus étendu.']},
       steps:['Vos objectifs','Le périmètre','Vos priorités','Votre offre','Les modules','Récapitulatif et commande'],
@@ -3737,7 +3765,7 @@ function normalizeAccountEmail(value) {
     es:{
       hero:'Tu vida digital. Paso a paso.', heroText:'Elige una comprobación puntual o prepara un recorrido para tus cuentas, tu familia o tu trabajo. El precio permanece visible y la elección es tuya.',
       note:'No introduzcas contraseñas, códigos de un solo uso, claves privadas ni datos personales de otras personas. Solo pedimos lo necesario para el servicio y el pedido.',
-      modeTitle:'¿Por dónde quieres empezar?', guardian:'Guardian + Pulse 365', guardianText:'Un recorrido anual con los servicios y el escáner incluidos en el plan elegido.', scanner:'Scanner 10', scannerText:'10 análisis, una sola compra. Sin suscripción obligatoria.', scannerPrice:'2,99 € en un solo pago', scannerLimit:'Diez análisis en total. Los créditos no caducan; no hay renovación automática. El acceso se activa después de verificar el pago.',
+      modeTitle:'¿Por dónde quieres empezar?', guardian:'Guardian + Pulse 365', guardianText:'Un recorrido anual con los servicios y el escáner incluidos en el plan elegido.', scanner:'Scanner 10', scannerText:'10 análisis, una sola compra. Sin suscripción obligatoria.', scannerPrice:'2,99 € en un solo pago', scannerLimit:'Diez análisis en total. Los créditos no caducan; no hay renovación automática. El acceso se activa después de verificar el pago.',scannerUrgent:"¿Hay alguien en peligro inmediato? En la UE, llama ya al 112. Fuera de la UE, llama al número local de emergencias. No esperes al análisis.",scannerChannel:"¿Parece que la solicitud viene de un banco, un organismo o alguien que conoces? Abre la aplicación o la web oficial que ya usas, o llama a un número que conocías antes del mensaje. Evita los enlaces y los datos de contacto del mensaje.",
       goalsTitle:'¿Qué quieres conseguir?', goalsHelp:'Puedes elegir varios objetivos. Orientan la recomendación, sin añadir módulos ni costes automáticamente.', noGoal:'No estoy seguro: ayúdame a elegir',
       goals:{protection:['Comprobar solicitudes sospechosas','Mensajes, pagos y presiones que verificar antes de actuar.'],access:['Conservar mis accesos','Alternativas e instrucciones para las cuentas importantes.'],family:['Preparar a mi familia','Personas, funciones e instrucciones comprensibles.'],legacy:['Organizar recuerdos y futuro','Archivos, preferencias digitales y continuidad dentro del alcance del servicio.'],business:['Dar continuidad a mi trabajo','Cuentas, colaboradores y recursos de la actividad.'],ai:['Entender los permisos de apps e IA','Identificar qué puede actuar por mí y qué conviene comprobar.'],complete:['Valorar el recorrido completo','Comparar Guardian y su alcance de servicios más amplio.']},
       steps:['Tus objetivos','El alcance','Tus prioridades','El plan','Los módulos','Resumen y pedido'],
@@ -3760,7 +3788,7 @@ function normalizeAccountEmail(value) {
     pt:{
       hero:'A sua vida digital. Um passo de cada vez.', heroText:'Escolha uma verificação pontual ou prepare um percurso para os seus acessos, a família ou o trabalho. O preço mantém-se visível e a escolha é sua.',
       note:'Não introduza palavras-passe, códigos de utilização única, chaves privadas nem dados pessoais de terceiros. Pedimos apenas o necessário para o serviço e a encomenda.',
-      modeTitle:'Por onde pretende começar?', guardian:'Guardian + Pulse 365', guardianText:'Um percurso anual com os serviços e o scanner incluídos no plano escolhido.', scanner:'Scanner 10', scannerText:'10 análises, uma compra única. Sem subscrição obrigatória.', scannerPrice:'2,99 € numa única compra', scannerLimit:'Dez análises no total. Os créditos não têm prazo de validade; não há renovação automática. O acesso é ativado após verificação do pagamento.',
+      modeTitle:'Por onde pretende começar?', guardian:'Guardian + Pulse 365', guardianText:'Um percurso anual com os serviços e o scanner incluídos no plano escolhido.', scanner:'Scanner 10', scannerText:'10 análises, uma compra única. Sem subscrição obrigatória.', scannerPrice:'2,99 € numa única compra', scannerLimit:'Dez análises no total. Os créditos não têm prazo de validade; não há renovação automática. O acesso é ativado após verificação do pagamento.',scannerUrgent:"Alguém corre perigo imediato? Na UE, ligue já para o 112. Fora da UE, use o número de emergência local. Não espere pela análise.",scannerChannel:"O pedido parece vir de um banco, de uma entidade ou de alguém que conhece? Abra a aplicação ou o sítio oficial que já usa, ou ligue para um número que conhecia antes da mensagem. Evite as ligações e os contactos da mensagem.",
       goalsTitle:'O que pretende alcançar?', goalsHelp:'Pode escolher vários objetivos. Orientam a recomendação, sem acrescentar módulos ou custos automaticamente.', noGoal:'Ainda não sei: ajudem-me a escolher',
       goals:{protection:['Verificar pedidos suspeitos','Mensagens, pagamentos e pressão a verificar antes de agir.'],access:['Manter os meus acessos','Alternativas e instruções para as contas importantes.'],family:['Preparar a minha família','Pessoas, funções e instruções compreensíveis.'],legacy:['Organizar memórias e futuro','Arquivos, vontades digitais e continuidade no âmbito do serviço.'],business:['Dar continuidade ao meu trabalho','Contas, colaboradores e recursos da atividade.'],ai:['Compreender permissões de apps e IA','Identificar o que pode agir por mim e o que convém verificar.'],complete:['Considerar o percurso completo','Comparar Guardian com o seu âmbito de serviços mais alargado.']},
       steps:['Os seus objetivos','O âmbito','As suas prioridades','O plano','Os módulos','Resumo e encomenda'],
@@ -3888,6 +3916,7 @@ function normalizeAccountEmail(value) {
     $('ae-scanner-route').setAttribute('aria-pressed',String(route==='scanner10'));
     $('ae-goals').hidden=route==='scanner10';
     $('ae-scanner-description').hidden=route!=='scanner10';
+    $('ae-scanner-safety').hidden=route!=='scanner10';
     $('ae-next-first').textContent=route==='scanner10'?copy().scannerContinue:copy().continue;
     $('clientTypeHelp').textContent=copy().clientHelp;
     for(const id of numberIds){const unit=$('ae-unit-'+id);if(unit){const f=CheckoutCore.CLIENTS[value('cliente')]||1;unit.textContent=money((id==='profiliProtetti'?50:CheckoutCore.RATES[id])*f)+' '+(id==='profiliProtetti'?copy().profileUnit:copy().unit);}}
@@ -3941,6 +3970,8 @@ function normalizeAccountEmail(value) {
     $('ae-scanner-route').innerHTML=`<span class="ae-route-type">${esc(c.scanner)}</span><span>${esc(c.scannerText)}</span><strong class="ae-route-price">${esc(c.scannerPrice)}</strong>`;
     text($('ae-goals-title'),c.goalsTitle);text($('ae-goals-help'),c.goalsHelp);text($('ae-goals-unsure'),c.noGoal);
     text($('ae-scanner-description'),c.scannerLimit);
+    text($('ae-scanner-urgent'),c.scannerUrgent);
+    text($('ae-scanner-channel'),c.scannerChannel);
     text(field('cliente')?.querySelector('label'),c.client);text(field('paese')?.querySelector('label'),c.country);
     text($('ae-scope-help'),c.scopeHelp);text($('ae-scope-contact'),c.contact);
     text($('ae-continuity-description'),scopeDetails[lang()].continuity);text($('ae-price-formula'),scopeDetails[lang()].formula);
@@ -3975,7 +4006,7 @@ function normalizeAccountEmail(value) {
     const country=field('paese'),client=field('cliente'),countryName=field('ae-country-name');if(country&&client){grid.append(client,country);if(countryName)grid.append(countryName);}
     step1.querySelector('.navigation .btn-next').id='ae-next-first';
     const mode=block('section','ae-mode-choice');mode.setAttribute('aria-labelledby','ae-mode-title');
-    mode.innerHTML='<h3 id="ae-mode-title"></h3><div class="ae-route-grid"><button type="button" class="ae-mode-button" id="ae-guardian-route" aria-pressed="true"></button><button type="button" class="ae-mode-button" id="ae-scanner-route" aria-pressed="false"></button></div><p id="ae-scanner-description" class="info" hidden></p>';
+    mode.innerHTML='<h3 id="ae-mode-title"></h3><div class="ae-route-grid"><button type="button" class="ae-mode-button" id="ae-guardian-route" aria-pressed="true"></button><button type="button" class="ae-mode-button" id="ae-scanner-route" aria-pressed="false"></button></div><p id="ae-scanner-description" class="info" hidden></p><div id="ae-scanner-safety" class="ae-scanner-safety" hidden><p id="ae-scanner-urgent"></p><p id="ae-scanner-channel"></p></div>';
     step1.insertBefore(mode,grid);
     const goals=block('section','ae-goals');goals.id='ae-goals';goals.innerHTML='<h3 id="ae-goals-title"></h3><p id="ae-goals-help"></p>';
     const panel=$('goalPanel');goals.append(panel);const unsure=block('button','ae-text-button');unsure.id='ae-goals-unsure';unsure.type='button';goals.append(unsure);

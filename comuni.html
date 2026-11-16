@@ -1,0 +1,591 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Esercitazione offline AETERNA per la continuità delle comunicazioni di un ufficio pubblico.">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline'; script-src 'unsafe-inline'; img-src 'self'; form-action 'none'; base-uri 'none'">
+  <title>Continuità dell’URP · AETERNA Digital Legacy</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --ink: #102522;
+      --muted: #3e5951;
+      --teal: #184e43;
+      --dark: #132e29;
+      --paper: #f6f5ed;
+      --white: #fff;
+      --gold: #aa7627;
+      --line: #c5d1c8;
+      --mint: #e9f3ed;
+      --warn: #762b1f;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      background: var(--paper);
+      color: var(--ink);
+      font: 1.07rem/1.62 'Atkinson Hyperlegible Next','Segoe UI',Arial,sans-serif;
+      overflow-wrap: anywhere;
+    }
+
+    h1,h2,h3,p {
+      margin-top: 0;
+    }
+
+    h1,h2,h3 {
+      line-height: 1.15;
+    }
+
+    h1 {
+      font-size: clamp(2.4rem,6vw,4.8rem);
+      max-width: 15ch;
+      margin-bottom: 1rem;
+      letter-spacing: -.035em;
+    }
+
+    h2 {
+      font-size: clamp(1.7rem,3vw,2.3rem);
+      margin-bottom: .8rem;
+    }
+
+    h3 {
+      font-size: 1.2rem;
+      margin-bottom: .6rem;
+    }
+
+    p {
+      margin-bottom: .85rem;
+    }
+
+    p:last-child {
+      margin-bottom: 0;
+    }
+
+    a {
+      color: var(--teal);
+      text-underline-offset: .2em;
+    }
+
+    a:hover {
+      text-decoration-thickness: .16em;
+    }
+
+    button {
+      font: inherit;
+    }
+
+    button:focus-visible,a:focus-visible,input:focus-visible,summary:focus-visible {
+      outline: .2rem solid #005eaf;
+      outline-offset: .25rem;
+    }
+
+    header a:focus-visible {
+      outline-color: #ffdb84;
+    }
+
+    .skip {
+      position: absolute;
+      left: 1rem;
+      top: 1rem;
+      z-index: 3;
+      transform: translateY(-160%);
+      background: var(--white);
+      padding: .6rem;
+    }
+
+    .skip:focus {
+      transform: none;
+    }
+
+    header {
+      background: var(--dark);
+      color: var(--white);
+      border-bottom: .35rem solid #dec078;
+    }
+
+    header .wrap {
+      padding-block: clamp(2rem,5vw,4.6rem);
+    }
+
+    .wrap {
+      width: min(100% - 2rem,66rem);
+      margin-inline: auto;
+    }
+
+    .brand {
+      color: #ffdb84;
+      font-size: .88rem;
+      font-weight: 800;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      margin-bottom: 1.4rem;
+    }
+
+    .urp-image{float:right; width:min(43%,30rem); height:auto; margin:0 0 1.1rem 1.5rem; border-radius:1.2rem; border:1px solid #dec078;} 
+    @media(max-width:740px){.urp-image{float:none; width:100%; margin:0 0 1.3rem;}}
+    @media print{.urp-image{display:none;}} 
+    .intro {
+      max-width: 54ch;
+      color: #e6eee7;
+      font-size: 1.18rem;
+    }
+
+    .notice {
+      max-width: 64ch;
+      padding: 1rem 1.1rem;
+      border-left: .23rem solid #dec078;
+      background: #24443b;
+      color: #fff;
+      margin-top: 1.35rem;
+    }
+
+    .hero-nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .6rem .85rem;
+      margin-top: 1.2rem;
+    }
+
+    .hero-nav a {
+      color: #fff;
+      padding: .55rem .85rem;
+      border: 1px solid #9bad9c;
+      border-radius: .4rem;
+    }
+
+    .hero-nav a:first-child {
+      background: #ffdb84;
+      color: var(--ink);
+      border-color: #ffdb84;
+      font-weight: 700;
+    }
+
+    .hero-nav .qr-link {
+      color: #ffdb84;
+    }
+
+    main {
+      padding: clamp(1.5rem,4vw,3rem) 0 2rem;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: minmax(0,1fr) minmax(0,1fr);
+      gap: 1.2rem;
+      align-items: start;
+    }
+
+    .card,.panel {
+      background: var(--white);
+      border: 1px solid var(--line);
+      border-radius: .6rem;
+      padding: clamp(1rem,3vw,1.7rem);
+    }
+
+    .card {
+      border-top: .35rem solid var(--teal);
+    }
+
+    .panel {
+      margin-top: 1.5rem;
+    }
+
+    .meta {
+      color: var(--muted);
+      font-size: .9rem;
+      font-weight: 700;
+      margin-bottom: .65rem;
+    }
+
+    .scenario {
+      border-left: .2rem solid var(--gold);
+      background: var(--paper);
+      padding: .9rem;
+      margin: 1rem 0 1.25rem;
+    }
+
+    .scenario p {
+      margin-bottom: .4rem;
+    }
+
+    .scenario p:last-child {
+      margin-bottom: 0;
+    }
+
+    .scenario strong {
+      display: block;
+    }
+
+    .plain-list {
+      padding-left: 1.25rem;
+    }
+
+    .plain-list li {
+      margin: .34rem 0;
+    }
+
+    .task {
+      border: 0;
+      padding: 0;
+      min-width: 0;
+      margin: 1.15rem 0;
+    }
+
+    .task legend {
+      font-weight: 700;
+      padding: 0;
+      margin-bottom: .55rem;
+    }
+
+    .choice {
+      display: flex;
+      align-items: flex-start;
+      gap: .6rem;
+      padding: .55rem .7rem;
+      min-height: 2.75rem;
+      border: 1px solid var(--line);
+      border-radius: .4rem;
+      margin: .48rem 0;
+      cursor: pointer;
+    }
+
+    .choice:focus-within {
+      border-color: var(--teal);
+      background: var(--mint);
+    }
+
+    .choice input {
+      flex: none;
+      inline-size: 1.2em;
+      block-size: 1.2em;
+      margin: .25em 0 0;
+      accent-color: var(--teal);
+    }
+
+    .check {
+      border: 0;
+      background: var(--teal);
+      color: #fff;
+      border-radius: .4rem;
+      padding: .55rem .85rem;
+      min-height: 2.75rem;
+      cursor: pointer;
+      font-weight: 700;
+    }
+
+    .check:hover {
+      background: var(--dark);
+    }
+
+    .reply {
+      margin: .75rem 0 0;
+    }
+
+    .reply:not(:empty) {
+      border-left: .18rem solid var(--teal);
+      padding: .6rem .75rem;
+      background: var(--mint);
+    }
+
+    .reply.error {
+      border-color: var(--warn);
+      color: var(--warn);
+      background: #fcf0eb;
+    }
+
+    details {
+      margin-top: 1.15rem;
+      border-top: 1px solid var(--line);
+      padding-top: .6rem;
+    }
+
+    summary {
+      color: var(--teal);
+      font-weight: 700;
+      cursor: pointer;
+      padding: .35rem 0;
+      min-height: 2.35rem;
+    }
+
+    details p {
+      margin: .55rem 0;
+    }
+
+    .program {
+      display: grid;
+      grid-template-columns: repeat(auto-fit,minmax(min(100%,12rem),1fr));
+      gap: .8rem 1.25rem;
+      margin: 1.25rem 0;
+    }
+
+    .program div {
+      padding-top: .55rem;
+      border-top: .18rem solid var(--teal);
+    }
+
+    .program dt {
+      font-weight: 800;
+    }
+
+    .program dd {
+      margin: 0;
+    }
+
+    .refs {
+      padding-bottom: 1.8rem;
+    }
+
+    .refs ul {
+      padding-left: 1.2rem;
+    }
+
+    .refs li {
+      margin: .3em 0;
+    }
+
+    .small {
+      color: var(--muted);
+      font-size: .94rem;
+    }
+
+    .button-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .6rem;
+    }
+
+    .button-row a {
+      display: inline-block;
+      min-height: 2.75rem;
+      padding: .5rem .75rem;
+      border: 1px solid var(--teal);
+      border-radius: .4rem;
+      font-weight: 700;
+    }
+
+    .working-mark {
+      font-weight: 700;
+      color: var(--warn);
+    }
+
+    @media(max-width:54rem) {
+      .cards {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media print {
+      body,header {
+        background: #fff;
+        color: #000;
+        font-size: 11pt;
+      }
+      header {
+        border-bottom: 1pt solid #333;
+      }
+      header .wrap {
+        padding-block: 12pt;
+      }
+      .wrap {
+        width: 100%;
+      }
+      .brand,.intro,.notice,.meta,.small {
+        color: #000;
+      }
+      .notice,.scenario {
+        background: #fff;
+        border: 1pt solid #777;
+      }
+      .hero-nav,.skip,.task,.reply,.button-row {
+        display: none!important;
+      }
+      main {
+        padding: 12pt 0;
+      }
+      .cards {
+        display: block;
+      }
+      .card,.panel {
+        page-break-inside: avoid;
+        margin: 0 0 10pt;
+        border-color: #777;
+        padding: 10pt;
+        border-radius: 0;
+      }
+      h1 {
+        font-size: 25pt;
+        max-width: none;
+      }
+      h2 {
+        font-size: 16pt;
+      }
+      h3 {
+        font-size: 13pt;
+      }
+      a {
+        color: #000;
+      }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip" href="#contenuto">Vai alle esercitazioni</a>
+  <header>
+    <div class="wrap">
+      <p class="brand">AETERNA Digital Legacy · Pilota per i Comuni</p>
+      <h1>Quando l’URP è offline</h1>
+      <img class="urp-image" src="aeterna-comuni.webp" width="1200" height="800" alt=""><p class="intro">Due prove per verificare se un ufficio riesce a far arrivare l’informazione corretta ai cittadini quando il canale abituale si ferma.</p>
+      <p class="notice"><strong>Simulazione con dati inventati.</strong> Proposta per il Comune di Lecce in attesa di confronto. Apri questa pagina anche senza Internet. Svolgi le prove qui o su carta, senza telefonate o invii reali.</p>
+      <nav class="hero-nav" aria-label="Risorse della prova">
+        <a href="#contenuto">Inizia le prove</a>
+        <a href="#scheda-cittadino">Scheda cittadino</a>
+        <a href="#programma">Programma e registri</a>
+      </nav>
+    </div>
+  </header>
+  <main class="wrap" id="contenuto" tabindex="-1">
+    <div class="cards">
+      <article class="card" aria-labelledby="titolo-a">
+        <p class="meta">Esercizio A · Operatore e cittadino</p>
+        <h2 id="titolo-a">Casella ferma, avviso falso</h2>
+        <p>La casella URP di prova è irraggiungibile. Compare un avviso che dichiara chiuso lo sportello. Il codice sul cartello è stato sostituito.</p>
+        <div class="scenario">
+          <strong>Materiali di prova</strong>
+          <p>Avviso sospetto «Urgente, sportello chiuso. Inquadra il nuovo QR». Copia senza versione e recapito verificabile.</p>
+          <p>Procedura simulata dell’ente. Il responsabile di turno conferma la rettifica. La bacheca al varco, indipendente dalla casella, è il canale alternativo.</p>
+        </div>
+        <ol class="plain-list">
+          <li>Chi conduce consegna prima la procedura e tiene da parte la <a href="#scheda-cittadino">scheda cittadino</a>.</li>
+          <li>L’operatore indica da chi ottiene conferma e dove pubblicherebbe la rettifica autorizzata.</li>
+          <li>Chi interpreta il cittadino chiede dove trovare la rettifica senza telefono. Chi conduce consegna la scheda solo dopo l’attivazione corretta del canale.</li>
+        </ol>
+        <fieldset class="task" data-task="a">
+          <legend>Quale azione indichi come operatore?</legend>
+          <label class="choice"><input type="radio" name="esercizio-a" value="inoltra"> Inoltro il primo avviso ricevuto per coprire il guasto.</label>
+          <label class="choice"><input type="radio" name="esercizio-a" value="conferma"> Chiedo conferma al ruolo previsto. Simulo la pubblicazione della rettifica in bacheca e indico il percorso senza QR.</label>
+          <label class="choice"><input type="radio" name="esercizio-a" value="qr"> Uso il nuovo QR sul cartello per decidere se lo sportello è chiuso.</label>
+          <button class="check" type="button" hidden>Verifica la scelta A</button>
+          <p class="reply" aria-live="polite" aria-atomic="true"></p>
+        </fieldset>
+        <details>
+          <summary>Esito da osservare</summary>
+          <p>L’operatore ricorre alla fonte prevista, aspetta la conferma e attiva la bacheca simulata. Il cittadino trova la scheda anche senza fotocamera, riconosce l’avviso di rettifica e legge il codice URP-DEMO-02 sul foglio.</p>
+          <p>Ripetizione dopo sette giorni. La rete è assente e qualcuno presenta una copia vecchia. Si annota se le persone ritrovano la versione corrente con la carta e il punto informazioni.</p>
+        </details>
+      </article>
+      <article class="card" aria-labelledby="titolo-b">
+        <p class="meta">Esercizio B · Operatore e referente</p>
+        <h2 id="titolo-b">Arriva un’email di allarme</h2>
+        <p>L’operatore riceve un cartoncino al posto di un’email. La prova riguarda il passaggio al ruolo competente e chi autorizza la comunicazione.</p>
+        <div class="scenario">
+          <strong>Messaggio fittizio</strong>
+          <p>«URGENTE. Pubblicate subito questa segnalazione». Cartoncino senza allegati, link o minaccia reale.</p>
+          <p>Procedura simulata. L’operatore consegna il cartoncino al referente di turno, o al sostituto già concordato. Il referente conferma la ricezione. L’autorità competente valuta le azioni di sicurezza.</p>
+        </div>
+        <ol class="plain-list">
+          <li>Chi conduce assegna i ruoli prima di mostrare il cartoncino.</li>
+          <li>L’operatore simula il passaggio interno sul canale previsto e annota quando ottiene conferma.</li>
+          <li>Il referente indica come attende le disposizioni autorizzate. Ogni comunicazione della prova resta tra i partecipanti.</li>
+        </ol>
+        <fieldset class="task" data-task="b">
+          <legend>Come gestisci il cartoncino?</legend>
+          <label class="choice"><input type="radio" name="esercizio-b" value="pubblica"> Pubblico io l’avviso e decido che cosa deve fare il pubblico.</label>
+          <label class="choice"><input type="radio" name="esercizio-b" value="passa"> Lo passo al ruolo previsto, chiedo conferma della ricezione e attendo le disposizioni autorizzate.</label>
+          <label class="choice"><input type="radio" name="esercizio-b" value="ignora"> Lo archivio senza il passaggio al referente.</label>
+          <button class="check" type="button" hidden>Verifica la scelta B</button>
+          <p class="reply" aria-live="polite" aria-atomic="true"></p>
+        </fieldset>
+        <details>
+          <summary>Esito da osservare</summary>
+          <p>Il ruolo previsto riceve il cartoncino e conferma il passaggio. L’operatore conserva l’originale fittizio e individua il responsabile dell’autorizzazione alla comunicazione.</p>
+          <p>Ripetizione dopo sette giorni. Il referente principale è assente. Si annota se l’operatore raggiunge il sostituto dal recapito di prova già predisposto.</p>
+        </details>
+      </article>
+    </div>
+
+    <section class="panel" id="scheda-cittadino" aria-labelledby="titolo-scheda">
+      <p class="meta">Esercitazione · Versione 2</p>
+      <h2 id="titolo-scheda">Lo sportello di prova è aperto</h2>
+      <p>La casella di posta della prova è ferma. Vai alla bacheca accanto all’ingresso dell’aula. Se serve, chiedi al punto informazioni di indicarti la scheda corrente.</p>
+      <p>Leggi in chiaro <strong>URP-DEMO-02</strong> e <strong>Versione 2</strong>. Chi conduce conferma quale versione è in uso. Questa scheda è valida durante la sessione guidata.</p>
+      <div class="button-row"><a href="scheda-urp.html">Apri il foglio da stampare</a></div>
+    </section>
+
+    <section class="panel" id="programma" aria-labelledby="titolo-programma">
+      <h2 id="titolo-programma">Programma di 30 giorni</h2>
+      <p>Il perimetro proposto è un servizio e un ufficio. L’ente individua chi conduce, i ruoli di esercitazione e le persone che leggono la scheda, con almeno un passaggio senza smartphone.</p>
+      <dl class="program">
+        <div><dt>Giorni 1–5</dt><dd>Concordare perimetro, ruoli, soglie e canale alternativo. Preparare schede e turni separati dalle attività reali.</dd></div>
+        <div><dt>Giorni 6–12</dt><dd>Svolgere A e B. Contare passaggi riusciti e persone che trovano l’avviso senza QR. Rilevare tempi e ostacoli.</dd></div>
+        <div><dt>Sette giorni dopo</dt><dd>Ripetere entrambe le prove con le varianti. Confrontare conteggi, tempi e cause degli errori.</dd></div>
+        <div><dt>Entro il giorno 30</dt><dd>Consegnare verbale aggregato, correzioni da assegnare e versione aggiornata della procedura dimostrativa.</dd></div>
+      </dl>
+      <p><strong>Soglia di partenza da concordare.</strong> Con otto tentativi per ciascuna misura, almeno 7 su 8 per la verifica della fonte, la ricezione interna e il reperimento dell’avviso senza QR. Fissare prima della prova anche il tempo massimo previsto per il passaggio.</p>
+      <p>Il verbale riporta, per ogni sessione, tentativi, esiti riusciti, tempi, ostacolo riscontrato e correzione da assegnare. Usa conteggi aggregati.</p>
+      <p class="working-mark">Interrompere in caso di uso di dati o canali reali, pubblicazione senza autorizzazione o assenza di un percorso accessibile senza QR. Correggere la causa e riprovare.</p>
+      <div class="button-row">
+        <a href="AETERNA-Kit-URP.zip">Scarica il kit con verbale e registri</a>
+        <a href="qr-continuita.html">Prova il QR di continuità</a>
+      </div>
+    </section>
+
+    <section class="panel" aria-labelledby="titolo-verifica">
+      <h2 id="titolo-verifica">Schede e QR nel tempo</h2>
+      <p>Indica sulla scheda il recapito istituzionale, l’indirizzo da digitare e la versione. Tieni un registro di dove sono affissi i QR. Quando cambiano fonte, responsabile, supporto o recapito, aggiorna le copie interessate e ripeti la prova.</p>
+      <p>Nel pilota il QR resta facoltativo. I destinatari trovano le stesse istruzioni senza scansione. Il prototipo AETERNA della scheda firmata è una prova separata dalla procedura dell’ente.</p>
+    </section>
+  </main>
+  <footer class="wrap refs" aria-labelledby="titolo-fonti">
+    <h2 id="titolo-fonti">Riferimenti istituzionali</h2>
+    <p class="small">Per questi collegamenti serve Internet. I materiali di esercitazione si aprono in locale.</p>
+    <ul>
+      <li><a href="https://www.comune.lecce.it/aree-tematiche/uffici-comunali/ufficio-protocollo-e-gestione-documentale">Comune di Lecce · Ufficio protocollo</a></li>
+      <li><a href="https://comune.lecce.it/aree-tematiche/uffici-comunali/ufficio-relazioni-con-il-pubblico">Comune di Lecce · Ufficio relazioni con il pubblico</a></li>
+      <li><a href="https://www.anci.puglia.it/web/2026/07/13/firmato-protocollo-dintesa-tra-anci-puglia-e-polizia-postale-per-la-cybersicurezza-dei-comuni-pugliesi/">ANCI Puglia · Intesa con la Polizia Postale</a></li>
+      <li><a href="https://www.funzionepubblica.gov.it/it/il-dipartimento/notizie-del-dipartimento/buone-pratiche-di-cybersicurezza-il-vademecum-per-i-dipendenti-della-pa-on-line-il-nuovo-programma/">Dipartimento della funzione pubblica · Vademecum e formazione</a></li>
+    </ul>
+  </footer>
+  <script>
+    const exercises = {
+      a: {
+        correct: 'conferma',
+        success: 'Scelta corretta. Ora la persona che interpreta il cittadino deve trovare la rettifica senza scansionare il codice.',
+        retry: 'Riprova. Prima ottieni conferma dal ruolo previsto, poi scegli un canale che funziona anche con la casella ferma.'
+      },
+      b: {
+        correct: 'passa',
+        success: 'Scelta corretta. Registra la conferma di ricezione e indica chi può autorizzare le comunicazioni della prova.',
+        retry: 'Riprova. Il compito è consegnare al ruolo previsto e ottenere una conferma di ricezione.'
+      }
+    };
+
+    for (const group of document.querySelectorAll('[data-task]')) {
+      const exercise = exercises[group.dataset.task];
+      const button = group.querySelector('.check');
+      const reply = group.querySelector('.reply');
+      button.hidden = false;
+      group.addEventListener('change', () => {
+        reply.textContent = '';
+        reply.classList.remove('error');
+      });
+      button.addEventListener('click', () => {
+        const chosen = group.querySelector('input:checked');
+        if (!chosen) {
+          reply.textContent = 'Scegli una delle tre risposte.';
+          reply.classList.add('error');
+          return;
+        }
+
+        const correct = chosen.value === exercise.correct;
+        reply.textContent = correct ? exercise.success : exercise.retry;
+        reply.classList.toggle('error', !correct);
+      });
+    }
+  </script>
+</body>
+</html>

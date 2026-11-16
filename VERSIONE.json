@@ -1,8 +1,8 @@
 {
-  "release": "2026-11-12-delivery-guides",
-  "deploymentRevision": 7,
+  "release": "2026-11-16-scanner-guidance",
+  "deploymentRevision": 8,
   "acceptedCheckoutVersion": "AETERNA-CHECKOUT-2026-10-31-2",
-  "indexSha256": "c94684fc167e973b7560faa0a95a566af7c5f0875932eb655b85519489a3c4ad",
+  "indexSha256": "a0697e7e2f0dd3a7a3b76ed124a12a3e0eb90128ccecee6ea7388746af3db1ef",
   "baselineSha256": "8f3346964ebd93f06bd3b3480ead3354e4a6472f739462b29a6967db77ab03d7",
   "backendChanged": false,
   "legalDocumentsChanged": false,
