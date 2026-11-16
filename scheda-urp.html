@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Scheda dimostrativa stampabile. Avviso corretto per la prova A del pilota AETERNA per i Comuni.">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline'; form-action 'none'; base-uri 'none'">
+  <title>Scheda cittadino · AETERNA Digital Legacy</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --ink: #102522;
+      --teal: #184e43;
+      --warn: #762b1f;
+      --muted: #3e5951;
+      --line: #bacdc0;
+      --paper: #f6f5ed;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      font: 1.12rem/1.6 'Atkinson Hyperlegible Next','Segoe UI',Arial,sans-serif;
+      color: var(--ink);
+      background: var(--paper);
+      margin: 0;
+      overflow-wrap: anywhere;
+    }
+
+    .wrap {
+      width: min(100% - 2rem,36rem);
+      margin: clamp(1rem,5vw,3.25rem) auto;
+    }
+
+    .page {
+      background: #fff;
+      border: 1px solid var(--line);
+      border-top: .4rem solid var(--teal);
+      padding: clamp(1rem,5vw,2.65rem);
+      border-radius: .4rem;
+    }
+
+    h1 {
+      font-size: clamp(2rem,6vw,3rem);
+      line-height: 1.13;
+      margin: .65rem 0 1rem;
+    }
+
+    h2 {
+      font-size: 1.25rem;
+      line-height: 1.2;
+      margin: 1.5rem 0 .45rem;
+    }
+
+    p {
+      margin: 0 0 .85rem;
+    }
+
+    p:last-child {
+      margin: 0;
+    }
+
+    .simulation {
+      font-weight: 800;
+      color: var(--warn);
+    }
+
+    .copy {
+      display: inline-block;
+      padding: .45rem .65rem;
+      background: #eef3ed;
+      border-left: .2rem solid var(--teal);
+      font-weight: 700;
+    }
+
+    .links {
+      padding: 1rem 0;
+    }
+
+    a {
+      color: var(--teal);
+      text-underline-offset: .24em;
+    }
+
+    a:focus-visible {
+      outline: .2rem solid #005eaf;
+      outline-offset: .2rem;
+    }
+
+    footer {
+      border-top: 1px solid var(--line);
+      padding-top: .8rem;
+      margin-top: 1.6rem;
+      font-size: .95rem;
+      color: var(--muted);
+    }
+
+    @page {
+      size: A4;
+      margin: 16mm;
+    }
+
+    @media print {
+      body,.page,.copy {
+        background: #fff;
+        color: #000;
+      }
+      .wrap {
+        width: 100%;
+        margin: 0;
+      }
+      .page {
+        border: 2pt solid #222;
+        border-radius: 0;
+        padding: 18pt;
+      }
+      .links {
+        display: none;
+      }
+      .simulation,.copy,footer {
+        color: #000;
+      }
+      footer {
+        font-size: 11pt;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <article class="page" aria-labelledby="titolo-scheda">
+      <p class="simulation">Esercitazione AETERNA · Avviso fittizio</p>
+      <h1 id="titolo-scheda">Lo sportello di prova è aperto</h1>
+      <p class="copy">Scheda URP-DEMO-02 · Versione 2</p>
+      <p>La casella di posta dell’esercizio è ferma. L’avviso di chiusura che hai ricevuto fa parte della prova. Puoi proseguire in presenza.</p>
+      <h2>Dove andare senza telefono</h2>
+      <p>Vai alla bacheca accanto all’ingresso dell’aula della prova. Se serve, chiedi alla persona incaricata del punto informazioni di indicarti la scheda corrente.</p>
+      <h2>Come riconoscere la copia giusta</h2>
+      <p>Leggi in chiaro <strong>URP-DEMO-02</strong> e <strong>Versione 2</strong>. Chi conduce conferma quale versione è in uso. Per leggere le istruzioni basta questo foglio.</p>
+      <footer><p>Valida durante la sessione guidata. Tutti i riferimenti di questa scheda sono inventati per l’esercitazione. Per i servizi reali consulta i canali dell’ente.</p></footer>
+    </article>
+    <nav class="links" aria-label="Navigazione della scheda">
+      <a href="index.html#titolo-a">Torna all’esercizio A</a>
+    </nav>
+  </main>
+</body>
+</html>
